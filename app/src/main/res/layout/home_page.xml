@@ -66,7 +66,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@drawable/circle_shape"
+                android:background="@drawable/circle_shape_blue"
                 android:gravity="center"
                 android:padding="10dp">
 
@@ -74,7 +74,7 @@
                     android:id="@+id/homePage_iconDiscover"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
-                    app:srcCompat="@drawable/discover" />
+                    app:srcCompat="@color/cardview_dark_background" />
             </LinearLayout>
 
             <TextView
@@ -102,7 +102,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@drawable/circle_shape"
+                android:background="@drawable/circle_shape_blue"
                 android:gravity="center"
                 android:padding="10dp">
 
@@ -110,7 +110,7 @@
                     android:id="@+id/homePage_iconBlog"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
-                    app:srcCompat="@drawable/discover" />
+                    app:srcCompat="@color/cardview_shadow_start_color"/>
             </LinearLayout>
 
             <TextView
@@ -138,7 +138,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@drawable/circle_shape"
+                android:background="@drawable/circle_shape_blue"
                 android:gravity="center"
                 android:padding="10dp">
 
@@ -146,7 +146,7 @@
                     android:id="@+id/homePage_iconTrips"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
-                    app:srcCompat="@drawable/discover" />
+                    app:srcCompat="@color/design_default_color_on_primary" />
             </LinearLayout>
 
             <TextView
