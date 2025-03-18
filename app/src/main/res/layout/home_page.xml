@@ -15,23 +15,23 @@
         android:textColor="#35757D"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/homePage_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/homePage_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Hi Mike"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/searchView"
+        app:layout_constraintBottom_toTopOf="@+id/homePage_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/homePage_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/homePage_name" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/homePage_search">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -71,7 +71,7 @@
                 android:padding="10dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/homePage_iconDiscover"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
                     app:srcCompat="@drawable/discover" />
@@ -107,7 +107,7 @@
                 android:padding="10dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/homePage_iconBlog"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
                     app:srcCompat="@drawable/discover" />
@@ -143,7 +143,7 @@
                 android:padding="10dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/homePage_iconTrips"
                     android:layout_width="55dp"
                     android:layout_height="88dp"
                     app:srcCompat="@drawable/discover" />
@@ -194,7 +194,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/homePage_topTripsImage1"
                 android:layout_width="match_parent"
                 android:layout_height="123dp"
                 android:layout_weight="2"
@@ -204,7 +204,7 @@
                 app:srcCompat="@drawable/view1" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/homePage_topTripsTitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -213,7 +213,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/homePage_topTripsLocation1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -231,14 +231,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/homePage_topTripsImage2"
                 android:layout_width="match_parent"
                 android:layout_height="123dp"
                 android:layout_weight="2"
                 app:srcCompat="@drawable/view2" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/homePage_topTripsTitle2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -247,7 +247,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/homePage_topTripsLocation2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

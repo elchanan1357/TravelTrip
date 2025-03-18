@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/getStarted_startBtn"
         android:layout_width="246dp"
         android:layout_height="51dp"
         android:layout_marginBottom="100dp"
