@@ -24,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/img"
+                    android:id="@+id/rowTrip_imgBtn"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -40,7 +40,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/rowTrip_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/rowTrip_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -59,7 +59,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/rowTrip_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

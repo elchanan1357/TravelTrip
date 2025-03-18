@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/trips_filtering"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -32,6 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trips_recyclerViewTrips"
         android:layout_width="424dp"
         android:layout_height="425dp"
         android:layout_marginTop="8dp"
@@ -39,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomAppBar4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/trips_filtering" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar4"

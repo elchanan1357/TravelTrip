@@ -49,13 +49,30 @@
                 android:background="#D9D9D9"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/discover_flightsBtn"
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="164dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
                     android:layout_weight="2"
-                    android:background="@drawable/circle_shape"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:cardCornerRadius="70dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageButton
+                            android:id="@+id/discover_flightsBtn"
+                            android:layout_width="189dp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/view1" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView7"
