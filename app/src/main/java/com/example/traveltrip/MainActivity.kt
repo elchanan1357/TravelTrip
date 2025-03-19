@@ -1,21 +1,15 @@
 package com.example.traveltrip
 
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.edit_post)
-//        findViewById<LinearLayout>(R.id.discover_hotels).setOnClickListener{
-//            findViewById<ImageButton>(R.id.imageButton3).setImageResource(R.drawable.view1);
-//        }
-
+        setContentView(R.layout.activity_main)
     }
+
 }
