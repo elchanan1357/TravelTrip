@@ -40,6 +40,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/discover_flights"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -50,29 +51,34 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="164dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="2"
-                    app:cardCornerRadius="70dp"
-                    app:cardElevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="1dp">
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
                         <ImageButton
-                            android:id="@+id/discover_flightsBtn"
-                            android:layout_width="189dp"
-                            android:layout_height="match_parent"
-                            android:background="@null"
-                            android:scaleType="fitXY"
-                            app:srcCompat="@drawable/view1" />
+                            android:id="@+id/imageButton"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:translationX="-50dp"
+                            android:translationY="-50dp"
+                            app:srcCompat="@drawable/view2" />
                     </FrameLayout>
+
                 </androidx.cardview.widget.CardView>
+
 
                 <TextView
                     android:id="@+id/textView7"
@@ -85,6 +91,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/discover_trips"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -94,24 +101,46 @@
                 android:background="#D9D9D9"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/discover_tripsBtn"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="2"
-                    android:background="@drawable/circle_shape"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="1dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <ImageButton
+                            android:id="@+id/imageButton4"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:translationX="-50dp"
+                            android:translationY="-50dp"
+                            app:srcCompat="@drawable/view2" />
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Trips"
                     android:textSize="20sp" />
-
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -121,52 +150,45 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/discover_carRental"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:background="#D9D9D9"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/discover_carRentalBtn"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="2"
-                    android:background="@drawable/circle_shape"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="1dp">
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Car Rental"
-                    android:textSize="20sp" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
 
+                        <ImageButton
+                            android:id="@+id/imageButton3"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:translationX="-50dp"
+                            android:translationY="-50dp"
+                            app:srcCompat="@drawable/view2" />
+                    </FrameLayout>
 
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:background="#D9D9D9"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/discover_hotelsBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@drawable/circle_shape"
-                    tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -174,10 +196,61 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:text="Car Rental"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/discover_hotels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="#D9D9D9"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="1dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <ImageButton
+                            android:id="@+id/imageButton2"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:translationX="-50dp"
+                            android:translationY="-50dp"
+                            app:srcCompat="@drawable/view2" />
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="Hotels"
                     android:textSize="20sp" />
-
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
