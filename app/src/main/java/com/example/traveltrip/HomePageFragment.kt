@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
 
-class GetStarted : Fragment() {
+class HomePageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,13 +15,8 @@ class GetStarted : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.get_started, container, false)
-
-        view.findViewById<Button>(R.id.getStarted_startBtn).setOnClickListener {
-            findNavController().navigate(R.id.action_started_login)
-        }
+        val view = inflater.inflate(R.layout.home_page, container, false)
 
         return view
     }
-
 }
