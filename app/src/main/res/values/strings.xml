@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">TravelTrip</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="log_in">Log in</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="don_t_have_an_account">Don’t have an account ?</string>
+    <string name="i_agree_with_the_privacy_and_policy">i Agree with the privacy and policy</string>
+    <string name="traveltrip">TravelTrip</string>
+    <string name="choose_the_country">Choose the country....</string>
+    <string name="museums">Museums</string>
+    <string name="kids">Kids</string>
+    <string name="categories">Categories</string>
+    <string name="all_trips">All Trips</string>
+    <string name="amusement_parks">Amusement parks</string>
+    <string name="discover">Discover</string>
 </resources>
