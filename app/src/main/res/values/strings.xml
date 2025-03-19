@@ -13,4 +13,10 @@
     <string name="i_agree_with_the_privacy_and_policy">i Agree with the privacy and policy</string>
     <string name="traveltrip">TravelTrip</string>
     <string name="choose_the_country">Choose the country....</string>
+    <string name="museums">Museums</string>
+    <string name="kids">Kids</string>
+    <string name="categories">Categories</string>
+    <string name="all_trips">All Trips</string>
+    <string name="amusement_parks">Amusement parks</string>
+    <string name="discover">Discover</string>
 </resources>
