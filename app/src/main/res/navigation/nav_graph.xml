@@ -39,22 +39,23 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.traveltrip.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/home_page" >
+        tools:layout="@layout/home_page">
         <action
             android:id="@+id/action_home_discover"
             app:destination="@id/discoverFragment" />
         <action
-            android:id="@+id/action_home_trips"
-            app:destination="@id/tripsFragment" />
-        <action
-            android:id="@+id/action_home_posts"
+            android:id="@+id/action_home_blogs"
             app:destination="@id/postsFragment" />
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.example.traveltrip.DiscoverFragment"
-        tools:layout="@layout/discover"
-        android:label="DiscoverFragment" />
+        android:label="DiscoverFragment"
+        tools:layout="@layout/discover">
+        <action
+            android:id="@+id/action_discover_categories"
+            app:destination="@id/categoriesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tripsFragment"
         android:name="com.example.traveltrip.TripsFragment"
@@ -65,4 +66,13 @@
         android:name="com.example.traveltrip.PostsFragment"
         android:label="fragment_posts"
         tools:layout="@layout/all_posts" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.traveltrip.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/categories" >
+        <action
+            android:id="@+id/action_categories_trips"
+            app:destination="@id/tripsFragment" />
+    </fragment>
 </navigation>

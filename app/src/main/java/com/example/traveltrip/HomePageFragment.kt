@@ -20,9 +20,9 @@ class HomePageFragment : Fragment() {
     ): View? {
         binding = HomePageBinding.inflate(inflater, container, false)
 
-        binding?.homeBlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_posts) }
+        binding?.homeBlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
         binding?.homeDiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
-        binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
+//        binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
 
         return binding?.root
     }
