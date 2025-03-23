@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.databinding.RegisterBinding
 
 class RegisterFragment : Fragment() {
+    private var binding: RegisterBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,12 +19,12 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.register, container, false)
+        binding = RegisterBinding.inflate(inflater, container, false)
 
-        view.findViewById<Button>(R.id.register_signupBtn).setOnClickListener { switchToLogin() }
-        view.findViewById<Button>(R.id.register_signinBtn).setOnClickListener { switchToLogin() }
+        binding?.registerSigninBtn?.setOnClickListener { switchToLogin() }
+        binding?.registerSignupBtn?.setOnClickListener { switchToLogin() }
 
-        return view
+        return binding?.root
     }
 
     private fun switchToLogin() {
