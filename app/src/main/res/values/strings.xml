@@ -25,4 +25,6 @@
     <string name="my_trips">My Trips</string>
     <string name="blog">Blog</string>
     <string name="top_trips">Top Trips</string>
+    <string name="cusco_peru">Cusco Peru</string>
+    <string name="inca_trail">Inca Trail</string>
 </resources>
