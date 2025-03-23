@@ -39,5 +39,30 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.traveltrip.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/home_page" />
+        tools:layout="@layout/home_page" >
+        <action
+            android:id="@+id/action_home_discover"
+            app:destination="@id/discoverFragment" />
+        <action
+            android:id="@+id/action_home_trips"
+            app:destination="@id/tripsFragment" />
+        <action
+            android:id="@+id/action_home_posts"
+            app:destination="@id/postsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.traveltrip.DiscoverFragment"
+        tools:layout="@layout/discover"
+        android:label="DiscoverFragment" />
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.traveltrip.TripsFragment"
+        android:label="fragment_trips"
+        tools:layout="@layout/trips" />
+    <fragment
+        android:id="@+id/postsFragment"
+        android:name="com.example.traveltrip.PostsFragment"
+        android:label="fragment_posts"
+        tools:layout="@layout/all_posts" />
 </navigation>
