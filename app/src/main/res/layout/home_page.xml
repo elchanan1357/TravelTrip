@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="Hi Mike"
+        android:text="@string/hi_mike"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/homePage_search"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,35 +61,56 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/circle_shape_blue"
-                android:gravity="center"
-                android:padding="10dp">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/homePage_iconDiscover"
-                    android:layout_width="55dp"
-                    android:layout_height="88dp"
-                    app:srcCompat="@color/cardview_dark_background" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_shape_blue">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/view1" />
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/discover"
+                    android:textSize="20sp" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Discover"
-                android:textColor="#000000"
-                android:textSize="16sp" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/home_blogIcon"
@@ -98,35 +119,56 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/circle_shape_blue"
-                android:gravity="center"
-                android:padding="10dp">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/homePage_iconBlog"
-                    android:layout_width="55dp"
-                    android:layout_height="88dp"
-                    app:srcCompat="@color/cardview_shadow_start_color" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_shape_blue">
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/view2" />
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/blog"
+                    android:textSize="20sp" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Blog"
-                android:textColor="#000000"
-                android:textSize="16sp" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/home_tripsIcon"
@@ -135,33 +177,51 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/circle_shape_blue"
-                android:gravity="center"
-                android:padding="10dp">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                tools:ignore="NestedWeights">
 
-                <ImageButton
-                    android:id="@+id/homePage_iconTrips"
-                    android:layout_width="55dp"
-                    android:layout_height="88dp"
-                    app:srcCompat="@color/design_default_color_on_primary" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="100dp"
+                    app:cardElevation="5dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_shape_blue">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/view1" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/my_trips"
+                    android:textSize="20sp" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="My Trips"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-
         </LinearLayout>
 
 
@@ -171,7 +231,8 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Top Trips"
+        android:layout_marginStart="15dp"
+        android:text="@string/top_trips"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
