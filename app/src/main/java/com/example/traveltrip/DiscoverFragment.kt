@@ -31,4 +31,10 @@ class DiscoverFragment : Fragment() {
     private fun onClick() {
         findNavController().navigate(R.id.action_discover_categories)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }

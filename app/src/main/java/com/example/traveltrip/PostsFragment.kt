@@ -21,4 +21,10 @@ class PostsFragment : Fragment() {
         binding = PostsBinding.inflate(inflater, container, false);
         return binding?.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }

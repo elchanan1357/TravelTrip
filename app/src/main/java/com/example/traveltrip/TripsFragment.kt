@@ -21,4 +21,9 @@ class TripsFragment : Fragment() {
         binding = TripsBinding.inflate(inflater, container, false)
         return binding?.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

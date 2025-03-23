@@ -30,4 +30,9 @@ class CategoriesFragment : Fragment() {
         findNavController().navigate(R.id.action_categories_trips)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }

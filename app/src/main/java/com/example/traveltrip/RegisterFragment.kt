@@ -30,5 +30,10 @@ class RegisterFragment : Fragment() {
     private fun switchToLogin() {
         findNavController().navigate(R.id.action_register_login)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }
 
