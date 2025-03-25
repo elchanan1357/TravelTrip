@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.GetStartedBinding
 
-class GetStarted : Fragment() {
+class GetStartedFragment : Fragment() {
     private  var binding :GetStartedBinding ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {

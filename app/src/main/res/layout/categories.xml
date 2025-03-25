@@ -49,9 +49,8 @@
         android:layout_width="0dp"
         android:layout_height="434dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +66,7 @@
                 android:id="@+id/categories_amusementParks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
@@ -108,9 +108,9 @@
                                 android:id="@+id/imageButton"
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
-                                android:focusable="false"
-                                android:clickable="false"
                                 android:background="@android:color/transparent"
+                                android:clickable="false"
+                                android:focusable="false"
                                 android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
@@ -138,9 +138,9 @@
                 android:id="@+id/categories_trips"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#D9D9D9"
@@ -180,9 +180,9 @@
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
-                                android:scaleType="centerCrop"
-                                android:focusable="false"
                                 android:clickable="false"
+                                android:focusable="false"
+                                android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
                                 app:srcCompat="@drawable/view2" />
@@ -259,9 +259,9 @@
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
-                                android:scaleType="centerCrop"
-                                android:focusable="false"
                                 android:clickable="false"
+                                android:focusable="false"
+                                android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
                                 app:srcCompat="@drawable/view2" />
@@ -288,9 +288,9 @@
                 android:id="@+id/categories_kids"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#D9D9D9"
@@ -330,9 +330,9 @@
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
-                                android:scaleType="centerCrop"
-                                android:focusable="false"
                                 android:clickable="false"
+                                android:focusable="false"
+                                android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
                                 app:srcCompat="@drawable/view1" />
@@ -357,12 +357,5 @@
 
         </LinearLayout>
     </LinearLayout>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
