@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,7 +51,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val navController = (supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment).navController
+        val navController =
+            (supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment).navController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_bar)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
@@ -61,6 +61,37 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationView.visibility = View.GONE
             } else {
                 bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_home -> {
+
+                    true
+                }
+
+                R.id.menu_diary -> {
+
+                    true
+                }
+
+                R.id.menu_discover -> {
+
+                    true
+                }
+
+                R.id.menu_blogs -> {
+
+                    true
+                }
+
+                R.id.menu_profile -> {
+                    Log.d("co", "in")
+                    true
+                }
+
+                else -> false
             }
         }
 
