@@ -37,17 +37,11 @@ class TripsFragment : Fragment() {
 
             itemBinding.rowTripTitle.text = item.title
             itemBinding.rowTripInformation.text = item.info
-            item.img.let { imageUri ->
-                itemBinding.rowTripImgBtn.setImageURI(Uri.parse(imageUri))
-
-                Log.d("Adapter", "${itemBinding.rowTripImgBtn}")
-            }
         }
         val recyclerView: RecyclerView? = binding?.tripsRecyclerViewTrips
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-
     }
 
     override fun onDestroyView() {

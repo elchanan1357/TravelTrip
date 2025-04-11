@@ -13,7 +13,7 @@ class Model private constructor() {
                 Travel(
                     "$i",
                     "the trip is $i",
-                    "D:\\Users\\User\\Desktop\\profile.jpg"
+                    "/"
                 )
             )
     }
