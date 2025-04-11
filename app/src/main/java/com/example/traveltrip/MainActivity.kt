@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.menu_profile -> {
-                    Log.d("co", "in")
+
                     true
                 }
 

@@ -1,18 +1,14 @@
 package com.example.traveltrip
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.ImageSpan
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.HomePageBinding
-import android.content.res.Resources
+
 
 class HomePageFragment : Fragment() {
     private var binding: HomePageBinding? = null
@@ -29,7 +25,7 @@ class HomePageFragment : Fragment() {
 
         binding?.homeBlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
         binding?.homeDiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
-        // binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
+//         binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
 
 //        val textView: TextView? = binding?.textView15
 //        val iconLocation = ContextCompat.getDrawable(requireContext(), R.drawable.icon_location)
