@@ -19,3 +19,5 @@ class AllTripsAdapter(private val trips: MutableList<Travel>?) :
 
     override fun getItemCount(): Int = trips?.size ?: 0
 }
+
+
