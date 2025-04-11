@@ -19,4 +19,16 @@
     <string name="all_trips">All Trips</string>
     <string name="amusement_parks">Amusement parks</string>
     <string name="discover">Discover</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hi_mike">Hi Mike</string>
+    <string name="my_trips">My Trips</string>
+    <string name="blog">Blog</string>
+    <string name="top_trips">Top Trips</string>
+    <string name="cusco_peru">Cusco Peru</string>
+    <string name="inca_trail">Inca Trail</string>
+    <string name="blogs">Blogs</string>
+    <string name="profile">Profile</string>
+    <string name="diary">Diary</string>
+    <string name="home">Home</string>
 </resources>

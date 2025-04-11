@@ -14,24 +14,20 @@
         android:text="@string/discover"
         android:textSize="34sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-14dp" />
-
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="502dp"
-        android:layout_marginBottom="50dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar2"
-        tools:layout_editor_absoluteX="-6dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,8 +39,8 @@
                 android:id="@+id/discover_flights"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:background="#D9D9D9"
@@ -73,9 +69,9 @@
                             android:layout_width="250dp"
                             android:layout_height="250dp"
                             android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:focusable="false"
                             android:clickable="false"
+                            android:focusable="false"
+                            android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
                             app:srcCompat="@drawable/view2" />
@@ -101,10 +97,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_weight="1"
                 android:background="#D9D9D9"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -128,9 +124,9 @@
                             android:layout_width="250dp"
                             android:layout_height="250dp"
                             android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:focusable="false"
                             android:clickable="false"
+                            android:focusable="false"
+                            android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
                             app:srcCompat="@drawable/view2" />
@@ -161,13 +157,13 @@
                 android:id="@+id/discover_carRental"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_weight="1"
                 android:background="#D9D9D9"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -191,9 +187,9 @@
                             android:layout_width="250dp"
                             android:layout_height="250dp"
                             android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:focusable="false"
                             android:clickable="false"
+                            android:focusable="false"
+                            android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
                             app:srcCompat="@drawable/view2" />
@@ -219,10 +215,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_weight="1"
                 android:background="#D9D9D9"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -246,9 +242,9 @@
                             android:layout_width="250dp"
                             android:layout_height="250dp"
                             android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:focusable="false"
                             android:clickable="false"
+                            android:focusable="false"
+                            android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
                             app:srcCompat="@drawable/view2" />
