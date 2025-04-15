@@ -5,6 +5,7 @@ import androidx.core.os.HandlerCompat
 import java.util.concurrent.Executors
 
 typealias TravelsCallback = (List<Travel>) -> Unit
+typealias EmptyCallback = () -> Unit
 
 class Model private constructor() {
     val travels: List<Travel> = ArrayList()
@@ -29,10 +30,16 @@ class Model private constructor() {
     fun getAllTravels(callback: TravelsCallback) {
         executor.execute {
             val travels = AppLocalDB.DB.TravelDao().getTravels()
+            Thread.sleep(4000)
             mainHandler.post { callback(travels) }
         }
     }
 
-
+    fun addTravel(travel: Travel, callback: EmptyCallback) {
+        executor.execute {
+            AppLocalDB.DB.TravelDao().insertTravels(travel)
+            mainHandler.post { callback() }
+        }
+    }
 
 }

@@ -26,6 +26,6 @@ class GenericAdapter<T, VB: ViewBinding>(
         fun updateList(newList: List<T>?) {
             items = newList
             notifyDataSetChanged()
-            //Check this
         }
+
 }
