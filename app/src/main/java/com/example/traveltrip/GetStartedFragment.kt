@@ -21,7 +21,7 @@ class GetStartedFragment : Fragment() {
     ): View? {
         binding = GetStartedBinding.inflate(inflater,container,false)
 
-        binding?.getStartedStartBtn?.setOnClickListener {
+        binding?.StartBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_started_login)
         }
 

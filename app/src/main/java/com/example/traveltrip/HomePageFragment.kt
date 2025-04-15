@@ -23,8 +23,8 @@ class HomePageFragment : Fragment() {
     ): View? {
         binding = HomePageBinding.inflate(inflater, container, false)
 
-        binding?.homeBlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
-        binding?.homeDiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
+        binding?.BlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
+        binding?.DiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
 //         binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
 
 //        val textView: TextView? = binding?.textView15

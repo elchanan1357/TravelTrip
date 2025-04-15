@@ -37,7 +37,7 @@ class TripsFragment : Fragment() {
         getAllTravels()
         createAdapter()
 
-        val recyclerView: RecyclerView? = binding?.tripsRecyclerViewTrips
+        val recyclerView: RecyclerView? = binding?.RecyclerViewTrips
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
@@ -78,8 +78,8 @@ class TripsFragment : Fragment() {
             items = travels,
             bindingInflater = RowTripBinding::inflate
         ) { itemBinding, item ->
-            itemBinding.rowTripTitle.text = item.title
-            itemBinding.rowTripInformation.text = item.info
+            itemBinding.Title.text = item.title
+            itemBinding.Information.text = item.info
         }
     }
 

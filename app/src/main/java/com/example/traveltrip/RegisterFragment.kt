@@ -21,8 +21,8 @@ class RegisterFragment : Fragment() {
     ): View? {
         binding = RegisterBinding.inflate(inflater, container, false)
 
-        binding?.registerSigninBtn?.setOnClickListener { switchToLogin() }
-        binding?.registerSignupBtn?.setOnClickListener { switchToLogin() }
+        binding?.SigninBtn?.setOnClickListener { switchToLogin() }
+        binding?.SignupBtn?.setOnClickListener { switchToLogin() }
 
         return binding?.root
     }

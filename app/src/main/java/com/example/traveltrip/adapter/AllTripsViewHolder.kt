@@ -16,9 +16,9 @@ class AllTripsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var img: ImageButton? = null
 
     init {
-        this.title = itemView.findViewById(R.id.rowTrip_title)
-        this.info = itemView.findViewById(R.id.rowTrip_information)
-        this.img = itemView.findViewById(R.id.rowTrip_imgBtn)
+        this.title = itemView.findViewById(R.id.Title)
+        this.info = itemView.findViewById(R.id.Information)
+        this.img = itemView.findViewById(R.id.ImgBtn)
     }
 
     fun bind(trips: Travel?, position: Int) {

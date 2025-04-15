@@ -20,10 +20,10 @@ class DiscoverFragment : Fragment() {
     ): View? {
         binding = DiscoverBinding.inflate(inflater, container, false)
 
-        binding?.discoverHotels?.setOnClickListener { onClick() }
-        binding?.discoverTrips?.setOnClickListener { onClick() }
-        binding?.discoverFlights?.setOnClickListener { onClick() }
-        binding?.discoverCarRental?.setOnClickListener { onClick() }
+        binding?.Hotels?.setOnClickListener { onClick() }
+        binding?.Trips?.setOnClickListener { onClick() }
+        binding?.Flights?.setOnClickListener { onClick() }
+        binding?.CarRental?.setOnClickListener { onClick() }
 
         return binding?.root
     }

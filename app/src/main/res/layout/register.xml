@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/head">
 
         <EditText
-            android:id="@+id/register_name"
+            android:id="@+id/Name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -58,13 +58,13 @@
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/register_phone"
+            app:layout_constraintBottom_toTopOf="@+id/Phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/register_phone"
+            android:id="@+id/Phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -76,13 +76,13 @@
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/register_email"
+            app:layout_constraintBottom_toTopOf="@+id/Email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_name" />
+            app:layout_constraintTop_toBottomOf="@+id/Name" />
 
         <EditText
-            android:id="@+id/register_email"
+            android:id="@+id/Email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -94,13 +94,13 @@
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/register_password"
+            app:layout_constraintBottom_toTopOf="@+id/Password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/Phone" />
 
         <EditText
-            android:id="@+id/register_password"
+            android:id="@+id/Password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -112,13 +112,13 @@
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/register_password2"
+            app:layout_constraintBottom_toTopOf="@+id/Password2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_email" />
+            app:layout_constraintTop_toBottomOf="@+id/Email" />
 
         <EditText
-            android:id="@+id/register_password2"
+            android:id="@+id/Password2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -133,7 +133,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_password" />
+            app:layout_constraintTop_toBottomOf="@+id/Password" />
 
         <TextView
             android:id="@+id/textView2"
@@ -142,13 +142,13 @@
             android:layout_marginEnd="32dp"
             android:text="@string/i_agree_with_the_privacy_and_policy"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/register_signupBtn"
+            app:layout_constraintBottom_toTopOf="@+id/SignupBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/register_checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/register_password2" />
+            app:layout_constraintStart_toEndOf="@+id/CheckBox"
+            app:layout_constraintTop_toBottomOf="@+id/Password2" />
 
         <CheckBox
-            android:id="@+id/register_checkBox"
+            android:id="@+id/CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -158,7 +158,7 @@
             app:layout_constraintVertical_bias="0.576" />
 
         <Button
-            android:id="@+id/register_signupBtn"
+            android:id="@+id/SignupBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -167,7 +167,7 @@
             android:text="@string/sign_up"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/register_signinBtn"
+            app:layout_constraintBottom_toTopOf="@+id/SigninBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,12 +182,12 @@
             android:text="@string/already_have_an_account"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/register_signinBtn"
+            app:layout_constraintEnd_toStartOf="@+id/SigninBtn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/register_signinBtn"
+            android:id="@+id/SigninBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"

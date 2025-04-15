@@ -16,25 +16,25 @@
         android:textColor="#35757D"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/homePage_name"
+        app:layout_constraintBottom_toTopOf="@+id/Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/homePage_name"
+        android:id="@+id/Name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="@string/hi_mike"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/homePage_search"
+        app:layout_constraintBottom_toTopOf="@+id/Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <SearchView
-        android:id="@+id/homePage_search"
+        android:id="@+id/Search"
         android:layout_width="387dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homePage_name" />
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -54,10 +54,10 @@
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homePage_search">
+        app:layout_constraintTop_toBottomOf="@+id/Search">
 
         <LinearLayout
-            android:id="@+id/home_discoverIcon"
+            android:id="@+id/DiscoverIcon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -115,7 +115,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/home_blogIcon"
+            android:id="@+id/BlogIcon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -173,7 +173,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/home_tripsIcon"
+            android:id="@+id/TripsIcon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -253,7 +253,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/Home_topTrip1"
+            android:id="@+id/TopTrip1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -331,7 +331,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/Home_topTrip2"
+            android:id="@+id/TopTrip2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
