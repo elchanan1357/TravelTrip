@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
 class GenericAdapter<T, VB: ViewBinding>(
-    private var items: MutableList<T>?,
+    private var items: List<T>?,
     private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> VB,
     private val bindItem: (VB, T) -> Unit
 ): RecyclerView.Adapter<GenericViewHolder<T, VB>>()  {
@@ -23,7 +23,7 @@ class GenericAdapter<T, VB: ViewBinding>(
         override fun getItemCount(): Int = items?.size ?: 0
 
         @SuppressLint("NotifyDataSetChanged")
-        fun updateList(newList: MutableList<T>?) {
+        fun updateList(newList: List<T>?) {
             items = newList
             notifyDataSetChanged()
             //Check this
