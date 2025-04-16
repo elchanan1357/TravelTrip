@@ -10,9 +10,6 @@ import com.example.traveltrip.databinding.DiscoverBinding
 
 class DiscoverFragment : Fragment() {
     private var binding: DiscoverBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

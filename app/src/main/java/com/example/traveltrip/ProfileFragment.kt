@@ -5,22 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.traveltrip.databinding.PostsBinding
+import com.example.traveltrip.databinding.ProfileBinding
 
-class PostsFragment : Fragment() {
-    private var binding: PostsBinding? = null
+class ProfileFragment : Fragment() {
+    private var binding: ProfileBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = PostsBinding.inflate(inflater, container, false);
+        binding = ProfileBinding.inflate(inflater, container, false)
+
         return binding?.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    override fun onDestroy() {
+        super.onDestroy()
+        this.binding = null
     }
-
 }

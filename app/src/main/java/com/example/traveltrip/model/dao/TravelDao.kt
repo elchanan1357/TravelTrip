@@ -9,13 +9,13 @@ import com.example.traveltrip.model.Travel
 
 @Dao
 interface TravelDao {
-//    @Query("SELECT * FROM TRAVEL WHERE title = :title")
-//    fun getTravelByTitle(title: String)
+    @Query("SELECT * FROM Travel WHERE title = :title")
+    fun getTravelByTitle(title: String):Travel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTravels(vararg travels: Travel)
 
-    @Query("SELECT * FROM TRAVEL")
+    @Query("SELECT * FROM Travel")
     fun getTravels(): List<Travel>
 
     @Delete
