@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.RegisterBinding
 
@@ -19,7 +18,17 @@ class RegisterFragment : Fragment() {
         binding = RegisterBinding.inflate(inflater, container, false)
 
         binding?.SigninBtn?.setOnClickListener { switchToLogin() }
-        binding?.SignupBtn?.setOnClickListener { switchToLogin() }
+        binding?.SignupBtn?.setOnClickListener {
+//            val user: User? = null
+//            user?.name = binding?.name?.text.toString()
+//            user?.phone = binding?.phone.toString()
+//            user?.password = binding?.password.toString()
+
+
+            switchToLogin()
+
+
+        }
 
         return binding?.root
     }

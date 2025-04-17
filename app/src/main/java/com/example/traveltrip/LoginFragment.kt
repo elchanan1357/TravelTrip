@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.GetStartedBinding
 import com.example.traveltrip.databinding.LoginBinding
@@ -19,7 +20,9 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = LoginBinding.inflate(inflater, container, false);
 
-        binding?.LoginBtn?.setOnClickListener { findNavController().navigate(R.id.action_login_home) }
+        binding?.LoginBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_login_home)
+        }
         binding?.SignupBtn?.setOnClickListener { findNavController().navigate(R.id.action_login_register) }
 
         return binding?.root

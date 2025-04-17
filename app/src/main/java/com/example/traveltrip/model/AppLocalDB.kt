@@ -5,10 +5,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.traveltrip.base.MyApp
 import com.example.traveltrip.model.dao.TravelDao
+import com.example.traveltrip.model.dao.UserDao
+import com.example.traveltrip.model.entity.Travel
+import com.example.traveltrip.model.entity.User
 
-@Database(entities = [Travel::class], version = 1)
+@Database(entities = [Travel::class, User::class], version = 1)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun TravelDao(): TravelDao
+    abstract fun UserDao(): UserDao
 }
 
 object AppLocalDB {

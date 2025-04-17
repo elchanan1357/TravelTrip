@@ -5,12 +5,12 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.traveltrip.model.Travel
+import com.example.traveltrip.model.entity.Travel
 
 @Dao
 interface TravelDao {
     @Query("SELECT * FROM Travel WHERE title = :title")
-    fun getTravelByTitle(title: String):Travel?
+    fun getTravelByTitle(title: String): Travel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTravels(vararg travels: Travel)

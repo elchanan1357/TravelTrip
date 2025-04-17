@@ -2,36 +2,31 @@ package com.example.traveltrip.model
 
 import android.os.Looper
 import androidx.core.os.HandlerCompat
+import com.example.traveltrip.model.entity.Travel
 import java.util.concurrent.Executors
 
-typealias TravelsCallback = (List<Travel>) -> Unit
-typealias EmptyCallback = () -> Unit
 
-class Model private constructor() {
-    val travels: List<Travel> = ArrayList()
+class ModelTravel private constructor() {
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
 
     companion object {
-        val instance: Model = Model()
+        val instance: ModelTravel = ModelTravel()
     }
-
-//    init {
-//        for (i in 0..20)
-//            travels.add(
-//                Travel(
-//                    "$i",
-//                    "the trip is $i",
-//                    "/"
-//                )
-//            )
-//    }
 
     fun getAllTravels(callback: TravelsCallback) {
         executor.execute {
             val travels = AppLocalDB.DB.TravelDao().getTravels()
             Thread.sleep(4000)
             mainHandler.post { callback(travels) }
+        }
+    }
+
+    fun getTravelByTitle(title: String, callback: TravelCallback) {
+        executor.execute {
+            val travel = AppLocalDB.DB.TravelDao().getTravelByTitle(title)
+            Thread.sleep(4000)
+            mainHandler.post { callback(travel) }
         }
     }
 
@@ -42,4 +37,10 @@ class Model private constructor() {
         }
     }
 
+    fun deleteTravel(travel: Travel, callback: EmptyCallback) {
+        executor.execute {
+            AppLocalDB.DB.TravelDao().deleteTravel(travel)
+            mainHandler.post { callback() }
+        }
+    }
 }

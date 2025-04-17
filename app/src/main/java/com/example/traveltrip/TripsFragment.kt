@@ -10,12 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
 import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
-import com.example.traveltrip.model.Model
-import com.example.traveltrip.model.Travel
+import com.example.traveltrip.model.ModelTravel
+import com.example.traveltrip.model.entity.Travel
 
 class TripsFragment : Fragment() {
     private var travels: List<Travel>? = null
@@ -61,7 +60,7 @@ class TripsFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun getAllTravels() {
         binding?.progressBar?.visibility = View.VISIBLE
-        Model.instance.getAllTravels {
+        ModelTravel.instance.getAllTravels {
             this.travels = it
             adapter?.updateList(it)
             adapter?.notifyDataSetChanged()
@@ -94,7 +93,7 @@ class TripsFragment : Fragment() {
                     "the trip is beautiful",
                     "/"
                 )
-            Model.instance.addTravel(travel) {
+            ModelTravel.instance.addTravel(travel) {
                 Log.d("btn", "Add to Db ")
 
             }

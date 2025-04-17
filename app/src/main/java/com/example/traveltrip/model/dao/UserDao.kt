@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.traveltrip.model.User
+import com.example.traveltrip.model.entity.User
 
 @Dao
 interface UserDao {
