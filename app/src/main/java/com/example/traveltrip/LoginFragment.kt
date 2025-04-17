@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.traveltrip.Utils.isNull
 import com.example.traveltrip.Utils.log
+import com.example.traveltrip.Utils.logError
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
@@ -27,14 +28,7 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = LoginBinding.inflate(inflater, container, false);
 
-        binding?.LoginBtn?.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                val user = handleLogin()
-                if (user != null) {
-                    findNavController().navigate(R.id.action_login_home)
-                }
-            }
-        }
+        binding?.LoginBtn?.setOnClickListener { handleLogin() }
         binding?.SignupBtn?.setOnClickListener { findNavController().navigate(R.id.action_login_register) }
 
         return binding?.root
@@ -45,29 +39,26 @@ class LoginFragment : Fragment() {
         binding = null
     }
 
-    private suspend fun handleLogin(): User? {
+    private fun handleLogin() {
         var checking = isNull(binding?.email)
         checking = isNull(binding?.password) || checking
 
-        if (checking) return null
+        if (checking) return
 
-        var user: User? = null
         val email = binding?.email?.text.toString()
         val pass = binding?.password?.text.toString()
 
-        return suspendCoroutine { continuation ->
-            ModelUser.instance.getUserByEmail(email) { user ->
-                if (user == null) {
-                    log("User not found")
-                    continuation.resume(null)
-                } else {
-                    ModelUser.instance.setEmail(email)
-                    BCrypt.verifyer()
-                        .verify(pass.toCharArray(), user.password.toCharArray()).verified
-                    continuation.resume(user)
-                }
+        ModelUser.instance.getUserByEmail(email) { user ->
+            if (user == null) {
+                log("login: User not found")
+            } else {
+                ModelUser.instance.setEmail(email)
+
+                val res = BCrypt.verifyer()
+                    .verify(pass.toCharArray(), user.password.toCharArray()).verified
+                if (res) findNavController().navigate(R.id.action_login_home)
+                else logError("login: The password not correct")
             }
         }
     }
-
 }

@@ -9,8 +9,10 @@ import androidx.navigation.NavOptions
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.Utils.log
 import com.example.traveltrip.databinding.HomePageBinding
 import com.example.traveltrip.model.ModelUser
+import com.example.traveltrip.model.entity.User
 
 
 class HomePageFragment : Fragment() {
@@ -36,7 +38,6 @@ class HomePageFragment : Fragment() {
 
         return binding?.root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

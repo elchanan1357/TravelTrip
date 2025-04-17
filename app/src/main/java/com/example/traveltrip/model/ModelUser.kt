@@ -59,6 +59,19 @@ class ModelUser private constructor() {
         }
     }
 
+    fun updateUser(user: User, callback: EmptyCallback) {
+        executor.execute {
+            try {
+                AppLocalDB.DB.UserDao().updateUser(user)
+                log("update user")
+                mainHandler.post { callback() }
+            } catch (err: Exception) {
+                logError("Fail in update user")
+                logError(err.toString())
+            }
+        }
+    }
+
     fun deleteUser(user: User, callback: EmptyCallback) {
         executor.execute {
             try {

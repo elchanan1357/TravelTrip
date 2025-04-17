@@ -27,32 +27,15 @@ class RegisterFragment : Fragment() {
         binding = RegisterBinding.inflate(inflater, container, false)
 
         binding?.SigninBtn?.setOnClickListener { findNavController().popBackStack() }
-        binding?.SignupBtn?.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                val user: User? = handleSignup()
-                if (user != null) {
-                    withContext(Dispatchers.IO) {
-                        ModelUser.instance.addUser(user) {
-                            findNavController().popBackStack()
-                        }
-                    }
-                }
-            }
-        }
+        binding?.SignupBtn?.setOnClickListener { handleSignup() }
 
         return binding?.root
     }
 
-    private fun handleSignup(): User? {
-        var checking: Boolean = isNull(binding?.name)
-        checking = isNull(binding?.phone) || checking
-        checking = isNull(binding?.email) || checking
-        checking = isNull(binding?.password) || checking
-        checking = isNull(binding?.password2) || checking
-
-        if (checking) {
+    private fun handleSignup() {
+        if (checkDataIsNull()) {
             log("You must fill in all the details.")
-            return null
+            return
         }
 
         val pass1 = binding?.password?.text.toString()
@@ -60,23 +43,37 @@ class RegisterFragment : Fragment() {
 
         if (pass1 != pass2) {
             log("the password not same")
-            return null
+            return
         }
 
         val isChecked = binding?.CheckBox?.isChecked ?: false
-        if (isChecked) {
+        if (!isChecked) {
             log("you must the a prov checkbox")
-            return null
+            return
         }
 
         val hashedPassword = BCrypt.withDefaults().hashToString(10, pass1.toCharArray())
 
-        return User(
+        val user = User(
             binding?.name?.text.toString(),
             binding?.phone?.text.toString(),
             binding?.email?.text.toString(),
             hashedPassword
         )
+
+        ModelUser.instance.addUser(user) {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun checkDataIsNull(): Boolean {
+        var checking: Boolean = isNull(binding?.name)
+        checking = isNull(binding?.phone) || checking
+        checking = isNull(binding?.email) || checking
+        checking = isNull(binding?.password) || checking
+        checking = isNull(binding?.password2) || checking
+
+        return checking
     }
 
 
