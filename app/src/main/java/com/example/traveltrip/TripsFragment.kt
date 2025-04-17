@@ -65,7 +65,6 @@ class TripsFragment : Fragment() {
             adapter?.updateList(it)
             adapter?.notifyDataSetChanged()
 
-
             binding?.progressBar?.visibility = View.GONE
         }
 
@@ -86,7 +85,7 @@ class TripsFragment : Fragment() {
     //TODO Delete it
     private fun tryMakeDelete() {
         binding?.addBtn?.setOnClickListener {
-            Log.d("btn", "enter ")
+            Log.d("logs", "enter ")
             val travel =
                 Travel(
                     "Baraka",
@@ -94,12 +93,11 @@ class TripsFragment : Fragment() {
                     "/"
                 )
             ModelTravel.instance.addTravel(travel) {
-                Log.d("btn", "Add to Db ")
-
+                Log.d("logs", "Add to Db ")
             }
 
             getAllTravels()
-            Log.d("btn", "Finish to save with ${this.travels?.size ?: 0}")
+            Log.d("logs", "Finish to save with ${this.travels?.size ?: 0}")
         }
     }
 

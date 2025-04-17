@@ -1,15 +1,21 @@
 package com.example.traveltrip
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.NavOptions
+import android.widget.EditText
 import androidx.navigation.fragment.findNavController
-import com.example.traveltrip.databinding.GetStartedBinding
 import com.example.traveltrip.databinding.LoginBinding
+import com.example.traveltrip.model.ModelUser
+import com.example.traveltrip.model.entity.User
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class LoginFragment : Fragment() {
     private var binding: LoginBinding? = null
@@ -21,7 +27,12 @@ class LoginFragment : Fragment() {
         binding = LoginBinding.inflate(inflater, container, false);
 
         binding?.LoginBtn?.setOnClickListener {
-            findNavController().navigate(R.id.action_login_home)
+            CoroutineScope(Dispatchers.Main).launch {
+                val user = handleLogin()
+                if (user != null) {
+                    findNavController().navigate(R.id.action_login_home)
+                }
+            }
         }
         binding?.SignupBtn?.setOnClickListener { findNavController().navigate(R.id.action_login_register) }
 
@@ -33,4 +44,38 @@ class LoginFragment : Fragment() {
         binding = null
     }
 
+    private suspend fun handleLogin(): User? {
+        var checking = isNull(binding?.email)
+        checking = isNull(binding?.password) || checking
+
+        if (checking) return null
+
+        var user: User? = null
+        val email = binding?.email?.text.toString()
+
+        return suspendCoroutine { continuation ->
+            ModelUser.instance.getUserByEmail(email) { user ->
+                if (user == null) {
+                    log("User not found")
+                    continuation.resume(null)
+                } else {
+                    ModelUser.instance.setEmail(email)
+                    continuation.resume(user)
+                }
+            }
+        }
+    }
+
+    private fun isNull(et: EditText?): Boolean {
+        if (et?.text.isNullOrBlank()) {
+            et?.error = "This filed is required"
+            return true
+        }
+
+        return false
+    }
+
+    private fun log(message: String) {
+        Log.d("logs", message)
+    }
 }

@@ -10,7 +10,7 @@ class GenericViewHolder<T, VB : ViewBinding>(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: T?, position: Int) {
-        item?.let { bindItem(binding, it) } ?: Log.d("ViewHolder", "Fail: item is null")
+        item?.let { bindItem(binding, it) } ?: Log.d("logs", "Fail: item is null")
     }
 }
 

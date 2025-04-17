@@ -1,11 +1,13 @@
 package com.example.traveltrip.model
 
 import android.os.Looper
+import android.util.Log
 import androidx.core.os.HandlerCompat
 import com.example.traveltrip.model.entity.User
 import java.util.concurrent.Executors
 
 class ModelUser private constructor() {
+    private var email: String? = null
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
 
@@ -15,31 +17,70 @@ class ModelUser private constructor() {
 
     fun getAllUsers(callback: UsersCallback) {
         executor.execute {
-            val users: List<User> = AppLocalDB.DB.UserDao().getUsers()
-            Thread.sleep(4000)
-            mainHandler.post { callback(users) }
+            try {
+                val users: List<User> = AppLocalDB.DB.UserDao().getUsers()
+                log("get All users")
+                Thread.sleep(4000)
+                mainHandler.post { callback(users) }
+            } catch (err: Exception) {
+                logError("Fail in get all users")
+                logError(err.toString())
+            }
         }
     }
 
-    fun getUserByName(name: String, callback: UserCallback) {
+    fun getUserByEmail(email: String, callback: UserCallback) {
         executor.execute {
-            val user: User? = AppLocalDB.DB.UserDao().getUserByName(name)
-            mainHandler.post { callback(user) }
+            try {
+                val user: User? = AppLocalDB.DB.UserDao().getUserByEmail(email)
+                log("Get user by email")
+                mainHandler.post { callback(user) }
+            } catch (err: Exception) {
+                logError("Fail in get user by email")
+                logError(err.toString())
+            }
         }
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
         executor.execute {
-            AppLocalDB.DB.UserDao().insertUser(user)
-            mainHandler.post { callback() }
+            try {
+                AppLocalDB.DB.UserDao().insertUser(user)
+                log("add user")
+                mainHandler.post { callback() }
+            } catch (err: Exception) {
+                logError("Fail in add user")
+                logError(err.toString())
+            }
         }
     }
 
     fun deleteUser(user: User, callback: EmptyCallback) {
         executor.execute {
-            AppLocalDB.DB.UserDao().deleteUser(user)
-            mainHandler.post { callback() }
+            try {
+                AppLocalDB.DB.UserDao().deleteUser(user)
+                log("Delete user")
+                mainHandler.post { callback() }
+            } catch (err: Exception) {
+                logError("Fail in delete user")
+                logError(err.toString())
+            }
         }
     }
 
+    fun setEmail(email: String) {
+        this.email = email
+    }
+
+    fun getEmail(): String? {
+        return this.email
+    }
+
+    private fun logError(error: String) {
+        Log.e("logs", error)
+    }
+
+    private fun log(message: String) {
+        Log.d("logs", message)
+    }
 }

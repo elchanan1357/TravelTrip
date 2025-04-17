@@ -9,10 +9,11 @@ import com.example.traveltrip.model.entity.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM User WHERE name = :name")
-    fun getUserByName(name: String): User?
+    @Query("SELECT * FROM Users WHERE email = :email")
+    fun getUserByEmail(email: String): User?
 
-    @Query("SELECT * FROM User")
+
+    @Query("SELECT * FROM Users")
     fun getUsers(): List<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
