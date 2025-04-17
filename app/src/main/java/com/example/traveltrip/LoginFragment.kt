@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.navigation.fragment.findNavController
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
@@ -52,6 +53,7 @@ class LoginFragment : Fragment() {
 
         var user: User? = null
         val email = binding?.email?.text.toString()
+        val pass = binding?.password?.text.toString()
 
         return suspendCoroutine { continuation ->
             ModelUser.instance.getUserByEmail(email) { user ->
@@ -60,6 +62,8 @@ class LoginFragment : Fragment() {
                     continuation.resume(null)
                 } else {
                     ModelUser.instance.setEmail(email)
+                    BCrypt.verifyer()
+                        .verify(pass.toCharArray(), user.password.toCharArray()).verified
                     continuation.resume(user)
                 }
             }

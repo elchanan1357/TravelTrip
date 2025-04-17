@@ -16,7 +16,7 @@ interface UserDao {
     @Query("SELECT * FROM Users")
     fun getUsers(): List<User>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertUser(vararg user: User)
 
     @Delete

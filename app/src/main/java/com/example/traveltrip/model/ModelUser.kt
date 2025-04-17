@@ -49,6 +49,9 @@ class ModelUser private constructor() {
                 AppLocalDB.DB.UserDao().insertUser(user)
                 log("add user")
                 mainHandler.post { callback() }
+            } catch (e: android.database.sqlite.SQLiteConstraintException) {
+                logError("The user already exist")
+                logError(e.message.toString())
             } catch (err: Exception) {
                 logError("Fail in add user")
                 logError(err.toString())
