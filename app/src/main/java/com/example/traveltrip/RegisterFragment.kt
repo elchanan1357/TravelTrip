@@ -1,14 +1,14 @@
 package com.example.traveltrip
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.example.traveltrip.Utils.isNull
+import com.example.traveltrip.Utils.log
 import com.example.traveltrip.databinding.RegisterBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
@@ -26,14 +26,14 @@ class RegisterFragment : Fragment() {
     ): View? {
         binding = RegisterBinding.inflate(inflater, container, false)
 
-        binding?.SigninBtn?.setOnClickListener { switchToLogin() }
+        binding?.SigninBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.SignupBtn?.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val user: User? = handleSignup()
                 if (user != null) {
                     withContext(Dispatchers.IO) {
                         ModelUser.instance.addUser(user) {
-                            switchToLogin()
+                            findNavController().popBackStack()
                         }
                     }
                 }
@@ -50,12 +50,24 @@ class RegisterFragment : Fragment() {
         checking = isNull(binding?.password) || checking
         checking = isNull(binding?.password2) || checking
 
-        if (checking) return null
+        if (checking) {
+            log("You must fill in all the details.")
+            return null
+        }
 
         val pass1 = binding?.password?.text.toString()
         val pass2 = binding?.password2?.text.toString()
 
-        if (pass1 != pass2) return null
+        if (pass1 != pass2) {
+            log("the password not same")
+            return null
+        }
+
+        val isChecked = binding?.CheckBox?.isChecked ?: false
+        if (isChecked) {
+            log("you must the a prov checkbox")
+            return null
+        }
 
         val hashedPassword = BCrypt.withDefaults().hashToString(10, pass1.toCharArray())
 
@@ -67,9 +79,6 @@ class RegisterFragment : Fragment() {
         )
     }
 
-    private fun switchToLogin() {
-        findNavController().navigate(R.id.action_register_login)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,14 +1,14 @@
 package com.example.traveltrip
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.example.traveltrip.Utils.isNull
+import com.example.traveltrip.Utils.log
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
