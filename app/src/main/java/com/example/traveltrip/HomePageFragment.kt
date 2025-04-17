@@ -1,5 +1,6 @@
 package com.example.traveltrip
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 
 import android.view.LayoutInflater
@@ -9,11 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.HomePageBinding
+import com.example.traveltrip.model.ModelUser
 
 
 class HomePageFragment : Fragment() {
     private var binding: HomePageBinding? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,24 +27,15 @@ class HomePageFragment : Fragment() {
         binding?.DiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
 //         binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
 
-//        val textView: TextView? = binding?.textView15
-//        val iconLocation = ContextCompat.getDrawable(requireContext(), R.drawable.icon_location)
-//
-//        iconLocation?.setBounds(0, 0, 20.dpToPx(), 20.dpToPx())
-//
-//        val spannableString = SpannableString(getString(R.string.cusco_peru))
-//        val imageSpan = ImageSpan(iconLocation!!, ImageSpan.ALIGN_BASELINE)
-//
-//        spannableString.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-//        textView?.text = spannableString
+        val email: String? = ModelUser.instance.getEmail()
+        if (email != null)
+            ModelUser.instance.getUserByEmail(email) { user ->
+                if (user != null)
+                    binding?.name?.text = "Hi ${user.name}, Welcome"
+            }
 
         return binding?.root
     }
-
-//    fun Int.dpToPx(): Int {
-//        val density = Resources.getSystem().displayMetrics.density
-//        return (this * density).toInt()
-//    }
 
 
     override fun onDestroyView() {

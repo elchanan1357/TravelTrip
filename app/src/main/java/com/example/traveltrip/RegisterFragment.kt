@@ -56,15 +56,6 @@ class RegisterFragment : Fragment() {
         )
     }
 
-    private fun isNull(et: EditText?): Boolean {
-        if (et?.text.isNullOrBlank()) {
-            et?.error = "This filed is required"
-            return true
-        }
-
-        return false
-    }
-
     private fun switchToLogin() {
         findNavController().navigate(R.id.action_register_login)
     }

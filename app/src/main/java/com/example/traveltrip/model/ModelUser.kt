@@ -1,8 +1,9 @@
 package com.example.traveltrip.model
 
 import android.os.Looper
-import android.util.Log
 import androidx.core.os.HandlerCompat
+import com.example.traveltrip.log
+import com.example.traveltrip.logError
 import com.example.traveltrip.model.entity.User
 import java.util.concurrent.Executors
 
@@ -76,11 +77,4 @@ class ModelUser private constructor() {
         return this.email
     }
 
-    private fun logError(error: String) {
-        Log.e("logs", error)
-    }
-
-    private fun log(message: String) {
-        Log.d("logs", message)
-    }
 }

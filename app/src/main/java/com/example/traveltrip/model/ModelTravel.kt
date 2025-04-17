@@ -2,6 +2,8 @@ package com.example.traveltrip.model
 
 import android.os.Looper
 import androidx.core.os.HandlerCompat
+import com.example.traveltrip.log
+import com.example.traveltrip.logError
 import com.example.traveltrip.model.entity.Travel
 import java.util.concurrent.Executors
 
@@ -16,31 +18,56 @@ class ModelTravel private constructor() {
 
     fun getAllTravels(callback: TravelsCallback) {
         executor.execute {
-            val travels = AppLocalDB.DB.TravelDao().getTravels()
-            Thread.sleep(4000)
-            mainHandler.post { callback(travels) }
+            try {
+                val travels = AppLocalDB.DB.TravelDao().getTravels()
+                log("Get all travels")
+                Thread.sleep(4000)
+                mainHandler.post { callback(travels) }
+            } catch (err: Exception) {
+                logError("Fail in get all travels")
+                logError(err.toString())
+            }
         }
     }
 
     fun getTravelByTitle(title: String, callback: TravelCallback) {
         executor.execute {
-            val travel = AppLocalDB.DB.TravelDao().getTravelByTitle(title)
-            Thread.sleep(4000)
-            mainHandler.post { callback(travel) }
+            try {
+                val travel = AppLocalDB.DB.TravelDao().getTravelByTitle(title)
+                log("Get travel by title")
+                Thread.sleep(4000)
+                mainHandler.post { callback(travel) }
+            } catch (err: Exception) {
+                logError("Fail in get travel by title")
+                logError(err.toString())
+            }
         }
     }
 
     fun addTravel(travel: Travel, callback: EmptyCallback) {
         executor.execute {
-            AppLocalDB.DB.TravelDao().insertTravels(travel)
-            mainHandler.post { callback() }
+            try {
+                AppLocalDB.DB.TravelDao().insertTravels(travel)
+                log("Add travel")
+                mainHandler.post { callback() }
+            } catch (err: Exception) {
+                logError("Fail in add travel")
+                logError(err.toString())
+            }
+
         }
     }
 
     fun deleteTravel(travel: Travel, callback: EmptyCallback) {
         executor.execute {
-            AppLocalDB.DB.TravelDao().deleteTravel(travel)
-            mainHandler.post { callback() }
+            try {
+                AppLocalDB.DB.TravelDao().deleteTravel(travel)
+                log("delete travel")
+                mainHandler.post { callback() }
+            } catch (err: Exception) {
+                logError("Fail in delete travel")
+                logError(err.toString())
+            }
         }
     }
 }
