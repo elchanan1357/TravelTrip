@@ -27,7 +27,7 @@ class HomePageFragment : Fragment() {
 
         binding?.BlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
         binding?.DiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
-//         binding?.homeTripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
+         binding?.TripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
 
         val email: String? = ModelUser.instance.getEmail()
         if (email != null)
