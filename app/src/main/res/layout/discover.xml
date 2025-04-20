@@ -36,7 +36,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/discover_flights"
+                android:id="@+id/Flights"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -91,7 +91,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/discover_trips"
+                android:id="@+id/Trips"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -154,7 +154,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/discover_carRental"
+                android:id="@+id/CarRental"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -209,7 +209,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/discover_hotels"
+                android:id="@+id/Hotels"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"

@@ -10,19 +10,16 @@ import com.example.traveltrip.databinding.CategoriesBinding
 
 class CategoriesFragment : Fragment() {
     private var binding: CategoriesBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = CategoriesBinding.inflate(inflater, container, false)
-        binding?.categoriesKids?.setOnClickListener { onClick() }
-        binding?.categoriesTrips?.setOnClickListener { onClick() }
-        binding?.categoriesAmusementParks?.setOnClickListener { onClick() }
-        binding?.categoriesMuseums?.setOnClickListener { onClick() }
+        binding?.Kids?.setOnClickListener { onClick() }
+        binding?.Trips?.setOnClickListener { onClick() }
+        binding?.AmusementParks?.setOnClickListener { onClick() }
+        binding?.Museums?.setOnClickListener { onClick() }
         return binding?.root
     }
 

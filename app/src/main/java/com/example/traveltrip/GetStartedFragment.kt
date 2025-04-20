@@ -11,17 +11,13 @@ import com.example.traveltrip.databinding.GetStartedBinding
 class GetStartedFragment : Fragment() {
     private  var binding :GetStartedBinding ?= null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = GetStartedBinding.inflate(inflater,container,false)
 
-        binding?.getStartedStartBtn?.setOnClickListener {
+        binding?.StartBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_started_login)
         }
 

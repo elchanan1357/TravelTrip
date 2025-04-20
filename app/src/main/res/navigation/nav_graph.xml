@@ -18,11 +18,7 @@
         android:id="@+id/registerFragment"
         android:name="com.example.traveltrip.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/register">
-        <action
-            android:id="@+id/action_register_login"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/register"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.traveltrip.LoginFragment"
@@ -46,6 +42,9 @@
         <action
             android:id="@+id/action_home_blogs"
             app:destination="@id/postsFragment" />
+        <action
+            android:id="@+id/action_home_trips"
+            app:destination="@id/myTripsFragment" />
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
@@ -65,7 +64,11 @@
         android:id="@+id/postsFragment"
         android:name="com.example.traveltrip.PostsFragment"
         android:label="fragment_posts"
-        tools:layout="@layout/all_posts" />
+        tools:layout="@layout/all_posts" >
+        <action
+            android:id="@+id/action_posts_addPost"
+            app:destination="@id/addPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.example.traveltrip.CategoriesFragment"
@@ -75,4 +78,37 @@
             android:id="@+id/action_categories_trips"
             app:destination="@id/tripsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.traveltrip.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/profile" >
+        <action
+            android:id="@+id/action_profile_editProfile"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.traveltrip.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/edit_post" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.traveltrip.AddPostFragment"
+        android:label="fragment_add_post"
+        tools:layout="@layout/add_post" />
+    <fragment
+        android:id="@+id/myTripsFragment"
+        android:name="com.example.traveltrip.MyTripsFragment"
+        android:label="fragment_my_trips"
+        tools:layout="@layout/my_trips" >
+        <action
+            android:id="@+id/action_trips_tripsDetails"
+            app:destination="@id/tripsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripsDetailsFragment"
+        android:name="com.example.traveltrip.TripsDetailsFragment"
+        android:label="fragment_trips_details"
+        tools:layout="@layout/my_trip_detailse" />
 </navigation>
