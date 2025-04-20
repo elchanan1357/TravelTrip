@@ -51,8 +51,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val navController =
-            (supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment).navController
+        val navController = (supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment).navController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_bar)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
@@ -99,3 +98,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+// TODO:
+//--> git add . --to add all files wech have bin change
+//--> git commit origin "name of branch" to add to the remote repo
+// -> git pull origin main -- to find conflicts
+//-->  creating pull request to add the changed files to main branch
