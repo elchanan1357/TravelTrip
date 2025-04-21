@@ -8,3 +8,9 @@ typealias TravelCallback = (Travel?) -> Unit
 typealias UsersCallback = (List<User>) -> Unit
 typealias UserCallback = (User?) -> Unit
 typealias EmptyCallback = () -> Unit
+
+object Constants {
+    object Collection {
+        const val USER = "User"
+    }
+}
