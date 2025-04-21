@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
 
     id("androidx.navigation.safeargs")
     id("org.jetbrains.kotlin.kapt")
@@ -37,14 +38,15 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures{
-        viewBinding  = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
-    implementation (libs.bcrypt)
-
+    implementation(libs.bcrypt)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
