@@ -95,7 +95,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            app:srcCompat="@drawable/view1" />
+                            app:srcCompat="@drawable/view5" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -301,7 +301,7 @@
                             android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
-                            app:srcCompat="@drawable/view2" />
+                            app:srcCompat="@drawable/view5" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
