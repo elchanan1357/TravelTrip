@@ -42,6 +42,10 @@ class EditProfileFragment : Fragment() {
                     binding?.editProfilePhone?.setText(user.phone)
                     binding?.editProfileEmail?.setText(user.email)
                     binding?.editProfilePassword?.setText(user.password)
+
+                    binding?.editProfileEmail?.isEnabled=false
+                    binding?.editProfilePassword?.isEnabled=false
+
                 } else logError("Not find User")
 
             }
@@ -62,8 +66,8 @@ class EditProfileFragment : Fragment() {
         val user = _user
         user?.name = binding?.editProfileName?.text.toString()
         user?.phone = binding?.editProfilePhone?.text.toString()
-        if (this._user?.password != binding?.editProfilePassword?.text.toString())
-            user?.password = binding?.editProfilePassword?.text.toString()
+//        if (this._user?.password != binding?.editProfilePassword?.text.toString())
+//            user?.password = binding?.editProfilePassword?.text.toString()
 
         if (user != null)
             ModelUser.instance.updateUser(user) {

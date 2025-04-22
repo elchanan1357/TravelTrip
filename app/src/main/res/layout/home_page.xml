@@ -95,7 +95,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            app:srcCompat="@drawable/view5" />
+                            app:srcCompat="@drawable/test" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -153,7 +153,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            app:srcCompat="@drawable/view2" />
+                            app:srcCompat="@drawable/chat" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -211,7 +211,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            app:srcCompat="@drawable/view1" />
+                            app:srcCompat="@drawable/calendar" />
                     </FrameLayout>
                 </androidx.cardview.widget.CardView>
 
