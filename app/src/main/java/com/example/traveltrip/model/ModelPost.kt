@@ -17,6 +17,10 @@ class ModelPost {
         firebase.getAllPosts(callback)
     }
 
+    fun getAllPostsByEmail(callback: PostsCallback) {
+        firebase.getAllPostsByEmail(callback)
+    }
+
 
     fun insertPost(post: Post, callback: EmptyCallback) {
         firebase.insertPost(post, callback)

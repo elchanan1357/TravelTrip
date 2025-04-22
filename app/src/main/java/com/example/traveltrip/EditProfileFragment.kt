@@ -73,4 +73,9 @@ class EditProfileFragment : Fragment() {
         findNavController().popBackStack()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }

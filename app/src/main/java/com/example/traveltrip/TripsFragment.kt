@@ -33,8 +33,8 @@ class TripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getAllTravels()
         createAdapter()
+        getAllTravels()
 
         val recyclerView: RecyclerView? = binding?.RecyclerViewTrips
         recyclerView?.setHasFixedSize(true)
@@ -57,17 +57,14 @@ class TripsFragment : Fragment() {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun getAllTravels() {
         binding?.progressBar?.visibility = View.VISIBLE
         ModelTravel.instance.getAllTravels {
             this.travels = it
             adapter?.updateList(it)
-            adapter?.notifyDataSetChanged()
 
             binding?.progressBar?.visibility = View.GONE
         }
-
     }
 
 

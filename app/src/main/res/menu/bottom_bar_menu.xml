@@ -22,7 +22,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_blogs"
+        android:id="@+id/postsFragment"
         android:icon="@drawable/blog_icon"
         android:title="@string/blogs"
         app:iconTint="@null"

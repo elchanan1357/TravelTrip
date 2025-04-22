@@ -17,7 +17,7 @@ class PostsFragment : Fragment() {
     ): View? {
         binding = PostsBinding.inflate(inflater, container, false)
 
-        binding?.postsAddBtn?.setOnClickListener{
+        binding?.postsAddBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_posts_addPost)
         }
 

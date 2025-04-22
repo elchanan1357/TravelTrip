@@ -29,6 +29,10 @@ class FirebaseModelPost {
             }
     }
 
+    fun getAllPostsByEmail(callback: PostsCallback) {
+
+    }
+
 
     fun insertPost(post: Post, callback: EmptyCallback) {
         db.collection(postsCollection).document().set(post.json)

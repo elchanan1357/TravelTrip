@@ -12,6 +12,9 @@ interface PostDao {
     @Query("SELECT * FROM Posts")
     fun getAllPosts(): List<Post>
 
+    @Query("SELECT * FROM Posts WHERE email = :email")
+    fun getAllPostsByEmail(email: String): List<Post>
+
 //    @Query("SELECT * FROM Posts WHERE id = :id")
 //    fun getPostById(id: Int): Posts?
 
