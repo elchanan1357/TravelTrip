@@ -11,10 +11,10 @@ data class User(
     var password: String,
 ) {
     companion object {
-        const val NAME_KEY = "name"
-        const val PHONE_KEY = "phone"
-        const val EMAIL_KEY = "email"
-        const val PASSWORD_KEY = "password"
+        private const val NAME_KEY = "name"
+        private const val PHONE_KEY = "phone"
+        private const val EMAIL_KEY = "email"
+        private const val PASSWORD_KEY = "password"
 
         fun fromJSON(json: Map<String, Any>): User {
             val name = json[NAME_KEY] as? String ?: ""
@@ -26,12 +26,11 @@ data class User(
         }
     }
 
-    fun updateJSON(): Map<String, String> {
-        return hashMapOf(
-            "name" to name,
-            "phone" to phone
-        )
-    }
+    fun updateJSON(): Map<String, String> = hashMapOf(
+        NAME_KEY to name,
+        PHONE_KEY to phone
+    )
+
 
     val json: Map<String, Any>
         get() = hashMapOf(

@@ -9,17 +9,8 @@ import com.google.firebase.firestore.memoryCacheSettings
 import com.google.firebase.ktx.Firebase
 
 class FirebaseModelUser {
-    private val db = Firebase.firestore
-    private val userCollection = Constants.Collection.USER
-
-    init {
-        val settings = firestoreSettings {
-            setLocalCacheSettings(memoryCacheSettings { })
-        }
-
-        db.firestoreSettings = settings
-    }
-
+    private val db = Firestore.getFirestoreInstance()
+    private val userCollection = Constants.Collection.USERS
 
     //TODO on complete for all to stop progressbar
     fun getAllUsers(callback: UsersCallback) {
@@ -61,7 +52,7 @@ class FirebaseModelUser {
                 callback()
             }
             .addOnFailureListener { e ->
-                logError("Fail in add user by email: ${user.email} \n $e")
+                logError("Fail in add user with email: ${user.email} \n $e")
             }
     }
 
@@ -72,7 +63,7 @@ class FirebaseModelUser {
                 callback()
             }
             .addOnFailureListener { e ->
-                logError("Fail in update user by email: ${user.email} \n $e")
+                logError("Fail in update user with email: ${user.email} \n $e")
             }
     }
 
@@ -83,7 +74,7 @@ class FirebaseModelUser {
                 callback()
             }
             .addOnFailureListener { e ->
-                logError("Fail in delete user by email: ${user.email} \n $e")
+                logError("Fail in delete user with email: ${user.email} \n $e")
             }
     }
 

@@ -5,23 +5,22 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.traveltrip.model.entity.Posts
-
+import com.example.traveltrip.model.entity.Post
 
 @Dao
 interface PostDao {
     @Query("SELECT * FROM Posts")
-    fun getAllPosts(): List<Posts>
+    fun getAllPosts(): List<Post>
 
-    @Query("SELECT * FROM Posts WHERE id = :id")
-    fun getPostById(id: Int): Posts?
+//    @Query("SELECT * FROM Posts WHERE id = :id")
+//    fun getPostById(id: Int): Posts?
 
     @Insert
-    fun insertPost(post: Posts): Long
+    fun insertPost(post: Post)
 
     @Delete
-    fun deletePost(post: Posts)
+    fun deletePost(post: Post)
 
     @Update
-    fun updatePost(post: Posts)
+    fun updatePost(post: Post)
 }
