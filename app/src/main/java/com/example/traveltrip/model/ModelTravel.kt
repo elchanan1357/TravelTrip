@@ -2,9 +2,12 @@ package com.example.traveltrip.model
 
 import android.os.Looper
 import androidx.core.os.HandlerCompat
-import com.example.traveltrip.Utils.log
-import com.example.traveltrip.Utils.logError
+import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.logError
 import com.example.traveltrip.model.entity.Travel
+import com.example.traveltrip.utils.EmptyCallback
+import com.example.traveltrip.utils.TravelCallback
+import com.example.traveltrip.utils.TravelsCallback
 import java.util.concurrent.Executors
 
 

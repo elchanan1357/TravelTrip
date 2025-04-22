@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.traveltrip.Utils.log
+import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.ProfileBinding
 import com.example.traveltrip.model.ModelUser
 

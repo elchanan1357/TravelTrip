@@ -2,10 +2,11 @@ package com.example.traveltrip.model
 
 import android.os.Looper
 import androidx.core.os.HandlerCompat
-import com.example.traveltrip.Utils.log
-import com.example.traveltrip.Utils.logError
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.model.firebase.FirebaseModelUser
+import com.example.traveltrip.utils.EmptyCallback
+import com.example.traveltrip.utils.UserCallback
+import com.example.traveltrip.utils.UsersCallback
 import java.util.concurrent.Executors
 
 class ModelUser private constructor() {
@@ -24,7 +25,7 @@ class ModelUser private constructor() {
 //            try {
 //                val users: List<User> = AppLocalDB.DB.UserDao().getUsers()
 //                log("get All users")
-//                Thread.sleep(4000)
+////                Thread.sleep(4000)
 //                mainHandler.post { callback(users) }
 //            } catch (err: Exception) {
 //                logError("Fail in get all users")

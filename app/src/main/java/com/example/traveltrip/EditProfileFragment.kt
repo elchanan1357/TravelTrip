@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.traveltrip.Utils.isNull
-import com.example.traveltrip.Utils.log
-import com.example.traveltrip.Utils.logError
+import com.example.traveltrip.utils.isNull
+import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.logError
 import com.example.traveltrip.databinding.EditProfileBinding
-import com.example.traveltrip.model.AppLocalDB
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
 

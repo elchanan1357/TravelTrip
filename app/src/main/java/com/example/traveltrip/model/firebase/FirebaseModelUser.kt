@@ -1,10 +1,8 @@
 package com.example.traveltrip.model.firebase
 
-import com.example.traveltrip.model.Constants
-import com.example.traveltrip.model.EmptyCallback
-import com.example.traveltrip.model.UserCallback
-import com.example.traveltrip.model.UsersCallback
+
 import com.example.traveltrip.model.entity.User
+import com.example.traveltrip.utils.*
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.memoryCacheSettings
@@ -12,6 +10,7 @@ import com.google.firebase.ktx.Firebase
 
 class FirebaseModelUser {
     private val db = Firebase.firestore
+    private val userCollection = Constants.Collection.USER
 
     init {
         val settings = firestoreSettings {
@@ -19,35 +18,73 @@ class FirebaseModelUser {
         }
 
         db.firestoreSettings = settings
-//        db.collection("Users")
-//            .add(user)
-//            .addOnSuccessListener { documentReference ->
-//                Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
-//            }
-//            .addOnFailureListener { e ->
-//                Log.w("TAG", "Error adding document", e)
-//            }
     }
 
+
+    //TODO on complete for all to stop progressbar
     fun getAllUsers(callback: UsersCallback) {
-        //1:48
+        db.collection(userCollection).get()
+            .addOnSuccessListener { usersJSON ->
+                log("Get all users")
+                val users: MutableList<User> = mutableListOf()
+                for (json in usersJSON)
+                    users.add(User.fromJSON(json.data))
+
+                callback(users)
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in get all users\n $e")
+                callback(listOf())
+            }
     }
 
     fun getUserByEmail(email: String, callback: UserCallback) {
+        db.collection(userCollection).document(email).get()
+            .addOnSuccessListener { user ->
+                log("Find user $email")
+                if (user.exists()) {
+                    val u = User.fromJSON(user.data!!)
+                    callback(u)
+                } else
+                    logError("Not find user $email")
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in get user by email: $email \n $e")
+            }
 
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        db.collection(Constants.Collection.USER).document().set(user.json)
-            .addOnSuccessListener { callback() }
+        db.collection(userCollection).document(user.email).set(user.json)
+            .addOnSuccessListener {
+                log("Add user: ${user.email}")
+                callback()
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in add user by email: ${user.email} \n $e")
+            }
     }
 
     fun updateUser(user: User, callback: EmptyCallback) {
-
+        db.collection(userCollection).document(user.email).update(user.updateJSON())
+            .addOnSuccessListener {
+                log("Update user: ${user.email}")
+                callback()
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in update user by email: ${user.email} \n $e")
+            }
     }
 
     fun deleteUser(user: User, callback: EmptyCallback) {
-
+        db.collection(userCollection).document(user.email).delete()
+            .addOnSuccessListener {
+                log("Delete user: ${user.email}")
+                callback()
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in delete user by email: ${user.email} \n $e")
+            }
     }
 
 }

@@ -7,15 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import at.favre.lib.crypto.bcrypt.BCrypt
-import com.example.traveltrip.Utils.isNull
-import com.example.traveltrip.Utils.log
+import com.example.traveltrip.utils.isNull
+import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.RegisterBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class RegisterFragment : Fragment() {
     private var binding: RegisterBinding? = null

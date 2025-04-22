@@ -1,4 +1,4 @@
-package com.example.traveltrip.Utils
+package com.example.traveltrip.utils
 
 import android.util.Log
 import android.widget.EditText

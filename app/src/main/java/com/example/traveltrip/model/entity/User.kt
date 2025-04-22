@@ -26,6 +26,13 @@ data class User(
         }
     }
 
+    fun updateJSON(): Map<String, String> {
+        return hashMapOf(
+            "name" to name,
+            "phone" to phone
+        )
+    }
+
     val json: Map<String, Any>
         get() = hashMapOf(
             NAME_KEY to name,
@@ -33,5 +40,4 @@ data class User(
             EMAIL_KEY to email,
             PASSWORD_KEY to password
         )
-
 }
