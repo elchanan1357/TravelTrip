@@ -32,8 +32,8 @@ class MyPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getAllPostByEmail()
         createAdapter()
+        getAllPostByEmail()
 
         val recyclerView: RecyclerView? = binding?.recyclerView
         recyclerView?.setHasFixedSize(true)
@@ -56,8 +56,8 @@ class MyPostFragment : Fragment() {
 
     private fun getAllPostByEmail() {
         val email = ModelUser.instance.getEmail() ?: ""
-        ModelPost.instance.getAllPostsByEmail(email) { postsRes ->
-            this.posts = postsRes
+        ModelPost.instance.getAllPostsByEmail(email) {
+            this.posts = it
             adapter?.updateList(this.posts)
         }
     }
