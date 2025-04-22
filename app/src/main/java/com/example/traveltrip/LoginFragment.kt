@@ -7,17 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import at.favre.lib.crypto.bcrypt.BCrypt
-import com.example.traveltrip.Utils.isNull
-import com.example.traveltrip.Utils.log
-import com.example.traveltrip.Utils.logError
+import com.example.traveltrip.utils.isNull
+import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.logError
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
-import com.example.traveltrip.model.entity.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class LoginFragment : Fragment() {
     private var binding: LoginBinding? = null
@@ -40,8 +34,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleLogin() {
-        var checking = isNull(binding?.email)
-        checking = isNull(binding?.password) || checking
+        val checking = isNull(binding?.email)
+                || isNull(binding?.password)
 
         if (checking) return
 

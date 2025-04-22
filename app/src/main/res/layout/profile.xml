@@ -48,7 +48,7 @@
                 tools:layout_editor_absoluteY="49dp">
 
                 <ImageView
-                    android:id="@+id/profile_img"
+                    android:id="@+id/imgUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/profile_pic" />
@@ -59,7 +59,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/profile_editDetailsBtn"
+        android:id="@+id/editDetailsBtn"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginStart="24dp"
@@ -71,13 +71,13 @@
         android:textColor="#7E7C7C"
         android:textColorLink="#C91919"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/profile_yourPostsBtn"
+        app:layout_constraintEnd_toStartOf="@+id/yourPostsBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_top" />
 
     <Button
-        android:id="@+id/profile_yourPostsBtn"
+        android:id="@+id/yourPostsBtn"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginStart="24dp"
@@ -87,14 +87,14 @@
         android:textColor="#7E7C7C"
         app:cornerRadius="10dp"
         android:background="@drawable/shape"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_editDetailsBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/editDetailsBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profile_editDetailsBtn"
+        app:layout_constraintStart_toEndOf="@+id/editDetailsBtn"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/profile_name"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -107,14 +107,14 @@
         android:paddingBottom="10dp"
         android:shadowColor="#FFFFFF"
         android:text="Full Name"
-        app:layout_constraintBottom_toTopOf="@+id/profile_mobile"
+        app:layout_constraintBottom_toTopOf="@+id/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_editDetailsBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/editDetailsBtn" />
 
     <TextView
-        android:id="@+id/profile_mobile"
+        android:id="@+id/phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -124,14 +124,14 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Mobile"
-        app:layout_constraintBottom_toTopOf="@+id/profile_email"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
-        android:id="@+id/profile_email"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -141,14 +141,14 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Email"
-        app:layout_constraintBottom_toTopOf="@+id/profile_password"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_mobile" />
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <TextView
-        android:id="@+id/profile_password"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -159,19 +159,20 @@
         android:paddingBottom="10dp"
         android:inputType="textPassword"
         android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/profile_deleteAccountBtn"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
-        android:id="@+id/profile_deleteAccountBtn"
+        android:id="@+id/deleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
-        android:text="Button"
+        android:backgroundTint="#5FA3AC"
+        android:text="Delete"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

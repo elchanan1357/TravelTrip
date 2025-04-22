@@ -23,7 +23,7 @@
             <!-- Post Content Section -->
 
             <ImageView
-                android:id="@+id/rowMyPosts_img"
+                android:id="@+id/imgUser"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="24dp"
@@ -65,7 +65,7 @@
                 android:layout_marginStart="36dp"
                 android:text="03/05/2025"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/rowMyPosts_img"
+                app:layout_constraintStart_toEndOf="@+id/imgUser"
                 app:layout_constraintTop_toBottomOf="@+id/rowMyTrip_from" />
 
             <CheckBox

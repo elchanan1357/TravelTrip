@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.traveltrip.Utils.isNull
-import com.example.traveltrip.Utils.log
-import com.example.traveltrip.Utils.logError
+import com.example.traveltrip.utils.isNull
+import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.logError
 import com.example.traveltrip.databinding.EditProfileBinding
-import com.example.traveltrip.model.AppLocalDB
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
 
@@ -52,10 +51,10 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun handleSave() {
-        var checking = isNull(binding?.editProfileName)
-        checking = isNull(binding?.editProfilePhone) || checking
-        checking = isNull(binding?.editProfileEmail) || checking
-        checking = isNull(binding?.editProfilePassword) || checking
+        val checking = isNull(binding?.editProfileName)
+                || isNull(binding?.editProfilePhone)
+                || isNull(binding?.editProfileEmail)
+                || isNull(binding?.editProfilePassword)
 
         if (checking) {
             log("please provide all data")
@@ -72,6 +71,11 @@ class EditProfileFragment : Fragment() {
 
     private fun pop() {
         findNavController().popBackStack()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

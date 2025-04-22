@@ -20,4 +20,9 @@ class TripsDetailsFragment : Fragment() {
         return binding?.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
 }

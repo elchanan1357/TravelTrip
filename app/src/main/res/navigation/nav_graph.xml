@@ -18,7 +18,7 @@
         android:id="@+id/registerFragment"
         android:name="com.example.traveltrip.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/register"/>
+        tools:layout="@layout/register" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.traveltrip.LoginFragment"
@@ -64,7 +64,7 @@
         android:id="@+id/postsFragment"
         android:name="com.example.traveltrip.PostsFragment"
         android:label="fragment_posts"
-        tools:layout="@layout/all_posts" >
+        tools:layout="@layout/posts">
         <action
             android:id="@+id/action_posts_addPost"
             app:destination="@id/addPostFragment" />
@@ -73,7 +73,7 @@
         android:id="@+id/categoriesFragment"
         android:name="com.example.traveltrip.CategoriesFragment"
         android:label="CategoriesFragment"
-        tools:layout="@layout/categories" >
+        tools:layout="@layout/categories">
         <action
             android:id="@+id/action_categories_trips"
             app:destination="@id/tripsFragment" />
@@ -82,16 +82,19 @@
         android:id="@+id/profileFragment"
         android:name="com.example.traveltrip.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/profile" >
+        tools:layout="@layout/profile">
         <action
             android:id="@+id/action_profile_editProfile"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_proflie_myPosts"
+            app:destination="@id/myPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.traveltrip.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/edit_post" />
+        tools:layout="@layout/edit_profile" />
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.traveltrip.AddPostFragment"
@@ -101,7 +104,7 @@
         android:id="@+id/myTripsFragment"
         android:name="com.example.traveltrip.MyTripsFragment"
         android:label="fragment_my_trips"
-        tools:layout="@layout/my_trips" >
+        tools:layout="@layout/my_trips">
         <action
             android:id="@+id/action_trips_tripsDetails"
             app:destination="@id/tripsDetailsFragment" />
@@ -111,4 +114,18 @@
         android:name="com.example.traveltrip.TripsDetailsFragment"
         android:label="fragment_trips_details"
         tools:layout="@layout/my_trip_details" />
+    <fragment
+        android:id="@+id/editPostFragment2"
+        android:name="com.example.traveltrip.EditPostFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/edit_post" />
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.example.traveltrip.MyPostFragment"
+        android:label="fragment_my_post"
+        tools:layout="@layout/my_posts" >
+        <action
+            android:id="@+id/action_myPosts_editPost"
+            app:destination="@id/editPostFragment2" />
+    </fragment>
 </navigation>

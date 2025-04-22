@@ -36,7 +36,7 @@
                     android:layout_height="128dp">
 
                     <ImageView
-                        android:id="@+id/rowMyPosts_img"
+                        android:id="@+id/imgUser"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
@@ -46,7 +46,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/rowMyPosts_post"
+                        android:id="@+id/title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -59,22 +59,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/rowMyPosts_img"
+                        app:layout_constraintStart_toEndOf="@+id/imgUser"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
-                        android:id="@+id/rowMyPosts_location"
+                        android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="188dp"
                         android:layout_marginTop="16dp"
-                        android:text="TextView"
+                        android:text="@string/location"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/rowMyPosts_img"
-                        app:layout_constraintTop_toBottomOf="@+id/rowMyPosts_post"
+                        app:layout_constraintStart_toEndOf="@+id/imgUser"
+                        app:layout_constraintTop_toBottomOf="@+id/title"
                         app:layout_constraintVertical_bias="0.111" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
