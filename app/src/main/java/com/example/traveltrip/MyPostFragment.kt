@@ -12,6 +12,7 @@ import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.MyPostsBinding
 import com.example.traveltrip.databinding.RowMyPostsBinding
 import com.example.traveltrip.model.ModelPost
+import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
 
 
@@ -54,7 +55,8 @@ class MyPostFragment : Fragment() {
 
 
     private fun getAllPostByEmail() {
-        ModelPost.instance.getAllPostsByEmail { postsRes ->
+        val email = ModelUser.instance.getEmail() ?: ""
+        ModelPost.instance.getAllPostsByEmail(email) { postsRes ->
             this.posts = postsRes
             adapter?.updateList(this.posts)
         }

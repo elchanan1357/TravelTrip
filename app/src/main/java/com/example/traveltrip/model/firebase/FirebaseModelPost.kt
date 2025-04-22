@@ -29,8 +29,20 @@ class FirebaseModelPost {
             }
     }
 
-    fun getAllPostsByEmail(callback: PostsCallback) {
+    fun getAllPostsByEmail(email: String, callback: PostsCallback) {
+        db.collection(postsCollection).whereEqualTo("email", email).get()
+            .addOnSuccessListener { postsJSON ->
+                log("Get posts with email: $email")
+                val posts: MutableList<Post> = mutableListOf()
+                for (json in postsJSON)
+                    posts.add(Post.fromJSON(json.data))
 
+                callback(posts)
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in get all posts by email\n $e")
+                callback(listOf())
+            }
     }
 
 

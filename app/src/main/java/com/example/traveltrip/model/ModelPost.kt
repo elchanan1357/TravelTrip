@@ -17,8 +17,8 @@ class ModelPost {
         firebase.getAllPosts(callback)
     }
 
-    fun getAllPostsByEmail(callback: PostsCallback) {
-        firebase.getAllPostsByEmail(callback)
+    fun getAllPostsByEmail(email: String, callback: PostsCallback) {
+        firebase.getAllPostsByEmail(email, callback)
     }
 
 
