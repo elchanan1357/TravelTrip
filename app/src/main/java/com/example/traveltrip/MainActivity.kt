@@ -1,14 +1,11 @@
 package com.example.traveltrip
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,5 +26,6 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationView.visibility = View.VISIBLE
             }
         }
+
     }
-}
+                                                                                                                                                                                                                                                           }
