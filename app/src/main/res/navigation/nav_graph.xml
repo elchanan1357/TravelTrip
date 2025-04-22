@@ -110,5 +110,5 @@
         android:id="@+id/tripsDetailsFragment"
         android:name="com.example.traveltrip.TripsDetailsFragment"
         android:label="fragment_trips_details"
-        tools:layout="@layout/my_trip_detailse" />
+        tools:layout="@layout/my_trip_details" />
 </navigation>

@@ -25,7 +25,7 @@ class EditProfileFragment : Fragment() {
         binding = EditProfileBinding.inflate(inflater, container, false)
         displayUser()
 
-        binding?.editProfileCancelBtn?.setOnClickListener { findNavController().popBackStack() }
+        binding?.editProfileCancelBtn?.setOnClickListener { pop() }
         binding?.editProfileSaveBtn?.setOnClickListener { handleSave() }
 
         return binding?.root
@@ -42,6 +42,10 @@ class EditProfileFragment : Fragment() {
                     binding?.editProfilePhone?.setText(user.phone)
                     binding?.editProfileEmail?.setText(user.email)
                     binding?.editProfilePassword?.setText(user.password)
+
+                    binding?.editProfileEmail?.isEnabled = false
+                    binding?.editProfilePassword?.isEnabled = false
+
                 } else logError("Not find User")
 
             }
@@ -58,21 +62,16 @@ class EditProfileFragment : Fragment() {
             return
         }
 
-//        TODO fix the edit that can be change email
         val user = _user
         user?.name = binding?.editProfileName?.text.toString()
         user?.phone = binding?.editProfilePhone?.text.toString()
-        if (this._user?.password != binding?.editProfilePassword?.text.toString())
-            user?.password = binding?.editProfilePassword?.text.toString()
 
-        if (user != null)
-            ModelUser.instance.updateUser(user) {
-                ModelUser.instance.setEmail(user.email)
-                ModelUser.instance.getAllUsers { users ->
-                    log(users.toString())
-                    findNavController().popBackStack()
-                }
-            }
+
+        if (user != null) ModelUser.instance.updateUser(user) { pop() }
+    }
+
+    private fun pop() {
+        findNavController().popBackStack()
     }
 
 }

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:text="Posts"
         android:textColor="#000000"
         android:textSize="28sp"
@@ -29,27 +29,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/posts_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/posts_title"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="#666666" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="423dp"
+        android:layout_height="513dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/posts_title" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F5F5F5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
