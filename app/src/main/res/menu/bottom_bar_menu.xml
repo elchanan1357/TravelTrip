@@ -9,7 +9,7 @@
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_diary"
+        android:id="@+id/myTripsFragment"
         android:icon="@drawable/diary_icon"
         android:title="@string/diary"
         app:iconTint="@null"
