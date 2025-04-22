@@ -35,4 +35,6 @@
     <string name="state">State</string>
     <string name="post">Post:</string>
     <string name="location">location</string>
+    <string name="save">Save</string>
+    <string name="text">Text:</string>
 </resources>

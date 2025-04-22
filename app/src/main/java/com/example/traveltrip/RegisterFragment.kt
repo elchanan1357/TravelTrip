@@ -63,11 +63,11 @@ class RegisterFragment : Fragment() {
     }
 
     private fun checkDataIsNull(): Boolean {
-        var checking: Boolean = isNull(binding?.name)
-        checking = isNull(binding?.phone) || checking
-        checking = isNull(binding?.email) || checking
-        checking = isNull(binding?.password) || checking
-        checking = isNull(binding?.password2) || checking
+        val checking: Boolean = isNull(binding?.name)
+                || isNull(binding?.phone)
+                || isNull(binding?.email)
+                || isNull(binding?.password)
+                || isNull(binding?.password2)
 
         return checking
     }

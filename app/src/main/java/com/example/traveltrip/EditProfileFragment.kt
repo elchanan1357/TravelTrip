@@ -51,10 +51,10 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun handleSave() {
-        var checking = isNull(binding?.editProfileName)
-        checking = isNull(binding?.editProfilePhone) || checking
-        checking = isNull(binding?.editProfileEmail) || checking
-        checking = isNull(binding?.editProfilePassword) || checking
+        val checking = isNull(binding?.editProfileName)
+                || isNull(binding?.editProfilePhone)
+                || isNull(binding?.editProfileEmail)
+                || isNull(binding?.editProfilePassword)
 
         if (checking) {
             log("please provide all data")

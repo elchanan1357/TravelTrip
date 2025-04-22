@@ -64,4 +64,5 @@ class FirebaseModelPost {
                 logError("Fail in update post with id: $id \n $e")
             }
     }
+
 }

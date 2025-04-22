@@ -19,11 +19,11 @@ class ProfileFragment : Fragment() {
     ): View? {
         binding = ProfileBinding.inflate(inflater, container, false)
 
-        binding?.profileEditDetailsBtn?.setOnClickListener {
+        binding?.editDetailsBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_profile_editProfile)
         }
 
-        binding?.profileYourPostsBtn?.setOnClickListener {
+        binding?.yourPostsBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_proflie_myPosts)
         }
         displayData()
@@ -42,10 +42,10 @@ class ProfileFragment : Fragment() {
         if (email != null)
             ModelUser.instance.getUserByEmail(email) { user ->
                 if (user != null) {
-                    binding?.profileName?.text = user.name
-                    binding?.profileMobile?.text = user.phone
-                    binding?.profileEmail?.text = user.email
-                    binding?.profilePassword?.text = user.password
+                    binding?.name?.text = user.name
+                    binding?.phone?.text = user.phone
+                    binding?.email?.text = user.email
+                    binding?.password?.text = user.password
                 } else log("not find user")
             }
     }

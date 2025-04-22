@@ -34,8 +34,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleLogin() {
-        var checking = isNull(binding?.email)
-        checking = isNull(binding?.password) || checking
+        val checking = isNull(binding?.email)
+                || isNull(binding?.password)
 
         if (checking) return
 

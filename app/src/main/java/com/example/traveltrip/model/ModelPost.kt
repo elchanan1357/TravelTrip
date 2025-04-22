@@ -9,6 +9,10 @@ import com.example.traveltrip.utils.PostsCallback
 class ModelPost {
     private val firebase: FirebaseModelPost = FirebaseModelPost()
 
+    companion object {
+        val instance: ModelPost = ModelPost()
+    }
+
     fun getAllPosts(callback: PostsCallback) {
         firebase.getAllPosts(callback)
     }
