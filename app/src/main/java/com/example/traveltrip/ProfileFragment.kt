@@ -23,6 +23,9 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profile_editProfile)
         }
 
+        binding?.profileYourPostsBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_proflie_myPosts)
+        }
         displayData()
 
         return binding?.root
