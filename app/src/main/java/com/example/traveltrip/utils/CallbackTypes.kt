@@ -10,5 +10,6 @@ typealias PostsCallback = (List<Post>) -> Unit
 typealias UsersCallback = (List<User>) -> Unit
 typealias UserCallback = (User?) -> Unit
 typealias EmptyCallback = () -> Unit
+typealias UriCallback = (String?) -> Unit
 
 

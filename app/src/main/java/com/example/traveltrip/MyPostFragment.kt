@@ -14,6 +14,7 @@ import com.example.traveltrip.databinding.RowMyPostsBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
+import com.squareup.picasso.Picasso
 
 
 class MyPostFragment : Fragment() {
@@ -47,6 +48,12 @@ class MyPostFragment : Fragment() {
             this.posts,
             RowMyPostsBinding::inflate
         ) { vb, item ->
+            if (item.imgURI.isNotBlank()) {
+                Picasso.get()
+                    .load(item.imgURI)
+                    .placeholder(R.drawable.profile)
+                    .into(vb.img)
+            }
             vb.title.text = item.title
             vb.location.text = "${item.city}, ${item.state}"
         }

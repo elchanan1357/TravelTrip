@@ -48,7 +48,7 @@
                 tools:layout_editor_absoluteY="49dp">
 
                 <ImageView
-                    android:id="@+id/imgUser"
+                    android:id="@+id/img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/profile_pic" />

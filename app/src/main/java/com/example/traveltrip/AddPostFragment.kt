@@ -1,10 +1,14 @@
 package com.example.traveltrip
 
+
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.AddPostBinding
 import com.example.traveltrip.model.ModelPost
@@ -16,6 +20,8 @@ import com.example.traveltrip.utils.log
 
 class AddPostFragment : Fragment() {
     private var binding: AddPostBinding? = null
+    private var cameraLauncher: ActivityResultLauncher<Void?>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +30,15 @@ class AddPostFragment : Fragment() {
         binding = AddPostBinding.inflate(inflater, container, false)
 
         binding?.saveBtn?.setOnClickListener { handleSave() }
+
+        cameraLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
+                binding?.imgPost?.setImageBitmap(bitmap)
+            }
+
+        binding?.addPhoto?.setOnClickListener {
+            cameraLauncher?.launch(null)
+        }
 
         return binding?.root
     }
@@ -39,6 +54,8 @@ class AddPostFragment : Fragment() {
             return
         }
 
+        val bitmap = (binding?.imgPost?.drawable as BitmapDrawable).bitmap
+
         val email = ModelUser.instance.getEmail() ?: ""
         val imgURL = ""
         val city = binding?.city?.text.toString() ?: ""
@@ -46,7 +63,7 @@ class AddPostFragment : Fragment() {
         val title = binding?.title?.text.toString() ?: ""
         val text = binding?.text?.text.toString() ?: ""
 
-        ModelPost.instance.insertPost(Post(email, imgURL, city, state, title, text)) {
+        ModelPost.instance.insertPost(Post(email, imgURL, city, state, title, text), bitmap) {
             findNavController().popBackStack()
         }
     }

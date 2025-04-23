@@ -1,7 +1,6 @@
 package com.example.traveltrip.model.firebase
 
 import com.example.traveltrip.model.entity.Post
-import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.utils.Constants
 import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.PostsCallback
@@ -29,13 +28,17 @@ class FirebaseModelPost {
             }
     }
 
+
     fun getAllPostsByEmail(email: String, callback: PostsCallback) {
         db.collection(postsCollection).whereEqualTo("email", email).get()
             .addOnSuccessListener { postsJSON ->
                 log("Get posts with email: $email")
                 val posts: MutableList<Post> = mutableListOf()
-                for (json in postsJSON)
+
+                for (json in postsJSON) {
+                    log(json.data.toString())
                     posts.add(Post.fromJSON(json.data))
+                }
 
                 callback(posts)
             }
@@ -80,5 +83,6 @@ class FirebaseModelPost {
                 logError("Fail in update post with id: $id \n $e")
             }
     }
+
 
 }

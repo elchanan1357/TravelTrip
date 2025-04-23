@@ -48,6 +48,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.picasso)
+    implementation(libs.cloudinary.android)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
