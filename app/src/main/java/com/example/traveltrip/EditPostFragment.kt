@@ -85,6 +85,7 @@ class EditPostFragment : Fragment() {
         ModelPost.instance.getPostByID(postId) { resPost ->
             this._post = resPost
             getPicFromPicasso(binding?.imgPost, resPost?.imgURI)
+            binding?.name?.text = resPost?.name
             binding?.city?.setText(resPost?.city)
             binding?.state?.setText(resPost?.state)
             binding?.title?.setText(resPost?.title)

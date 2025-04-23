@@ -26,6 +26,7 @@ class DisplayPostFragment : Fragment() {
         val postId = arguments?.getString("postID") ?: ""
         ModelPost.instance.getPostByID(postId) { resPost ->
             getPicFromPicasso(binding?.imgPost, resPost?.imgURI)
+            binding?.name?.text = resPost?.name
             binding?.city?.text = resPost?.city
             binding?.state?.text = resPost?.state
             binding?.title?.text = resPost?.title

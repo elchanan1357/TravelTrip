@@ -1,4 +1,4 @@
-package com.example.traveltrip
+package com.example.traveltrip.model
 
 import android.graphics.Bitmap
 import com.cloudinary.android.MediaManager

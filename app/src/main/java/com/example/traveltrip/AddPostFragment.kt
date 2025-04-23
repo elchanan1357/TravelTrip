@@ -58,13 +58,22 @@ class AddPostFragment : Fragment() {
         }
 
         val email = ModelUser.instance.getEmail() ?: ""
-        val city = binding?.city?.text.toString()
-        val state = binding?.state?.text.toString()
-        val title = binding?.title?.text.toString()
-        val text = binding?.text?.text.toString()
+        ModelUser.instance.getUserByEmail(email) {
+            if (it != null) {
+                val name = it.name
 
-        ModelPost.instance.insertPost(Post(email, "", city, state, title, text), this._bitmap) {
-            findNavController().popBackStack()
+                val city = binding?.city?.text.toString()
+                val state = binding?.state?.text.toString()
+                val title = binding?.title?.text.toString()
+                val text = binding?.text?.text.toString()
+
+                ModelPost.instance.insertPost(
+                    Post(email, name, "", city, state, title, text),
+                    this._bitmap
+                ) {
+                    findNavController().popBackStack()
+                }
+            }
         }
     }
 

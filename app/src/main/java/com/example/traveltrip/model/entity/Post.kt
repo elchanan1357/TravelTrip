@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Post(
     @PrimaryKey(autoGenerate = true)
     val email: String,
+    val name: String,
     val imgURI: String,
     val city: String,
     val state: String,
@@ -18,6 +19,7 @@ data class Post(
 
     companion object {
         private const val EMAIL_KEY = "email"
+        private const val NAME_KEY = "name"
         private const val IMAGE_KEY = "imgURI"
         private const val CITY_KEY = "city"
         private const val STATE_KEY = "state"
@@ -28,6 +30,7 @@ data class Post(
 
         fun fromJSON(json: Map<String, Any>): Post {
             val email = json[EMAIL_KEY] as? String ?: ""
+            val name = json[NAME_KEY] as? String ?: ""
             val url = json[IMAGE_KEY] as? String ?: ""
             val city = json[CITY_KEY] as? String ?: ""
             val state = json[STATE_KEY] as? String ?: ""
@@ -36,13 +39,14 @@ data class Post(
             val id = json[ID_KEY] as? String ?: ""
             val likes = json[LIKES_KEY] as? Int ?: 0
 
-            return Post(email, url, city, state, title, text, id, likes)
+            return Post(email, name, url, city, state, title, text, id, likes)
         }
     }
 
 
     fun updateJSON(): Map<String, Any> = hashMapOf(
         EMAIL_KEY to email,
+        NAME_KEY to name,
         IMAGE_KEY to imgURI,
         CITY_KEY to city,
         STATE_KEY to state,
@@ -56,6 +60,7 @@ data class Post(
     val json: Map<String, Any>
         get() = hashMapOf(
             EMAIL_KEY to email,
+            NAME_KEY to name,
             IMAGE_KEY to imgURI,
             CITY_KEY to city,
             STATE_KEY to state,

@@ -57,17 +57,14 @@ class PostsFragment : Fragment() {
             this.posts,
             RowPostsBinding::inflate
         ) { vb, item ->
-            val email = ModelUser.instance.getEmail() ?: ""
-            ModelUser.instance.getUserByEmail(email) {
-                getPicFromPicasso(vb.imgPost, item.imgURI)
-                vb.name.text = it?.name
-                vb.title.text = item.title
+            getPicFromPicasso(vb.imgPost, item.imgURI)
+            vb.name.text = item.name
+            vb.title.text = item.title
 
-                vb.rowPost.setOnClickListener {
-                    findNavController().navigate(
-                        PostsFragmentDirections.actionPostsDisplayPost(item.id)
-                    )
-                }
+            vb.rowPost.setOnClickListener {
+                findNavController().navigate(
+                    PostsFragmentDirections.actionPostsDisplayPost(item.id)
+                )
             }
         }
     }

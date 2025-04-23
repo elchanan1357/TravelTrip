@@ -174,7 +174,7 @@
         tools:layout_editor_absoluteX="1dp">
 
         <TextView
-            android:id="@+id/editPost_userName"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

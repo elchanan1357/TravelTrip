@@ -1,7 +1,6 @@
 package com.example.traveltrip.model
 
 import android.graphics.Bitmap
-import com.example.traveltrip.CloudinaryModel
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.model.firebase.FirebaseModelPost
 import com.example.traveltrip.utils.EmptyCallback
