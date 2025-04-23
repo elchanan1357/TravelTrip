@@ -31,21 +31,18 @@ class ModelPost {
 
 
     fun insertPost(post: Post, img: Bitmap?, callback: EmptyCallback) {
-        firebase.insertPost(post) {
-            img?.let {
-                uploadImg(
-                    img,
-                    post.id,
-                    onSuccess = { uri ->
-                        if (!uri.isNullOrBlank()) {
-                            val postImg = post.copy(imgURI = uri)
-                            firebase.insertPost(postImg, callback)
-                        } else callback()
-                    },
-                    onError = { callback() }
-                )
-            } ?: callback()
-        }
+        img?.let {
+            uploadImg(
+                img,
+                post.id,
+                onSuccess = { uri ->
+                    if (!uri.isNullOrBlank())
+                        firebase.insertPost(post.copy(imgURI = uri), callback)
+                    else callback()
+                },
+                onError = { callback() }
+            )
+        } ?: firebase.insertPost(post, callback)
     }
 
 
@@ -64,7 +61,18 @@ class ModelPost {
     }
 
 
-    fun updatePost(id: String, post: Post, callback: EmptyCallback) {
-        firebase.updatePost(id, post, callback)
+    fun updatePost(id: String, post: Post, img: Bitmap?, callback: EmptyCallback) {
+        img?.let {
+            uploadImg(
+                img,
+                id,
+                onSuccess = { uri ->
+                    if (!uri.isNullOrBlank())
+                        firebase.updatePost(id, post.copy(imgURI = uri), callback)
+                    else callback()
+                },
+                onError = { callback() }
+            )
+        } ?: firebase.updatePost(id, post, callback)
     }
 }
