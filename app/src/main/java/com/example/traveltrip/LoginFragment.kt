@@ -37,7 +37,10 @@ class LoginFragment : Fragment() {
         val checking = isNull(binding?.email)
                 || isNull(binding?.password)
 
-        if (checking) return
+        if (checking) {
+            log("please provide me all data in login")
+            return
+        }
 
         val email = binding?.email?.text.toString()
         val pass = binding?.password?.text.toString()

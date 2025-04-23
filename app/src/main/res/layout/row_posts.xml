@@ -12,7 +12,7 @@
     app:cardBackgroundColor="#FFFFFF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rowPosts_row"
+        android:id="@+id/rowPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">

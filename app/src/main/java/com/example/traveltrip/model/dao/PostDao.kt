@@ -15,8 +15,8 @@ interface PostDao {
     @Query("SELECT * FROM Posts WHERE email = :email")
     fun getAllPostsByEmail(email: String): List<Post>
 
-//    @Query("SELECT * FROM Posts WHERE id = :id")
-//    fun getPostById(id: Int): Posts?
+    @Query("SELECT * FROM Posts WHERE id = :id")
+    fun getPostById(id: Int): Post?
 
     @Insert
     fun insertPost(post: Post)

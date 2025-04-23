@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
@@ -14,6 +15,8 @@ import com.example.traveltrip.databinding.RowMyPostsBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
+import com.example.traveltrip.utils.getPicFromPicasso
+import com.example.traveltrip.utils.log
 import com.squareup.picasso.Picasso
 
 
@@ -48,14 +51,14 @@ class MyPostFragment : Fragment() {
             this.posts,
             RowMyPostsBinding::inflate
         ) { vb, item ->
-            if (item.imgURI.isNotBlank()) {
-                Picasso.get()
-                    .load(item.imgURI)
-                    .placeholder(R.drawable.profile)
-                    .into(vb.img)
-            }
+            getPicFromPicasso(vb.img, item.imgURI)
             vb.title.text = item.title
             vb.location.text = "${item.city}, ${item.state}"
+            vb.rowMyPost.setOnClickListener {
+                log(item.toString())
+                val action = MyPostFragmentDirections.actionMyPostsEditPost(item.id)
+                findNavController().navigate(action)
+            }
         }
 
     }

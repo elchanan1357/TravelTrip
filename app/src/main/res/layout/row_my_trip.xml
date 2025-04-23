@@ -13,7 +13,7 @@
         app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/rowPosts_row"
+            android:id="@+id/rowPost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp">

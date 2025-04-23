@@ -5,6 +5,7 @@ import com.example.traveltrip.CloudinaryModel
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.model.firebase.FirebaseModelPost
 import com.example.traveltrip.utils.EmptyCallback
+import com.example.traveltrip.utils.PostCallback
 import com.example.traveltrip.utils.PostsCallback
 import com.example.traveltrip.utils.UriCallback
 
@@ -13,13 +14,16 @@ class ModelPost {
     private val firebase: FirebaseModelPost = FirebaseModelPost()
     private val cloudinaryModel: CloudinaryModel = CloudinaryModel()
 
+
     companion object {
         val instance: ModelPost = ModelPost()
     }
 
+
     fun getAllPosts(callback: PostsCallback) {
         firebase.getAllPosts(callback)
     }
+
 
     fun getAllPostsByEmail(email: String, callback: PostsCallback) {
         firebase.getAllPostsByEmail(email, callback)
@@ -31,7 +35,7 @@ class ModelPost {
             img?.let {
                 uploadImg(
                     img,
-                    post.title,
+                    post.id,
                     onSuccess = { uri ->
                         if (!uri.isNullOrBlank()) {
                             val postImg = post.copy(imgURI = uri)
@@ -40,8 +44,13 @@ class ModelPost {
                     },
                     onError = { callback() }
                 )
-            }
+            } ?: callback()
         }
+    }
+
+
+    fun getPostByID(id: String, callback: PostCallback) {
+        firebase.getPostByID(id, callback)
     }
 
 

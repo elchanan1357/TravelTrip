@@ -1,6 +1,7 @@
 package com.example.traveltrip
 
 
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ import com.example.traveltrip.utils.log
 class AddPostFragment : Fragment() {
     private var binding: AddPostBinding? = null
     private var cameraLauncher: ActivityResultLauncher<Void?>? = null
+    private var _bitmap: Bitmap? = null
 
 
     override fun onCreateView(
@@ -34,6 +36,7 @@ class AddPostFragment : Fragment() {
         cameraLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
                 binding?.imgPost?.setImageBitmap(bitmap)
+                this._bitmap = bitmap
             }
 
         binding?.addPhoto?.setOnClickListener {
@@ -54,16 +57,13 @@ class AddPostFragment : Fragment() {
             return
         }
 
-        val bitmap = (binding?.imgPost?.drawable as BitmapDrawable).bitmap
-
         val email = ModelUser.instance.getEmail() ?: ""
-        val imgURL = ""
-        val city = binding?.city?.text.toString() ?: ""
-        val state = binding?.state?.text.toString() ?: ""
-        val title = binding?.title?.text.toString() ?: ""
-        val text = binding?.text?.text.toString() ?: ""
+        val city = binding?.city?.text.toString()
+        val state = binding?.state?.text.toString()
+        val title = binding?.title?.text.toString()
+        val text = binding?.text?.text.toString()
 
-        ModelPost.instance.insertPost(Post(email, imgURL, city, state, title, text), bitmap) {
+        ModelPost.instance.insertPost(Post(email, "", city, state, title, text), this._bitmap) {
             findNavController().popBackStack()
         }
     }

@@ -67,6 +67,10 @@ class PostsFragment : Fragment() {
                 }
                 vb.name.text = it?.name
                 vb.title.text = item.title
+
+                vb.rowPost.setOnClickListener{
+
+                }
             }
         }
     }

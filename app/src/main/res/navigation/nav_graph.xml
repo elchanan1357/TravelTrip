@@ -118,7 +118,11 @@
         android:id="@+id/editPostFragment2"
         android:name="com.example.traveltrip.EditPostFragment"
         android:label="fragment_edit_post"
-        tools:layout="@layout/edit_post" />
+        tools:layout="@layout/edit_post" >
+        <argument
+            android:name="postID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/myPostFragment"
         android:name="com.example.traveltrip.MyPostFragment"
