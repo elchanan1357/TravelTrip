@@ -14,7 +14,7 @@ import com.example.traveltrip.databinding.RowPostsBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
-import com.squareup.picasso.Picasso
+import com.example.traveltrip.utils.getPicFromPicasso
 
 class PostsFragment : Fragment() {
     private var binding: PostsBinding? = null
@@ -59,17 +59,14 @@ class PostsFragment : Fragment() {
         ) { vb, item ->
             val email = ModelUser.instance.getEmail() ?: ""
             ModelUser.instance.getUserByEmail(email) {
-                if (item.imgURI.isNotBlank()) {
-                    Picasso.get()
-                        .load(item.imgURI)
-                        .placeholder(R.drawable.profile)
-                        .into(vb.imgPost)
-                }
+                getPicFromPicasso(vb.imgPost, item.imgURI)
                 vb.name.text = it?.name
                 vb.title.text = item.title
 
-                vb.rowPost.setOnClickListener{
-
+                vb.rowPost.setOnClickListener {
+                    findNavController().navigate(
+                        PostsFragmentDirections.actionPostsDisplayPost(item.id)
+                    )
                 }
             }
         }

@@ -55,9 +55,9 @@ class MyPostFragment : Fragment() {
             vb.title.text = item.title
             vb.location.text = "${item.city}, ${item.state}"
             vb.rowMyPost.setOnClickListener {
-                log(item.toString())
-                val action = MyPostFragmentDirections.actionMyPostsEditPost(item.id)
-                findNavController().navigate(action)
+                findNavController().navigate(
+                    MyPostFragmentDirections.actionMyPostsEditPost(item.id)
+                )
             }
         }
 

@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_posts_addPost"
             app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_posts_displayPost"
+            app:destination="@id/displayPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -131,5 +134,14 @@
         <action
             android:id="@+id/action_myPosts_editPost"
             app:destination="@id/editPostFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayPostFragment"
+        android:name="com.example.traveltrip.DisplayPostFragment"
+        android:label="fragment_display_post"
+        tools:layout="@layout/display_post" >
+        <argument
+            android:name="postID"
+            app:argType="string" />
     </fragment>
 </navigation>
