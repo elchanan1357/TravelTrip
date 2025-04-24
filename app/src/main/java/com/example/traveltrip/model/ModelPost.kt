@@ -7,6 +7,7 @@ import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.PostCallback
 import com.example.traveltrip.utils.PostsCallback
 import com.example.traveltrip.utils.UriCallback
+import com.example.traveltrip.utils.log
 
 
 class ModelPost {
@@ -70,7 +71,10 @@ class ModelPost {
                         firebase.updatePost(id, post.copy(imgURI = uri), callback)
                     else callback()
                 },
-                onError = { callback() }
+                onError = { error ->
+                    log(error.toString())
+                    callback()
+                }
             )
         } ?: firebase.updatePost(id, post, callback)
     }

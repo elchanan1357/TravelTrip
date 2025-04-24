@@ -5,8 +5,10 @@ import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.cloudinary.android.policy.GlobalUploadPolicy
+import com.example.traveltrip.BuildConfig
 import com.example.traveltrip.base.MyApp
 import com.example.traveltrip.utils.UriCallback
+import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.toFile
 import java.io.File
 
@@ -15,9 +17,9 @@ class CloudinaryModel {
 
     init {
         val config = mapOf(
-            "cloud_name" to "dimipopyn",
-            "api_key" to "268912183538911",
-            "api_secret" to "299D7CaW5lwObEr0MnyfFolFilI"
+            "cloud_name" to BuildConfig.CLOUD_NAME,
+            "api_key" to BuildConfig.API_KEY,
+            "api_secret" to BuildConfig.API_SECRET
         )
 
         context?.let {
@@ -32,9 +34,10 @@ class CloudinaryModel {
         onSuccess: UriCallback,
         onError: UriCallback
     ) {
+        log("step1")
         val context = context ?: return
         val file: File = bitmap.toFile(context, name)
-
+        log("step2")
         MediaManager.get().upload(file.path)
             .option("folder", "images")
             .callback(object : UploadCallback {
@@ -55,10 +58,6 @@ class CloudinaryModel {
 
             })
             .dispatch()
-
-
     }
-
-
 }
 
