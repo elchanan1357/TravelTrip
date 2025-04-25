@@ -1,6 +1,5 @@
 package com.example.traveltrip.model.firebase
 
-
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.utils.*
 
@@ -25,31 +24,41 @@ class FirebaseModelUser {
             }
     }
 
+
     fun getUserByEmail(email: String, callback: UserCallback) {
-        db.collection(userCollection).document(email).get()
-            .addOnSuccessListener { user ->
-                log("Find user $email")
-                if (user.exists()) {
-                    val u = User.fromJSON(user.data!!)
-                    callback(u)
-                } else
-                    logError("Not find user $email")
-            }
-            .addOnFailureListener { e ->
-                logError("Fail in get user by email: $email \n $e")
-            }
+        //TODO VERIFY BY EMAIL
+//        if (Auth.isLoggedIn() && Auth.getCurrentUser()?.email == email) {
+            db.collection(userCollection).document(email).get()
+                .addOnSuccessListener { user ->
+                    log("Find user $email")
+                    if (user.exists()) {
+                        val u = User.fromJSON(user.data!!)
+                        callback(u)
+                    } else
+                        logError("Not find user $email")
+                }
+                .addOnFailureListener { e ->
+                    logError("Fail in get user by email: $email \n $e")
+                }
+//        }
 
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        db.collection(userCollection).document(user.email).set(user.json)
-            .addOnSuccessListener {
-                log("Add user: ${user.email}")
-                callback()
+        Auth.registerUser(user.email, user.password) { success, massage ->
+            if (success) {
+                db.collection(userCollection).document(user.email).set(user.json)
+                    .addOnSuccessListener {
+                        log("Add user: ${user.email}")
+                        callback()
+                    }
+                    .addOnFailureListener { e ->
+                        logError("Fail in add user with email: ${user.email} \n $e")
+                    }
+            } else {
+                logError(massage.toString())
             }
-            .addOnFailureListener { e ->
-                logError("Fail in add user with email: ${user.email} \n $e")
-            }
+        }
     }
 
     fun updateUser(user: User, callback: EmptyCallback) {
@@ -67,6 +76,8 @@ class FirebaseModelUser {
         db.collection(userCollection).document(user.email).delete()
             .addOnSuccessListener {
                 log("Delete user: ${user.email}")
+                Auth.signOut()
+
                 callback()
             }
             .addOnFailureListener { e ->

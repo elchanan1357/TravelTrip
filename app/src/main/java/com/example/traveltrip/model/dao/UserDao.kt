@@ -12,8 +12,8 @@ import com.example.traveltrip.utils.Constants
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM Users WHERE email = :email")
-    fun getUserByEmail(email: String): User?
+    @Query("SELECT * FROM Users WHERE uid = :uid")
+    fun getUserByUid(uid: String): User?
 
 
     @Query("SELECT * FROM Users")

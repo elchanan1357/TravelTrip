@@ -33,7 +33,7 @@ object Auth {
     }
 
 
-    fun signup() {
+    fun signOut() {
         auth.signOut()
     }
 
