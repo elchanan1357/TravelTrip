@@ -19,13 +19,24 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-//           TODO destination.id == R.id.homePageFragment
             if (destination.id == R.id.loginFragment || destination.id == R.id.registerFragment || destination.id == R.id.getStarted) {
                 bottomNavigationView.visibility = View.GONE
             } else {
                 bottomNavigationView.visibility = View.VISIBLE
             }
+
+            val menu = bottomNavigationView.menu
+            if (destination.id == R.id.homePageFragment) {
+                menu.findItem(R.id.homePageFragment).isVisible = false
+//                menu.findItem(R.id.myTripsFragment).isVisible = false
+                menu.findItem(R.id.discoverFragment).isVisible = false
+            } else {
+                menu.findItem(R.id.homePageFragment).isVisible = true
+                menu.findItem(R.id.myTripsFragment).isVisible = true
+                menu.findItem(R.id.discoverFragment).isVisible = true
+            }
         }
 
+
     }
-                                                                                                                                                                                                                                                           }
+}
