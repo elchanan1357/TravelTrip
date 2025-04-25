@@ -3,13 +3,9 @@ package com.example.traveltrip.model.firebase
 
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.utils.*
-import com.google.firebase.firestore.firestoreSettings
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.memoryCacheSettings
-import com.google.firebase.ktx.Firebase
 
 class FirebaseModelUser {
-    private val db = Firestore.getFirestoreInstance()
+    private val db = FirebaseProvider.getFirestoreInstance()
     private val userCollection = Constants.Collection.USERS
 
     //TODO on complete for all to stop progressbar

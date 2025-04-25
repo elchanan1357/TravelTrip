@@ -1,15 +1,18 @@
 package com.example.traveltrip.model.firebase
 
 import android.annotation.SuppressLint
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.memoryCacheSettings
 import com.google.firebase.ktx.Firebase
 
-object Firestore  {
+object FirebaseProvider {
     @SuppressLint("StaticFieldLeak")
     private val db = Firebase.firestore
+    private val auth = Firebase.auth
 
     init {
         val settings = firestoreSettings {
@@ -21,6 +24,10 @@ object Firestore  {
 
     fun getFirestoreInstance(): FirebaseFirestore {
         return db
+    }
+
+    fun getAuthInstance(): FirebaseAuth {
+        return auth
     }
 }
 

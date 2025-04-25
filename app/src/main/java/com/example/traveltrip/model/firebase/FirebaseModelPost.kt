@@ -9,7 +9,7 @@ import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
 
 class FirebaseModelPost {
-    private val db = Firestore.getFirestoreInstance()
+    private val db = FirebaseProvider.getFirestoreInstance()
     private val postsCollection = Constants.Collection.POSTS
 
 
