@@ -28,35 +28,36 @@ class FirebaseModelUser {
     fun getUserByEmail(email: String, callback: UserCallback) {
         //TODO VERIFY BY EMAIL
 //        if (Auth.isLoggedIn() && Auth.getCurrentUser()?.email == email) {
-            db.collection(userCollection).document(email).get()
-                .addOnSuccessListener { user ->
-                    log("Find user $email")
-                    if (user.exists()) {
-                        val u = User.fromJSON(user.data!!)
-                        callback(u)
-                    } else
-                        logError("Not find user $email")
-                }
-                .addOnFailureListener { e ->
-                    logError("Fail in get user by email: $email \n $e")
-                }
+        db.collection(userCollection).document(email).get()
+            .addOnSuccessListener { user ->
+                log("Find user $email")
+                if (user.exists()) {
+                    val u = User.fromJSON(user.data!!)
+                    callback(u)
+                } else
+                    logError("Not find user $email")
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in get user by email: $email \n $e")
+            }
 //        }
 
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        Auth.registerUser(user.email, user.password) { success, massage ->
+        Auth.registerUser(user.email, user.password) { success, uid ->
             if (success) {
-                db.collection(userCollection).document(user.email).set(user.json)
+                val userWithId = user.copy(uid = uid.toString())
+                db.collection(userCollection).document(userWithId.email).set(userWithId.json)
                     .addOnSuccessListener {
-                        log("Add user: ${user.email}")
+                        log("Add user: ${userWithId.email}")
                         callback()
                     }
                     .addOnFailureListener { e ->
-                        logError("Fail in add user with email: ${user.email} \n $e")
+                        logError("Fail in add user with email: ${userWithId.email} \n $e")
                     }
             } else {
-                logError(massage.toString())
+                uid?.let { logError(it) }
             }
         }
     }

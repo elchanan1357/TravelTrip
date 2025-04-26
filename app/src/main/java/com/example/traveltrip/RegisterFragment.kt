@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import at.favre.lib.crypto.bcrypt.BCrypt
-import com.example.traveltrip.utils.isNull
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.RegisterBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
+import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.validateFields
 
 class RegisterFragment : Fragment() {
     private var binding: RegisterBinding? = null
@@ -38,6 +38,8 @@ class RegisterFragment : Fragment() {
         val pass2 = binding?.password2?.text.toString()
 
         if (pass1 != pass2) {
+            binding?.password?.error = "The password not same"
+            binding?.password2?.error = "The password not same"
             log("the password not same")
             return
         }
@@ -48,13 +50,11 @@ class RegisterFragment : Fragment() {
             return
         }
 
-        val hashedPassword = BCrypt.withDefaults().hashToString(10, pass1.toCharArray())
-
         val user = User(
             binding?.name?.text.toString(),
             binding?.phone?.text.toString(),
             binding?.email?.text.toString(),
-            hashedPassword
+            binding?.password?.text.toString()
         )
 
         ModelUser.instance.addUser(user) {
@@ -63,13 +63,15 @@ class RegisterFragment : Fragment() {
     }
 
     private fun checkDataIsNull(): Boolean {
-        val checking: Boolean = isNull(binding?.name)
-                || isNull(binding?.phone)
-                || isNull(binding?.email)
-                || isNull(binding?.password)
-                || isNull(binding?.password2)
+        val validation = arrayOf(
+            FieldValidation(binding?.name, "Enter your name"),
+            FieldValidation(binding?.phone, "Enter your phone number"),
+            FieldValidation(binding?.email, "Enter your email address"),
+            FieldValidation(binding?.password, "Enter a password"),
+            FieldValidation(binding?.password2, "Confirm your password")
+        )
 
-        return checking
+        return validateFields(*validation)
     }
 
 

@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import at.favre.lib.crypto.bcrypt.BCrypt
-import com.example.traveltrip.utils.isNull
 import com.example.traveltrip.utils.log
-import com.example.traveltrip.utils.logError
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
+import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.validateFields
 
 class LoginFragment : Fragment() {
     private var binding: LoginBinding? = null
@@ -34,27 +33,23 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleLogin() {
-        val checking = isNull(binding?.email)
-                || isNull(binding?.password)
+        val validation = arrayOf(
+            FieldValidation(binding?.email, "You must provide your email"),
+            FieldValidation(binding?.password, "You must provide your password")
+        )
 
-        if (checking) {
+        if (validateFields(*validation)) {
             log("please provide me all data in login")
             return
         }
 
         val email = binding?.email?.text.toString()
-        val pass = binding?.password?.text.toString()
 
         ModelUser.instance.getUserByEmail(email) { user ->
             if (user == null) {
                 log("login: User not found")
             } else {
-                ModelUser.instance.setEmail(email)
-
-                val res = BCrypt.verifyer()
-                    .verify(pass.toCharArray(), user.password.toCharArray()).verified
-                if (res) findNavController().navigate(R.id.action_login_home)
-                else logError("login: The password not correct")
+                findNavController().navigate(R.id.action_login_home)
             }
         }
     }

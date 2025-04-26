@@ -12,10 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.EditPostBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.entity.Post
+import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.getPicFromPicasso
-import com.example.traveltrip.utils.isNull
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
+import com.example.traveltrip.utils.validateFields
 
 
 class EditPostFragment : Fragment() {
@@ -52,12 +53,15 @@ class EditPostFragment : Fragment() {
 
 
     private fun handleSave() {
-        val checking = isNull(binding?.city)
-                || isNull(binding?.state)
-                || isNull(binding?.title)
-                || isNull(binding?.text)
+        val validation = arrayOf(
+            FieldValidation(binding?.city, "Enter your city"),
+            FieldValidation(binding?.state, "Enter your state"),
+            FieldValidation(binding?.title, "Enter the title"),
+            FieldValidation(binding?.text, "Enter the text"),
+        )
 
-        if (checking) {
+
+        if (validateFields(*validation)) {
             log("please provide me all data in login")
             return
         }

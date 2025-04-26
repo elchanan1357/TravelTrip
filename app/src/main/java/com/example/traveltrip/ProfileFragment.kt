@@ -33,8 +33,6 @@ class ProfileFragment : Fragment() {
         }
         binding?.deleteBtn?.setOnClickListener { handleDelete() }
 
-
-
         return binding?.root
     }
 
@@ -62,6 +60,7 @@ class ProfileFragment : Fragment() {
         ModelUser.instance.getUserByEmail(email) { user ->
             this._user = user
             if (user != null) {
+                log(user.toString())
                 binding?.name?.text = user.name
                 binding?.phone?.text = user.phone
                 binding?.email?.text = user.email

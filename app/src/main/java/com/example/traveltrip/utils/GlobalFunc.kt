@@ -19,6 +19,20 @@ fun isNull(et: EditText?): Boolean {
     return false
 }
 
+fun validateFields(vararg fields: FieldValidation): Boolean {
+    var allValid = true
+    for (field in fields) {
+        val input = field.editText?.text ?: ""
+        if (input.isBlank()) {
+            field.editText?.error = field.errorMessage
+            allValid = false
+        }
+    }
+
+    return allValid
+}
+
+
 fun log(message: String) {
     Log.d("logs", message)
 }

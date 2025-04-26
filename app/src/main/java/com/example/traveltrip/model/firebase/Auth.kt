@@ -8,7 +8,7 @@ object Auth {
     fun registerUser(email: String, password: String, callback: (Boolean, String?) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) callback(true, null)
+                if (task.isSuccessful) callback(true, auth.currentUser?.uid)
                 else callback(false, task.exception?.message)
             }
     }

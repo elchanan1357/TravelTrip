@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.bcrypt)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.room.runtime)
