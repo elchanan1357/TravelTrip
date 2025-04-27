@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
@@ -14,6 +15,7 @@ import com.example.traveltrip.databinding.RowMyPostsBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
+import com.example.traveltrip.utils.getPicFromPicasso
 
 
 class MyPostFragment : Fragment() {
@@ -32,14 +34,14 @@ class MyPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.progressBar?.visibility = View.VISIBLE
         createAdapter()
-        getAllPostByEmail()
-
         val recyclerView: RecyclerView? = binding?.recyclerView
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
     }
+
 
     @SuppressLint("SetTextI18n")
     private fun createAdapter() {
@@ -47,8 +49,14 @@ class MyPostFragment : Fragment() {
             this.posts,
             RowMyPostsBinding::inflate
         ) { vb, item ->
+            getPicFromPicasso(vb.img, item.imgURI)
             vb.title.text = item.title
             vb.location.text = "${item.city}, ${item.state}"
+            vb.rowMyPost.setOnClickListener {
+                findNavController().navigate(
+                    MyPostFragmentDirections.actionMyPostsEditPost(item.id)
+                )
+            }
         }
 
     }
@@ -59,13 +67,16 @@ class MyPostFragment : Fragment() {
         ModelPost.instance.getAllPostsByEmail(email) {
             this.posts = it
             adapter?.updateList(this.posts)
+            binding?.progressBar?.visibility = View.GONE
         }
     }
+
 
     override fun onResume() {
         super.onResume()
         getAllPostByEmail()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

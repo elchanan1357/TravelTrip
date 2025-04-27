@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_posts_addPost"
             app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_posts_displayPost"
+            app:destination="@id/displayPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -121,7 +124,11 @@
         android:id="@+id/editPostFragment2"
         android:name="com.example.traveltrip.EditPostFragment"
         android:label="fragment_edit_post"
-        tools:layout="@layout/edit_post" />
+        tools:layout="@layout/edit_post" >
+        <argument
+            android:name="postID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/myPostFragment"
         android:name="com.example.traveltrip.MyPostFragment"
@@ -130,5 +137,14 @@
         <action
             android:id="@+id/action_myPosts_editPost"
             app:destination="@id/editPostFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayPostFragment"
+        android:name="com.example.traveltrip.DisplayPostFragment"
+        android:label="fragment_display_post"
+        tools:layout="@layout/display_post" >
+        <argument
+            android:name="postID"
+            app:argType="string" />
     </fragment>
 </navigation>

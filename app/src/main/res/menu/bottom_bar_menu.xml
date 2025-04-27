@@ -14,6 +14,7 @@
         android:title="@string/diary"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/discoverFragment"
         android:icon="@drawable/discover_icon"
@@ -28,11 +29,13 @@
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
 
+
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/profile_icon"
+        android:icon="@drawable/profile_24"
         android:title="@string/profile"
         app:iconTint="@null"
+        app:itemIconTint="@null"
         app:showAsAction="ifRoom" />
 
 </menu>

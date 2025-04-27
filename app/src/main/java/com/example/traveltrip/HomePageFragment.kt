@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.HomePageBinding
 import com.example.traveltrip.model.ModelUser
+import com.example.traveltrip.utils.logError
 
 
 class HomePageFragment : Fragment() {
@@ -31,6 +32,8 @@ class HomePageFragment : Fragment() {
             ModelUser.instance.getUserByEmail(email) { user ->
                 if (user != null)
                     binding?.name?.text = "Hi ${user.name}, Welcome"
+                else
+                    logError("Not find user")
             }
 
         return binding?.root
