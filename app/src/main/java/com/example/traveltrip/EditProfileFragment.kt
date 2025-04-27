@@ -13,6 +13,7 @@ import com.example.traveltrip.databinding.EditProfileBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.validateFields
 
@@ -53,6 +54,8 @@ class EditProfileFragment : Fragment() {
                     binding?.phone?.setText(user.phone)
                     binding?.email?.setText(user.email)
                     binding?.password?.setText(user.password)
+                    if (user.img.isNotBlank())
+                        getPicFromPicasso(binding?.imgProfile, user.img)
 
                     binding?.email?.isEnabled = false
                     binding?.password?.isEnabled = false
@@ -75,14 +78,21 @@ class EditProfileFragment : Fragment() {
             return
         }
 
+        binding?.progressBar?.visibility = View.VISIBLE
         val user = _user
         user?.name = binding?.name?.text.toString()
         user?.phone = binding?.phone?.text.toString()
 
-        if (user?.phone == _user?.phone && user?.name == _user?.name)
+
+        if (user?.phone == _user?.phone && user?.name == _user?.name && this._bitmap == null)
             return
 
-        user?.let { ModelUser.instance.updateUser(user) { pop() } }
+        user?.let {
+            ModelUser.instance.updateUser(user, this._bitmap) {
+                binding?.progressBar?.visibility = View.GONE
+                pop()
+            }
+        }
     }
 
 

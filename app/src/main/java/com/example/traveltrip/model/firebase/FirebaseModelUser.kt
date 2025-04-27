@@ -79,6 +79,7 @@ class FirebaseModelUser {
                 log("Delete user: ${user.email}")
                 Auth.signOut()
 
+
                 callback()
             }
             .addOnFailureListener { e ->

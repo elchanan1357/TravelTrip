@@ -77,14 +77,14 @@ class FirebaseModelPost {
     }
 
 
-    fun updatePost(id: String, post: Post, callback: EmptyCallback) {
-        db.collection(postsCollection).document(id).update(post.updateJSON())
+    fun updatePost(post: Post, callback: EmptyCallback) {
+        db.collection(postsCollection).document(post.id).update(post.updateJSON())
             .addOnSuccessListener {
-                log("Update post with id: $id")
+                log("Update post with id: ${post.id}")
                 callback()
             }
             .addOnFailureListener { e ->
-                logError("Fail in update post with id: $id \n $e")
+                logError("Fail in update post with id: ${post.id} \n $e")
             }
     }
 

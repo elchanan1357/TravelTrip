@@ -16,8 +16,6 @@ import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.utils.getPicFromPicasso
-import com.example.traveltrip.utils.log
-import com.squareup.picasso.Picasso
 
 
 class MyPostFragment : Fragment() {
@@ -44,10 +42,6 @@ class MyPostFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    override fun onStart() {
-        super.onStart()
-        getAllPostByEmail()
-    }
 
     @SuppressLint("SetTextI18n")
     private fun createAdapter() {

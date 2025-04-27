@@ -6,13 +6,12 @@ import com.example.traveltrip.model.firebase.FirebaseModelPost
 import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.PostCallback
 import com.example.traveltrip.utils.PostsCallback
-import com.example.traveltrip.utils.UriCallback
 import com.example.traveltrip.utils.log
 
 
 class ModelPost {
     private val firebase: FirebaseModelPost = FirebaseModelPost()
-    private val cloudinaryModel: CloudinaryModel = CloudinaryModel()
+    private val cloudinaryModel: CloudinaryModel = CloudinaryModel.cloudinaryModel
 
 
     companion object {
@@ -30,10 +29,10 @@ class ModelPost {
     }
 
 
-    fun insertPost(post: Post, img: Bitmap?, callback: EmptyCallback) {
-        img?.let {
-            uploadImg(
-                img,
+    fun insertPost(post: Post, bitmap: Bitmap?, callback: EmptyCallback) {
+        bitmap?.let {
+            cloudinaryModel.uploadImg(
+                bitmap,
                 post.id,
                 onSuccess = { uri ->
                     if (!uri.isNullOrBlank())
@@ -51,24 +50,19 @@ class ModelPost {
     }
 
 
-    private fun uploadImg(img: Bitmap, name: String, onSuccess: UriCallback, onError: UriCallback) {
-        cloudinaryModel.uploadImg(img, name, onSuccess, onError)
-    }
-
-
     fun deletePost(id: String, callback: EmptyCallback) {
         firebase.deletePost(id, callback)
     }
 
 
-    fun updatePost(id: String, post: Post, img: Bitmap?, callback: EmptyCallback) {
-        img?.let {
-            uploadImg(
-                img,
-                id,
+    fun updatePost(post: Post, bitmap: Bitmap?, callback: EmptyCallback) {
+        bitmap?.let {
+            cloudinaryModel.uploadImg(
+                bitmap,
+                post.id,
                 onSuccess = { uri ->
                     if (!uri.isNullOrBlank())
-                        firebase.updatePost(id, post.copy(imgURI = uri), callback)
+                        firebase.updatePost(post.copy(imgURI = uri), callback)
                     else callback()
                 },
                 onError = { error ->
@@ -76,6 +70,6 @@ class ModelPost {
                     callback()
                 }
             )
-        } ?: firebase.updatePost(id, post, callback)
+        } ?: firebase.updatePost(post, callback)
     }
 }

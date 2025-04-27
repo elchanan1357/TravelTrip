@@ -38,7 +38,6 @@ class PostsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding?.addBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_posts_addPost)
         }
@@ -51,11 +50,11 @@ class PostsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    override fun onStart() {
-        super.onStart()
-
+    override fun onResume() {
+        super.onResume()
         getAllPosts()
     }
+
 
     private fun getAllPosts() {
         ModelPost.instance.getAllPosts {

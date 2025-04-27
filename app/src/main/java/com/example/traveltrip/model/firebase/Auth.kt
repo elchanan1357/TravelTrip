@@ -41,6 +41,18 @@ object Auth {
         auth.signOut()
     }
 
+    fun deleteUser(callback: AuthCallback) {
+        val user = auth.currentUser
+        user?.delete()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)  // מחיקה הצליחה
+                } else {
+                    callback(false, task.exception?.message)  // מחיקה נכשלה
+                }
+            }
+    }
+
 
     fun getCurrentUser() = auth.currentUser
 

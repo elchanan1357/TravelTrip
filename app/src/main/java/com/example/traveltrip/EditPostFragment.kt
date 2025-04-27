@@ -42,6 +42,7 @@ class EditPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         displayData()
+        binding?.cancelBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.saveBtn?.setOnClickListener { handleSave() }
     }
 
@@ -64,6 +65,7 @@ class EditPostFragment : Fragment() {
             logError("Fail not have post")
             return
         }
+        binding?.progressBar?.visibility = View.VISIBLE
 
         val newPost = this._post?.copy(
             city = binding?.city?.text.toString(),
@@ -72,10 +74,12 @@ class EditPostFragment : Fragment() {
             text = binding?.text?.text.toString()
         )
 
-        ModelPost.instance.updatePost(newPost!!.id, newPost, this._bitmap) {
-            findNavController().popBackStack()
+        newPost?.let {
+            ModelPost.instance.updatePost(newPost, this._bitmap) {
+                binding?.progressBar?.visibility = View.GONE
+                findNavController().popBackStack()
+            }
         }
-
     }
 
     private fun displayData() {

@@ -11,6 +11,7 @@ import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.ProfileBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
+import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.logError
 
 class ProfileFragment : Fragment() {
@@ -37,8 +38,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun handleDelete() {
+        binding?.progressBar?.visibility = View.VISIBLE
         if (this._user != null) {
             ModelUser.instance.deleteUser(this._user!!) {
+                binding?.progressBar?.visibility = View.VISIBLE
                 findNavController().navigate(
                     R.id.getStarted,
                     null,
@@ -60,7 +63,8 @@ class ProfileFragment : Fragment() {
         ModelUser.instance.getUserByEmail(email) { user ->
             this._user = user
             if (user != null) {
-                log(user.toString())
+                getPicFromPicasso(binding?.img, user.img)
+
                 binding?.name?.text = user.name
                 binding?.phone?.text = user.phone
                 binding?.email?.text = user.email

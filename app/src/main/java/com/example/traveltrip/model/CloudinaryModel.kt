@@ -1,5 +1,6 @@
 package com.example.traveltrip.model
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
@@ -12,7 +13,7 @@ import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.toFile
 import java.io.File
 
-class CloudinaryModel {
+class CloudinaryModel private constructor() {
     private val context = MyApp.Globals.context
 
     init {
@@ -28,16 +29,21 @@ class CloudinaryModel {
         }
     }
 
+
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        val cloudinaryModel: CloudinaryModel = CloudinaryModel()
+    }
+
+
     fun uploadImg(
         bitmap: Bitmap,
         name: String,
         onSuccess: UriCallback,
         onError: UriCallback
     ) {
-        log("step1")
         val context = context ?: return
         val file: File = bitmap.toFile(context, name)
-        log("step2")
         MediaManager.get().upload(file.path)
             .option("folder", "images")
             .callback(object : UploadCallback {

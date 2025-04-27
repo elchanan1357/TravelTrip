@@ -39,7 +39,7 @@ fun getPicFromPicasso(img: ImageView?, url: String?) {
     if (url?.isNotBlank() == true) {
         Picasso.get()
             .load(url)
-            .placeholder(R.drawable.profile)
+            .placeholder(R.color.black)
             .into(img)
     }
 }

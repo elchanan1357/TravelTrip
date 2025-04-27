@@ -34,6 +34,7 @@ class AddPostFragment : Fragment() {
     ): View? {
         binding = AddPostBinding.inflate(inflater, container, false)
 
+        binding?.cancelBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.saveBtn?.setOnClickListener { handleSave() }
         launchCameraForImage(this, binding?.imgPost, binding?.addPhoto) {
             this._bitmap = it
@@ -55,6 +56,7 @@ class AddPostFragment : Fragment() {
             return
         }
 
+        binding?.progressBar?.visibility = View.VISIBLE
 
         val email = ModelUser.instance.getEmail() ?: ""
         ModelUser.instance.getUserByEmail(email) {
@@ -70,6 +72,7 @@ class AddPostFragment : Fragment() {
                     Post(email, name, "", city, state, title, text),
                     this._bitmap
                 ) {
+                    binding?.progressBar?.visibility = View.GONE
                     findNavController().popBackStack()
                 }
             }
