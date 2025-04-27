@@ -1,9 +1,11 @@
 package com.example.traveltrip
 
 
+import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +17,9 @@ import com.example.traveltrip.databinding.AddPostBinding
 import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
-import com.example.traveltrip.utils.isNull
+import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.validateFields
 
 
 class AddPostFragment : Fragment() {
@@ -41,21 +44,34 @@ class AddPostFragment : Fragment() {
 
         binding?.addPhoto?.setOnClickListener {
             cameraLauncher?.launch(null)
+//            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            if (cameraIntent.resolveActivity(requireContext().packageManager) != null) {
+//                Log.d("Camera", "Camera app is available")
+//                cameraLauncher?.launch(null)
+//            } else {
+//                Log.e("Camera", "No camera app found")
+//            }
+
         }
+
+
 
         return binding?.root
     }
 
     private fun handleSave() {
-        val checking = isNull(binding?.city)
-                || isNull(binding?.state)
-                || isNull(binding?.title)
-                || isNull(binding?.text)
+        val validation = arrayOf(
+            FieldValidation(binding?.city, "You must provide your city"),
+            FieldValidation(binding?.state, "You must provide your state"),
+            FieldValidation(binding?.title, "You must provide title"),
+            FieldValidation(binding?.text, "You must provide text")
+        )
 
-        if (checking) {
-            log("please provide all data")
+        if (!validateFields(*validation)) {
+            log("please provide me all data")
             return
         }
+
 
         val email = ModelUser.instance.getEmail() ?: ""
         ModelUser.instance.getUserByEmail(email) {

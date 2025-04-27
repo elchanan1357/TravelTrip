@@ -29,7 +29,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun handleSignup() {
-        if (checkDataIsNull()) {
+        if (!checkDataIsValidate()) {
             log("You must fill in all the details.")
             return
         }
@@ -57,12 +57,15 @@ class RegisterFragment : Fragment() {
             binding?.password?.text.toString()
         )
 
+        binding?.progressBar?.visibility = View.VISIBLE
+
         ModelUser.instance.addUser(user) {
+            binding?.progressBar?.visibility = View.GONE
             findNavController().popBackStack()
         }
     }
 
-    private fun checkDataIsNull(): Boolean {
+    private fun checkDataIsValidate(): Boolean {
         val validation = arrayOf(
             FieldValidation(binding?.name, "Enter your name"),
             FieldValidation(binding?.phone, "Enter your phone number"),
@@ -70,6 +73,12 @@ class RegisterFragment : Fragment() {
             FieldValidation(binding?.password, "Enter a password"),
             FieldValidation(binding?.password2, "Confirm your password")
         )
+
+        if ((binding?.password?.text?.length ?: 0) < 6) {
+            binding?.password?.error = "Password should be at least 6 characters"
+            return false
+        }
+
 
         return validateFields(*validation)
     }

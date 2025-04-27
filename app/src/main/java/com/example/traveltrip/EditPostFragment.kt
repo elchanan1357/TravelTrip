@@ -61,7 +61,7 @@ class EditPostFragment : Fragment() {
         )
 
 
-        if (validateFields(*validation)) {
+        if (!validateFields(*validation)) {
             log("please provide me all data in login")
             return
         }

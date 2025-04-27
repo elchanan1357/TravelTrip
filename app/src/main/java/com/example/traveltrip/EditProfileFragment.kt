@@ -61,7 +61,7 @@ class EditProfileFragment : Fragment() {
             FieldValidation(binding?.password, "Enter the text"),
         )
 
-        if (validateFields(*validation)) {
+        if (!validateFields(*validation)) {
             log("please provide me all data")
             return
         }

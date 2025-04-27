@@ -38,14 +38,15 @@ class LoginFragment : Fragment() {
             FieldValidation(binding?.password, "You must provide your password")
         )
 
-        if (validateFields(*validation)) {
+        if (!validateFields(*validation)) {
             log("please provide me all data in login")
             return
         }
 
         val email = binding?.email?.text.toString()
-
+        binding?.progressBar?.visibility = View.VISIBLE
         ModelUser.instance.getUserByEmail(email) { user ->
+            binding?.progressBar?.visibility = View.GONE
             if (user == null) {
                 log("login: User not found")
             } else {

@@ -36,13 +36,17 @@ class MyPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.progressBar?.visibility = View.VISIBLE
         createAdapter()
-        getAllPostByEmail()
-
         val recyclerView: RecyclerView? = binding?.recyclerView
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getAllPostByEmail()
     }
 
     @SuppressLint("SetTextI18n")
@@ -69,13 +73,16 @@ class MyPostFragment : Fragment() {
         ModelPost.instance.getAllPostsByEmail(email) {
             this.posts = it
             adapter?.updateList(this.posts)
+            binding?.progressBar?.visibility = View.GONE
         }
     }
+
 
     override fun onResume() {
         super.onResume()
         getAllPostByEmail()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

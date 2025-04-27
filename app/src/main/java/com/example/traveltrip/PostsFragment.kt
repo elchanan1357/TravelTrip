@@ -42,20 +42,26 @@ class PostsFragment : Fragment() {
         binding?.addBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_posts_addPost)
         }
+        binding?.progressBar?.visibility = View.VISIBLE
 
         createAdapter()
-        getAllPosts()
-
         val recyclerView: RecyclerView? = binding?.recyclerView
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        getAllPosts()
+    }
+
     private fun getAllPosts() {
         ModelPost.instance.getAllPosts {
             viewModel?.set(posts = it)
             this.adapter?.updateList(viewModel?.posts)
+            binding?.progressBar?.visibility = View.GONE
         }
     }
 
