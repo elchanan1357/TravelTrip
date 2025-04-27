@@ -1,7 +1,6 @@
 package com.example.traveltrip
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,13 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
-import com.example.traveltrip.model.ModelTravel
-import com.example.traveltrip.model.entity.Travel
+import com.example.traveltrip.model.ModelTrip
+import com.example.traveltrip.model.entity.Trip
+
 
 class TripsFragment : Fragment() {
-    private var travels: List<Travel>? = null
+    private var travels: List<Trip>? = null
     private var binding: TripsBinding? = null
-    private var adapter: GenericAdapter<Travel, RowTripBinding>? = null
+    private var adapter: GenericAdapter<Trip, RowTripBinding>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +59,7 @@ class TripsFragment : Fragment() {
 
     private fun getAllTravels() {
         binding?.progressBar?.visibility = View.VISIBLE
-        ModelTravel.instance.getAllTravels {
+        ModelTrip.instance.getAllTravels {
             this.travels = it
             adapter?.updateList(it)
 
@@ -84,12 +84,12 @@ class TripsFragment : Fragment() {
         binding?.addBtn?.setOnClickListener {
             Log.d("logs", "enter ")
             val travel =
-                Travel(
+                Trip(
                     "Baraka",
                     "the trip is beautiful",
                     "/"
                 )
-            ModelTravel.instance.addTravel(travel) {
+            ModelTrip.instance.addTravel(travel) {
                 Log.d("logs", "Add to Db ")
             }
 

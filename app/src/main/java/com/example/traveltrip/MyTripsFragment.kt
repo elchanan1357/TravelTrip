@@ -5,20 +5,48 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.MyTripsBinding
+import com.example.traveltrip.databinding.RowMyTripBinding
+import com.example.traveltrip.model.entity.Trip
 
 
 class MyTripsFragment : Fragment() {
     private var binding: MyTripsBinding? = null
+    private var  myTrips:List<Trip>?=null
+    private var adapter:GenericAdapter<Trip,RowMyTripBinding>?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = MyTripsBinding.inflate(inflater, container, false)
-
         return binding?.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    binding?.addBtn?.setOnClickListener{
+        findNavController().navigate(R.id.action_myTrips_discover)
+    }
+
+        createAdapter()
+        //getAllMyTrips()
+
+//        val recyclerView: RecyclerView? = binding?.recyclerView
+//        recyclerView?.setHasFixedSize(true)
+//        recyclerView?.adapter = adapter
+//        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun createAdapter() {
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

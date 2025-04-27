@@ -4,19 +4,19 @@ import android.os.Looper
 import androidx.core.os.HandlerCompat
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
-import com.example.traveltrip.model.entity.Travel
+import com.example.traveltrip.model.entity.Trip
 import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.TravelCallback
 import com.example.traveltrip.utils.TravelsCallback
 import java.util.concurrent.Executors
 
 
-class ModelTravel private constructor() {
+class ModelTrip private constructor() {
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
 
     companion object {
-        val instance: ModelTravel = ModelTravel()
+        val instance: ModelTrip = ModelTrip()
     }
 
     fun getAllTravels(callback: TravelsCallback) {
@@ -47,7 +47,7 @@ class ModelTravel private constructor() {
         }
     }
 
-    fun addTravel(travel: Travel, callback: EmptyCallback) {
+    fun addTravel(travel: Trip, callback: EmptyCallback) {
         executor.execute {
             try {
                 AppLocalDB.DB.TravelDao().insertTravels(travel)
@@ -61,7 +61,7 @@ class ModelTravel private constructor() {
         }
     }
 
-    fun deleteTravel(travel: Travel, callback: EmptyCallback) {
+    fun deleteTravel(travel: Trip, callback: EmptyCallback) {
         executor.execute {
             try {
                 AppLocalDB.DB.TravelDao().deleteTravel(travel)

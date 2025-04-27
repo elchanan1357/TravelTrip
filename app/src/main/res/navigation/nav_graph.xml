@@ -108,6 +108,9 @@
         <action
             android:id="@+id/action_trips_tripsDetails"
             app:destination="@id/tripsDetailsFragment" />
+        <action
+            android:id="@+id/action_myTrips_discover"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripsDetailsFragment"
