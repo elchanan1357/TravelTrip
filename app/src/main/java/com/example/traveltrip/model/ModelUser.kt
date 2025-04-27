@@ -2,6 +2,7 @@ package com.example.traveltrip.model
 
 import android.graphics.Bitmap
 import android.os.Looper
+import android.widget.ProgressBar
 import androidx.core.os.HandlerCompat
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.model.firebase.Auth
@@ -46,7 +47,11 @@ class ModelUser private constructor() {
         firebaseModelUser.addUser(user, callback)
     }
 
-    fun updateUser(user: User, bitmap: Bitmap?, callback: EmptyCallback) {
+    fun updateUser(
+        user: User,
+        bitmap: Bitmap?,
+        callback: EmptyCallback
+    ) {
         bitmap?.let {
             cloudinaryModel.uploadImg(
                 bitmap,

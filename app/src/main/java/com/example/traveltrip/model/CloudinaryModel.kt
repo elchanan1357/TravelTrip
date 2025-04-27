@@ -2,6 +2,7 @@ package com.example.traveltrip.model
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.widget.ProgressBar
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
