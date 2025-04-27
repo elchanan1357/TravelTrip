@@ -1,5 +1,6 @@
 package com.example.traveltrip
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,26 +13,34 @@ import com.example.traveltrip.databinding.EditProfileBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.validateFields
 
 class EditProfileFragment : Fragment() {
     private var binding: EditProfileBinding? = null
     private var _user: User? = null
-
+    private var _bitmap: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = EditProfileBinding.inflate(inflater, container, false)
-        displayUser()
 
-        binding?.cancelBtn?.setOnClickListener { pop() }
-        binding?.saveBtn?.setOnClickListener { handleSave() }
+        launchCameraForImage(this, binding?.imgProfile, binding?.clickImg) {
+            this._bitmap = it
+        }
 
         return binding?.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        displayUser()
+        binding?.cancelBtn?.setOnClickListener { pop() }
+        binding?.saveBtn?.setOnClickListener { handleSave() }
+    }
 
     private fun displayUser() {
         val email = ModelUser.instance.getEmail()

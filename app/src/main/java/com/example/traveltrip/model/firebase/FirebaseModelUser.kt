@@ -86,4 +86,10 @@ class FirebaseModelUser {
             }
     }
 
+
+    fun signIn(email: String, password: String, callback: AuthCallback) {
+        Auth.signIn(email, password, callback)
+    }
+
+
 }

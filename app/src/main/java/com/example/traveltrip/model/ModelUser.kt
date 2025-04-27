@@ -6,6 +6,7 @@ import com.example.traveltrip.model.entity.User
 import com.example.traveltrip.model.firebase.Auth
 import com.example.traveltrip.model.firebase.FirebaseModelUser
 import com.example.traveltrip.model.firebase.FirebaseProvider
+import com.example.traveltrip.utils.AuthCallback
 
 import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.UserCallback
@@ -60,4 +61,8 @@ class ModelUser private constructor() {
         return null
     }
 
+
+    fun signIn(email: String, password: String, callback: AuthCallback) {
+        firebaseModelUser.signIn(email, password, callback)
+    }
 }

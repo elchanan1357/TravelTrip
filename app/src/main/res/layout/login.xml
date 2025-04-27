@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head"
-        android:layout_width="422dp"
+        android:layout_width="match_parent"
         android:layout_height="301dp"
         android:background="@drawable/pic"
         app:layout_constraintEnd_toEndOf="parent"

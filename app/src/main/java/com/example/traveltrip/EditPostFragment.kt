@@ -14,6 +14,7 @@ import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.getPicFromPicasso
+import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
 import com.example.traveltrip.utils.validateFields
@@ -21,7 +22,6 @@ import com.example.traveltrip.utils.validateFields
 
 class EditPostFragment : Fragment() {
     private var binding: EditPostBinding? = null
-    private var cameraLauncher: ActivityResultLauncher<Void?>? = null
     private var _bitmap: Bitmap? = null
     private var _post: Post? = null
 
@@ -32,14 +32,8 @@ class EditPostFragment : Fragment() {
     ): View? {
         binding = EditPostBinding.inflate(inflater, container, false)
 
-        cameraLauncher =
-            registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-                binding?.imgPost?.setImageBitmap(bitmap)
-                this._bitmap = bitmap
-            }
-
-        binding?.addPhoto?.setOnClickListener {
-            cameraLauncher?.launch(null)
+        launchCameraForImage(this, binding?.imgPost, binding?.addPhoto) {
+            this._bitmap = it
         }
 
         return binding?.root

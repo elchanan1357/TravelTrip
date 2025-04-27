@@ -10,6 +10,7 @@ import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.logError
 import com.example.traveltrip.utils.validateFields
 
 class LoginFragment : Fragment() {
@@ -43,15 +44,14 @@ class LoginFragment : Fragment() {
             return
         }
 
-        val email = binding?.email?.text.toString()
         binding?.progressBar?.visibility = View.VISIBLE
-        ModelUser.instance.getUserByEmail(email) { user ->
+        val email = binding?.email?.text.toString()
+        val pass = binding?.password?.text.toString()
+
+        ModelUser.instance.signIn(email, pass) { success, error ->
             binding?.progressBar?.visibility = View.GONE
-            if (user == null) {
-                log("login: User not found")
-            } else {
-                findNavController().navigate(R.id.action_login_home)
-            }
+            if (success) findNavController().navigate(R.id.action_login_home)
+            else logError(error.toString())
         }
     }
 }

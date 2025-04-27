@@ -18,13 +18,13 @@ import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.validateFields
 
 
 class AddPostFragment : Fragment() {
     private var binding: AddPostBinding? = null
-    private var cameraLauncher: ActivityResultLauncher<Void?>? = null
     private var _bitmap: Bitmap? = null
 
 
@@ -35,26 +35,9 @@ class AddPostFragment : Fragment() {
         binding = AddPostBinding.inflate(inflater, container, false)
 
         binding?.saveBtn?.setOnClickListener { handleSave() }
-
-        cameraLauncher =
-            registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-                binding?.imgPost?.setImageBitmap(bitmap)
-                this._bitmap = bitmap
-            }
-
-        binding?.addPhoto?.setOnClickListener {
-            cameraLauncher?.launch(null)
-//            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//            if (cameraIntent.resolveActivity(requireContext().packageManager) != null) {
-//                Log.d("Camera", "Camera app is available")
-//                cameraLauncher?.launch(null)
-//            } else {
-//                Log.e("Camera", "No camera app found")
-//            }
-
+        launchCameraForImage(this, binding?.imgPost, binding?.addPhoto) {
+            this._bitmap = it
         }
-
-
 
         return binding?.root
     }
