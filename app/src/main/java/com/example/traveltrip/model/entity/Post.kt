@@ -1,6 +1,5 @@
 package com.example.traveltrip.model.entity
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -8,44 +7,52 @@ import androidx.room.PrimaryKey
 data class Post(
     @PrimaryKey(autoGenerate = true)
     val email: String,
-    val imgURL: String,
+    val name: String,
+    val imgURI: String,
     val city: String,
     val state: String,
     val title: String,
     val text: String,
+    val id: String = "",
     val likes: Int = 0
 ) {
 
     companion object {
         private const val EMAIL_KEY = "email"
-        private const val IMAGE_KEY = "imgURL"
+        private const val NAME_KEY = "name"
+        private const val IMAGE_KEY = "imgURI"
         private const val CITY_KEY = "city"
         private const val STATE_KEY = "state"
         private const val TITLE_KEY = "title"
         private const val TEXT_KEY = "text"
+        private const val ID_KEY = "id"
         private const val LIKES_KEY = "likes"
 
         fun fromJSON(json: Map<String, Any>): Post {
             val email = json[EMAIL_KEY] as? String ?: ""
+            val name = json[NAME_KEY] as? String ?: ""
             val url = json[IMAGE_KEY] as? String ?: ""
             val city = json[CITY_KEY] as? String ?: ""
             val state = json[STATE_KEY] as? String ?: ""
             val title = json[TITLE_KEY] as? String ?: ""
             val text = json[TEXT_KEY] as? String ?: ""
+            val id = json[ID_KEY] as? String ?: ""
             val likes = json[LIKES_KEY] as? Int ?: 0
 
-            return Post(email, url, city, state, text, title, likes)
+            return Post(email, name, url, city, state, title, text, id, likes)
         }
     }
 
 
     fun updateJSON(): Map<String, Any> = hashMapOf(
         EMAIL_KEY to email,
-        IMAGE_KEY to imgURL,
+        NAME_KEY to name,
+        IMAGE_KEY to imgURI,
         CITY_KEY to city,
         STATE_KEY to state,
         TITLE_KEY to title,
         TEXT_KEY to text,
+        ID_KEY to id,
         LIKES_KEY to likes
     )
 
@@ -53,11 +60,13 @@ data class Post(
     val json: Map<String, Any>
         get() = hashMapOf(
             EMAIL_KEY to email,
-            IMAGE_KEY to imgURL,
+            NAME_KEY to name,
+            IMAGE_KEY to imgURI,
             CITY_KEY to city,
             STATE_KEY to state,
             TITLE_KEY to title,
             TEXT_KEY to text,
+            ID_KEY to id,
             LIKES_KEY to likes
         )
 

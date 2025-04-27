@@ -12,14 +12,14 @@
     app:cardBackgroundColor="#FFFFFF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rowPosts_row"
+        android:id="@+id/rowPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
         <!-- User info section -->
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgUser"
+            android:id="@+id/img"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
@@ -33,12 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Mike Choen"
+            android:text="@string/mike_choen"
             android:textColor="#333333"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgUser"
-            app:layout_constraintStart_toEndOf="@+id/imgUser"
-            app:layout_constraintTop_toTopOf="@+id/imgUser" />
+            app:layout_constraintBottom_toBottomOf="@+id/img"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toTopOf="@+id/img" />
 
         <!-- Post Content Section -->
         <androidx.cardview.widget.CardView
@@ -50,7 +50,7 @@
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgUser">
+            app:layout_constraintTop_toBottomOf="@+id/img">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -60,6 +60,7 @@
                     android:id="@+id/imgPost"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:contentDescription="@string/image_post"
                     android:scaleType="centerCrop"
                     android:src="@drawable/view6"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +74,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="The Hidden Gem of Machu Picchu: Tips for Beating the Crowds..."
+                    android:text="@string/the_hidden_gem_of_machu_picchu_tips_for_beating_the_crowds"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold"
