@@ -16,16 +16,18 @@ class GenericAdapter<T, VB: ViewBinding>(
             return GenericViewHolder(binding, bindItem)
         }
 
+
         override fun onBindViewHolder(holder: GenericViewHolder<T, VB>, position: Int) {
             holder.bind(items?.get(position),position)
         }
 
+
         override fun getItemCount(): Int = items?.size ?: 0
+
 
         @SuppressLint("NotifyDataSetChanged")
         fun updateList(newList: List<T>?) {
             items = newList
             notifyDataSetChanged()
         }
-
 }
