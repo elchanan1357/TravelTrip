@@ -1,18 +1,14 @@
 package com.example.traveltrip.model
 
 import android.graphics.Bitmap
-import android.os.Looper
-import android.widget.ProgressBar
-import androidx.core.os.HandlerCompat
 import com.example.traveltrip.model.entity.User
-import com.example.traveltrip.model.firebase.Auth
+import com.example.traveltrip.model.firebase.FirebaseAuth
 import com.example.traveltrip.model.firebase.FirebaseModelUser
 import com.example.traveltrip.utils.AuthCallback
 import com.example.traveltrip.utils.EmptyCallback
 import com.example.traveltrip.utils.UserCallback
 import com.example.traveltrip.utils.UsersCallback
 import com.example.traveltrip.utils.log
-import java.util.concurrent.Executors
 
 class ModelUser private constructor() {
     //    private val executor = Executors.newSingleThreadExecutor()
@@ -75,8 +71,8 @@ class ModelUser private constructor() {
 
 
     fun getEmail(): String? {
-        if (Auth.isLoggedIn())
-            return Auth.getCurrentUser()?.email
+        if (FirebaseAuth.isLoggedIn())
+            return FirebaseAuth.getCurrentUser()?.email
 
         return null
     }

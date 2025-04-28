@@ -2,6 +2,7 @@ package com.example.traveltrip.model
 
 import android.os.Looper
 import androidx.core.os.HandlerCompat
+import com.example.traveltrip.model.dao.AppLocalDB
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
 import com.example.traveltrip.model.entity.Travel
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors
 class ModelTravel private constructor() {
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
+    private val roomDB = AppLocalDB.DB.TravelDao()
 
     companion object {
         val instance: ModelTravel = ModelTravel()
@@ -22,7 +24,7 @@ class ModelTravel private constructor() {
     fun getAllTravels(callback: TravelsCallback) {
         executor.execute {
             try {
-                val travels = AppLocalDB.DB.TravelDao().getTravels()
+                val travels = roomDB.getTravels()
                 log("Get all travels")
                 Thread.sleep(4000)
                 mainHandler.post { callback(travels) }
@@ -36,7 +38,7 @@ class ModelTravel private constructor() {
     fun getTravelByTitle(title: String, callback: TravelCallback) {
         executor.execute {
             try {
-                val travel = AppLocalDB.DB.TravelDao().getTravelByTitle(title)
+                val travel = roomDB.getTravelByTitle(title)
                 log("Get travel by title")
                 Thread.sleep(4000)
                 mainHandler.post { callback(travel) }
@@ -50,7 +52,7 @@ class ModelTravel private constructor() {
     fun addTravel(travel: Travel, callback: EmptyCallback) {
         executor.execute {
             try {
-                AppLocalDB.DB.TravelDao().insertTravels(travel)
+                roomDB.insertTravels(travel)
                 log("Add travel")
                 mainHandler.post { callback() }
             } catch (err: Exception) {
@@ -64,7 +66,7 @@ class ModelTravel private constructor() {
     fun deleteTravel(travel: Travel, callback: EmptyCallback) {
         executor.execute {
             try {
-                AppLocalDB.DB.TravelDao().deleteTravel(travel)
+                roomDB.deleteTravel(travel)
                 log("delete travel")
                 mainHandler.post { callback() }
             } catch (err: Exception) {

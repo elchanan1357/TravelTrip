@@ -45,7 +45,7 @@ class FirebaseModelUser {
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        Auth.registerUser(user.email, user.password) { success, uid ->
+        FirebaseAuth.registerUser(user.email, user.password) { success, uid ->
             if (success) {
                 val userWithId = user.copy(uid = uid.toString())
                 db.collection(userCollection).document(userWithId.email).set(userWithId.json)
@@ -77,7 +77,7 @@ class FirebaseModelUser {
         db.collection(userCollection).document(user.email).delete()
             .addOnSuccessListener {
                 log("Delete user: ${user.email}")
-                Auth.signOut()
+                FirebaseAuth.signOut()
 
 
                 callback()
@@ -89,7 +89,7 @@ class FirebaseModelUser {
 
 
     fun signIn(email: String, password: String, callback: AuthCallback) {
-        Auth.signIn(email, password, callback)
+        FirebaseAuth.signIn(email, password, callback)
     }
 
 

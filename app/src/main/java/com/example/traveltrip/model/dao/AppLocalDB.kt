@@ -1,11 +1,9 @@
-package com.example.traveltrip.model
+package com.example.traveltrip.model.dao
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.traveltrip.base.MyApp
-import com.example.traveltrip.model.dao.TravelDao
-import com.example.traveltrip.model.dao.UserDao
 import com.example.traveltrip.model.entity.Travel
 import com.example.traveltrip.model.entity.User
 
