@@ -22,6 +22,34 @@ class TripsViewModel : ViewModel() {
         get() = _travels
     private val tripService: TripService = ApiClient.tripApiClient
 
+    fun fetchHotels(latitude: Double, longitude: Double, radius: Int = 50000, limit: Int = 30) {
+        GoogleApiClient.apiService.getHotels(
+            "$latitude,$longitude",
+            radius,
+            apiKey = BuildConfig.GOOGLE_API_KEY
+        )
+            .enqueue(object : Callback<GoogleResponse> {
+                override fun onResponse(
+                    call: Call<GoogleResponse>,
+                    response: Response<GoogleResponse>
+                ) {
+                    log(response.toString())
+                    if (response.isSuccessful) {
+                        val results = response.body()?.results ?: emptyList()
+                        _travels.value = _travels.value.orEmpty() + results
+
+                    } else {
+                        Log.e("API_ERROR", "Code: ${response.code()}")
+                        _travels.value = emptyList()
+                    }
+                }
+
+                override fun onFailure(call: Call<GoogleResponse>, t: Throwable) {
+                    Log.e("API_FAILURE", "Error: ${t.message}")
+                    _travels.value = emptyList()
+                }
+            })
+    }
 
     fun fetchTravels(latitude: Double, longitude: Double, radius: Int = 50000, limit: Int = 30) {
         GoogleApiClient.apiService.getParks(

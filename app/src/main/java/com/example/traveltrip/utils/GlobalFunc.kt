@@ -39,6 +39,8 @@ fun getPicFromPicasso(img: ImageView?, url: String?) {
     if (url?.isNotBlank() == true) {
         Picasso.get()
             .load(url)
+            .resize(300, 300)
+            .centerCrop()
             .placeholder(R.color.black)
             .into(img)
     }

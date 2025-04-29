@@ -52,7 +52,16 @@ class TripsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        fetchTravels()
+        when (arguments?.getString("mainCategory")) {
+            "Trips" -> {
+                fetchTravels()
+            }
+
+            "Hotels" -> {
+                fetchHotels()
+            }
+        }
+
     }
 
 
@@ -72,9 +81,10 @@ class TripsFragment : Fragment() {
 
             val uri = item.photos?.get(0)?.photoReference?.let { getPhotoUrl(it) }
             log("the uri: ${uri.toString()}")
-            getPicFromPicasso(itemBinding.ImgBtn, uri)
+            getPicFromPicasso(itemBinding.imgBtn, uri)
         }
     }
+
 
     fun getPhotoUrl(photoReference: String): String {
         return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$photoReference&key=${BuildConfig.GOOGLE_API_KEY}"
@@ -87,6 +97,28 @@ class TripsFragment : Fragment() {
             adapter?.updateList(travel)
         }
     }
+
+
+    private fun fetchHotels() {
+        binding?.progressBar?.visibility = View.VISIBLE
+        val israelLocations = listOf(
+            Pair(32.0853, 34.7818),
+//            Pair(31.7683, 35.2137),
+//            Pair(32.7940, 34.9896),
+//            Pair(29.5581, 34.9482),
+//            Pair(32.7957, 35.5311),
+//            Pair(33.0084, 35.1016),
+//            Pair(40.7128, -74.0060),
+//            Pair(34.0522, -118.2437)
+        )
+
+
+        israelLocations.forEach { (lat, lon) ->
+            viewModel?.fetchHotels(lat, lon)
+        }
+
+    }
+
 
     private fun fetchTravels() {
         binding?.progressBar?.visibility = View.VISIBLE

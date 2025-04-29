@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_started_login"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_getStarted_to_discoverFragment"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -59,7 +62,13 @@
         android:id="@+id/tripsFragment"
         android:name="com.example.traveltrip.TripsFragment"
         android:label="fragment_trips"
-        tools:layout="@layout/trips" />
+        tools:layout="@layout/trips" >
+        <argument
+            android:name="mainCategory"
+            app:argType="string" />
+        <argument android:name="subCategory"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/postsFragment"
         android:name="com.example.traveltrip.PostsFragment"
@@ -80,6 +89,9 @@
         <action
             android:id="@+id/action_categories_trips"
             app:destination="@id/tripsFragment" />
+        <argument
+            android:name="mainCategory"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

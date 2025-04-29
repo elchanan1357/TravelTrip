@@ -17,16 +17,18 @@ class DiscoverFragment : Fragment() {
     ): View? {
         binding = DiscoverBinding.inflate(inflater, container, false)
 
-        binding?.Hotels?.setOnClickListener { onClick() }
-        binding?.Trips?.setOnClickListener { onClick() }
-        binding?.Flights?.setOnClickListener { onClick() }
-        binding?.CarRental?.setOnClickListener { onClick() }
+        binding?.Hotels?.setOnClickListener { onClick("Hotels") }
+        binding?.trips?.setOnClickListener { onClick("Trips") }
+//        binding?.Flights?.setOnClickListener { onClick() }
+//        binding?.CarRental?.setOnClickListener { onClick() }
 
         return binding?.root
     }
 
-    private fun onClick() {
-        findNavController().navigate(R.id.action_discover_categories)
+    private fun onClick(title: String) {
+        findNavController().navigate(
+            DiscoverFragmentDirections.actionDiscoverCategories(title)
+        )
     }
 
     override fun onDestroyView() {

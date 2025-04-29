@@ -38,7 +38,7 @@
                     android:clipToPadding="false">
 
                     <ImageButton
-                        android:id="@+id/ImgBtn"
+                        android:id="@+id/imgBtn"
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         android:background="@android:color/transparent"
