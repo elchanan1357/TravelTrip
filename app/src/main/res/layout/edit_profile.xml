@@ -134,6 +134,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/profile"
                     app:srcCompat="@drawable/profile_pic" />
+
             </FrameLayout>
 
         </androidx.cardview.widget.CardView>

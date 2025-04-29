@@ -1,11 +1,13 @@
 package com.example.traveltrip
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,12 +18,20 @@ import com.example.traveltrip.model.ModelPost
 import com.example.traveltrip.model.ModelUser
 import com.example.traveltrip.model.entity.Post
 import com.example.traveltrip.utils.getPicFromPicasso
+import com.example.traveltrip.viewModel.MyPostViewModel as MyPostViewModel1
 
 
 class MyPostFragment : Fragment() {
     private var binding: MyPostsBinding? = null
-    private var posts: List<Post>? = null
+    private var viewModel: MyPostViewModel1? = null
     private var adapter: GenericAdapter<Post, RowMyPostsBinding>? = null
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = ViewModelProvider(this)[MyPostViewModel1::class.java]
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +56,7 @@ class MyPostFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun createAdapter() {
         this.adapter = GenericAdapter(
-            this.posts,
+            viewModel?.posts,
             RowMyPostsBinding::inflate
         ) { vb, item ->
             getPicFromPicasso(vb.img, item.imgURI)
@@ -65,8 +75,8 @@ class MyPostFragment : Fragment() {
     private fun getAllPostByEmail() {
         val email = ModelUser.instance.getEmail() ?: ""
         ModelPost.instance.getAllPostsByEmail(email) {
-            this.posts = it
-            adapter?.updateList(this.posts)
+            viewModel?.set(it)
+            adapter?.updateList(viewModel?.posts)
             binding?.progressBar?.visibility = View.GONE
         }
     }
