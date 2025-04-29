@@ -15,19 +15,20 @@ import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
 import com.example.traveltrip.model.amadeusClasses.POIItem
 import com.example.traveltrip.model.amadeusClasses.TripItem
+import com.example.traveltrip.model.googleApi.Place
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.viewModel.POIViewModel
 import com.example.traveltrip.viewModel.TripsViewModel
 
 class TripsFragment : Fragment() {
-    private var viewModel: POIViewModel? = null
+    private var viewModel: TripsViewModel? = null
     private var binding: TripsBinding? = null
-    private var adapter: GenericAdapter<POIItem, RowTripBinding>? = null
+    private var adapter: GenericAdapter<Place, RowTripBinding>? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[POIViewModel::class.java]
+        viewModel = ViewModelProvider(this)[TripsViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -71,18 +72,23 @@ class TripsFragment : Fragment() {
             bindingInflater = RowTripBinding::inflate
         ) { itemBinding, item ->
             itemBinding.Title.text = item.name
-            itemBinding.Information.text = item.category
+            itemBinding.Information.text = item.formattedAddress
 
-//            val uri = item.pictures?.get(0)
-//            log("the uri: ${uri.toString()}")
-//            getPicFromPicasso(itemBinding.ImgBtn, uri)
+            val uri = item.photos?.get(0)?.photoReference?.let { getPhotoUrl(it) }
+            log("the uri: ${uri.toString()}")
+            getPicFromPicasso(itemBinding.ImgBtn, uri)
         }
     }
 
+    fun getPhotoUrl(photoReference: String): String {
+        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$photoReference&key=${BuildConfig.GOOGLE_API_KEY}"
+    }
+
+
     private fun observeTravels() {
-        viewModel?.poi?.observe(viewLifecycleOwner) { poi ->
+        viewModel?.travels?.observe(viewLifecycleOwner) { travel ->
             binding?.progressBar?.visibility = View.GONE
-            adapter?.updateList(poi)
+            adapter?.updateList(travel)
         }
     }
 
@@ -99,7 +105,7 @@ class TripsFragment : Fragment() {
             Pair(34.0522, -118.2437)
         )
 
-        viewModel?.searchAllPOIs(32.0853, 34.7818)
+        viewModel?.fetchTravels(32.0853, 34.7818)
 
 //        israelLocations.forEach { (lat, lon) ->
 //            viewModel?.searchAllPOIs(lat, lon, radius, limit)

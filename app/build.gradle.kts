@@ -24,6 +24,8 @@ android {
         buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
         buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
 
+        buildConfigField("String", "GOOGLE_API_KEY", "\"${project.properties["GOOGLE_API_KEY"] ?: ""}\"")
+        buildConfigField("String", "GOOGLE_BASE_URL", "\"${project.properties["GOOGLE_BASE_URL"] ?: ""}\"")
 
         buildConfigField(
             "String",

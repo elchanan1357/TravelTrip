@@ -24,5 +24,4 @@ object ApiClient {
 
         retrofit.create(TripService::class.java)
     }
-
 }
