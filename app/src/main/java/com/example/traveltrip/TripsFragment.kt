@@ -13,19 +13,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
+import com.example.traveltrip.model.amadeusClasses.POIItem
 import com.example.traveltrip.model.amadeusClasses.TripItem
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.log
+import com.example.traveltrip.viewModel.POIViewModel
 import com.example.traveltrip.viewModel.TripsViewModel
 
 class TripsFragment : Fragment() {
-    private var viewModel: TripsViewModel? = null
+    private var viewModel: POIViewModel? = null
     private var binding: TripsBinding? = null
-    private var adapter: GenericAdapter<TripItem, RowTripBinding>? = null
+    private var adapter: GenericAdapter<POIItem, RowTripBinding>? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[TripsViewModel::class.java]
+        viewModel = ViewModelProvider(this)[POIViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -69,27 +71,39 @@ class TripsFragment : Fragment() {
             bindingInflater = RowTripBinding::inflate
         ) { itemBinding, item ->
             itemBinding.Title.text = item.name
-            itemBinding.Information.text = item.description
+            itemBinding.Information.text = item.category
 
-            val uri = item.pictures?.get(0)
-            log("the uri: ${uri.toString()}")
-            getPicFromPicasso(itemBinding.ImgBtn ,uri)
+//            val uri = item.pictures?.get(0)
+//            log("the uri: ${uri.toString()}")
+//            getPicFromPicasso(itemBinding.ImgBtn, uri)
         }
     }
 
     private fun observeTravels() {
-        viewModel?.travels?.observe(viewLifecycleOwner) { travels ->
+        viewModel?.poi?.observe(viewLifecycleOwner) { poi ->
             binding?.progressBar?.visibility = View.GONE
-            adapter?.updateList(travels)
+            adapter?.updateList(poi)
         }
     }
 
     private fun fetchTravels() {
         binding?.progressBar?.visibility = View.VISIBLE
+        val israelLocations = listOf(
+            Pair(32.0853, 34.7818),
+            Pair(31.7683, 35.2137),
+            Pair(32.7940, 34.9896),
+            Pair(29.5581, 34.9482),
+            Pair(32.7957, 35.5311),
+            Pair(33.0084, 35.1016),
+            Pair(40.7128, -74.0060),
+            Pair(34.0522, -118.2437)
+        )
 
-        val latitude = 32.0853
-        val longitude = 34.7818
+        viewModel?.searchAllPOIs(32.0853, 34.7818)
 
-        viewModel?.fetchTravels(latitude, longitude)
+//        israelLocations.forEach { (lat, lon) ->
+//            viewModel?.searchAllPOIs(lat, lon, radius, limit)
+//        }
+
     }
 }

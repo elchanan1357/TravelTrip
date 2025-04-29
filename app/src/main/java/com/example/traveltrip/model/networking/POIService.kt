@@ -14,7 +14,7 @@ interface POIService {
         @Query("radius") radius: Int,
         @Query("categories") categories: String?,
         @Query("keyword") keyword: String?,
-        @Query("page[limit]") limit: Int = 10
+        @Query("page[limit]") limit: Int = 50
     ): Call<POIResponse>
 
 
