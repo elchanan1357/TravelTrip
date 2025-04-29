@@ -17,10 +17,10 @@ class DiscoverFragment : Fragment() {
     ): View? {
         binding = DiscoverBinding.inflate(inflater, container, false)
 
-        binding?.Hotels?.setOnClickListener { onClick() }
-        binding?.Trips?.setOnClickListener { onClick() }
-        binding?.Flights?.setOnClickListener { onClick() }
-        binding?.CarRental?.setOnClickListener { onClick() }
+        binding?.Hotels?.setOnClickListener { onClick("Hotels") }
+        binding?.Trips?.setOnClickListener { onClick("Trips") }
+        binding?.Flights?.setOnClickListener { onClick("Flights") }
+        binding?.CarRental?.setOnClickListener { onClick("CarRental") }
 
         return binding?.root
     }
@@ -29,9 +29,21 @@ class DiscoverFragment : Fragment() {
         findNavController().navigate(R.id.action_discover_categories)
     }
 
+    private fun onClick(category: String) {
+        findNavController().navigate(
+            DiscoverFragmentDirections.actionDiscoverCategories(category)
+        )
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
 
 }
+
+
+
+
+
+

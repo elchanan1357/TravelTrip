@@ -44,7 +44,20 @@ class EditPostFragment : Fragment() {
         displayData()
         binding?.cancelBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.saveBtn?.setOnClickListener { handleSave() }
+        binding?.deleteBtn?.setOnClickListener{deleteMyPost()}
     }
+
+    private fun deleteMyPost() {
+        val id = _post?.id
+        if (id != null) {
+            ModelPost.instance.deletePost(id) {
+                findNavController().popBackStack()
+            }
+        } else {
+            logError("Cannot delete post: post ID is null")
+        }
+    }
+
 
 
     private fun handleSave() {
