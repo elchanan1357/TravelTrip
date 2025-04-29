@@ -6,13 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.traveltrip.BuildConfig
-import com.example.traveltrip.model.amadeusClasses.TripItem
-import com.example.traveltrip.model.amadeusClasses.TripsAmadeus
 import com.example.traveltrip.model.googleApi.GoogleApiClient
 import com.example.traveltrip.model.googleApi.GoogleResponse
 import com.example.traveltrip.model.googleApi.Place
-import com.example.traveltrip.model.networking.ApiClient
-import com.example.traveltrip.model.networking.TripService
+import com.example.traveltrip.model.amadeus.amadeusClasses.networking.ApiClient
+import com.example.traveltrip.model.amadeus.amadeusClasses.networking.TripService
 import com.example.traveltrip.utils.log
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,28 +50,6 @@ class TripsViewModel : ViewModel() {
                     _travels.value = emptyList()
                 }
             })
-
-
-//        tripService.getTrips(latitude, longitude, radius, limit)
-//            .enqueue(object : Callback<TripsAmadeus> {
-//                override fun onResponse(
-//                    call: Call<TripsAmadeus>,
-//                    response: Response<TripsAmadeus>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val newList = response.body()?.data ?: emptyList()
-//                        _travels.value = _travels.value.orEmpty() + newList
-//
-//                        log(_travels.value?.size.toString())
-//                    } else {
-//                        _travels.value = emptyList()
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<TripsAmadeus>, t: Throwable) {
-//                    _travels.value = emptyList()
-//                }
-//            })
     }
 }
 

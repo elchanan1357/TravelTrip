@@ -1,7 +1,7 @@
-package com.example.traveltrip.model.networking
+package com.example.traveltrip.model.amadeus.amadeusClasses.networking
 
-import com.example.traveltrip.model.amadeusClasses.POIItem
-import com.example.traveltrip.model.amadeusClasses.POIResponse
+import com.example.traveltrip.model.amadeus.amadeusClasses.POIItem
+import com.example.traveltrip.model.amadeus.amadeusClasses.POIResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.Call

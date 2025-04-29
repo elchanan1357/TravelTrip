@@ -13,12 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
 import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
-import com.example.traveltrip.model.amadeusClasses.POIItem
-import com.example.traveltrip.model.amadeusClasses.TripItem
 import com.example.traveltrip.model.googleApi.Place
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.log
-import com.example.traveltrip.viewModel.POIViewModel
 import com.example.traveltrip.viewModel.TripsViewModel
 
 class TripsFragment : Fragment() {
@@ -50,7 +47,6 @@ class TripsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
         observeTravels()
-        fetchTravels()
     }
 
 

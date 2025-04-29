@@ -1,4 +1,4 @@
-package com.example.traveltrip.model.networking
+package com.example.traveltrip.model.amadeus.amadeusClasses.networking
 
 
 import com.example.traveltrip.BuildConfig

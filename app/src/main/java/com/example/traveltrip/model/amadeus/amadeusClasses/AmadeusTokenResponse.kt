@@ -1,4 +1,4 @@
-package com.example.traveltrip.model.amadeusClasses
+package com.example.traveltrip.model.amadeus.amadeusClasses
 
 import com.google.gson.annotations.SerializedName
 

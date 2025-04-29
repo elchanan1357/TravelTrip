@@ -1,7 +1,7 @@
-package com.example.traveltrip.model.networking
+package com.example.traveltrip.model.amadeus.amadeusClasses.networking
 
-import com.example.traveltrip.model.amadeusClasses.TripItem
-import com.example.traveltrip.model.amadeusClasses.TripsAmadeus
+import com.example.traveltrip.model.amadeus.amadeusClasses.TripItem
+import com.example.traveltrip.model.amadeus.amadeusClasses.TripsAmadeus
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

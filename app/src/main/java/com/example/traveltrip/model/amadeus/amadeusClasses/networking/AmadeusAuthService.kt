@@ -1,6 +1,6 @@
-package com.example.traveltrip.model.networking
+package com.example.traveltrip.model.amadeus.amadeusClasses.networking
 
-import com.example.traveltrip.model.amadeusClasses.AmadeusTokenResponse
+import com.example.traveltrip.model.amadeus.amadeusClasses.AmadeusTokenResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
