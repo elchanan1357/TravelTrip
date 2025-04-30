@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.traveltrip.BuildConfig
-import com.example.traveltrip.model.googleApi.GoogleApiClient
-import com.example.traveltrip.model.googleApi.GoogleResponse
-import com.example.traveltrip.model.googleApi.Place
-import com.example.traveltrip.model.amadeus.amadeusClasses.networking.ApiClient
-import com.example.traveltrip.model.amadeus.amadeusClasses.networking.TripService
+import com.example.traveltrip.model.remote.googleApi.GoogleApiClient
+import com.example.traveltrip.model.remote.googleApi.GoogleResponse
+import com.example.traveltrip.model.remote.googleApi.Place
+import com.example.traveltrip.model.remote.amadeus.networking.ApiClient
+import com.example.traveltrip.model.remote.amadeus.networking.TripService
 import com.example.traveltrip.utils.log
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,8 +22,44 @@ class TripsViewModel : ViewModel() {
         get() = _travels
     private val tripService: TripService = ApiClient.tripApiClient
 
-    fun fetchHotels(latitude: Double, longitude: Double, radius: Int = 50000, limit: Int = 30) {
+    fun fetchHotels(
+        latitude: Double,
+        longitude: Double,
+        type: String = "lodging",
+        radius: Int = 50000,
+    ) {
         GoogleApiClient.apiService.getHotels(
+            "$latitude,$longitude",
+            radius,
+            type,
+            apiKey = BuildConfig.GOOGLE_API_KEY
+        )
+            .enqueue(object : Callback<GoogleResponse> {
+                override fun onResponse(
+                    call: Call<GoogleResponse>,
+                    response: Response<GoogleResponse>
+                ) {
+                    log(response.toString())
+                    if (response.isSuccessful) {
+                        val results = response.body()?.results ?: emptyList()
+                        _travels.value = _travels.value.orEmpty() + results
+
+                    } else {
+                        Log.e("API_ERROR", "Code: ${response.code()}")
+                        _travels.value = emptyList()
+                    }
+                }
+
+                override fun onFailure(call: Call<GoogleResponse>, t: Throwable) {
+                    Log.e("API_FAILURE", "Error: ${t.message}")
+                    _travels.value = emptyList()
+                }
+            })
+    }
+
+
+    fun fetchMuseums(latitude: Double, longitude: Double, radius: Int = 50000) {
+        GoogleApiClient.apiService.getMuseums(
             "$latitude,$longitude",
             radius,
             apiKey = BuildConfig.GOOGLE_API_KEY
@@ -51,7 +87,8 @@ class TripsViewModel : ViewModel() {
             })
     }
 
-    fun fetchTravels(latitude: Double, longitude: Double, radius: Int = 50000, limit: Int = 30) {
+
+    fun fetchParks(latitude: Double, longitude: Double, radius: Int = 50000) {
         GoogleApiClient.apiService.getParks(
             "$latitude,$longitude",
             radius,

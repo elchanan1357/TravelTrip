@@ -1,7 +1,7 @@
 package com.example.traveltrip.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.example.traveltrip.model.entity.Post
+import com.example.traveltrip.model.room.entity.Post
 
 class MyPostViewModel : ViewModel() {
     private var _posts: List<Post>? = null

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/getStarted"
-        android:name="com.example.traveltrip.GetStartedFragment"
+        android:name="com.example.traveltrip.ui.GetStartedFragment"
         android:label="GetStarted"
         tools:layout="@layout/get_started">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.traveltrip.RegisterFragment"
+        android:name="com.example.traveltrip.ui.auth.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/register" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.traveltrip.LoginFragment"
+        android:name="com.example.traveltrip.ui.auth.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/login">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.traveltrip.HomePageFragment"
+        android:name="com.example.traveltrip.ui.HomePageFragment"
         android:label="fragment_home_page"
         tools:layout="@layout/home_page">
         <action
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.example.traveltrip.DiscoverFragment"
+        android:name="com.example.traveltrip.ui.trips.DiscoverFragment"
         android:label="DiscoverFragment"
         tools:layout="@layout/discover">
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/tripsFragment"
-        android:name="com.example.traveltrip.TripsFragment"
+        android:name="com.example.traveltrip.ui.trips.TripsFragment"
         android:label="fragment_trips"
         tools:layout="@layout/trips" >
         <argument
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/postsFragment"
-        android:name="com.example.traveltrip.PostsFragment"
+        android:name="com.example.traveltrip.ui.posts.PostsFragment"
         android:label="fragment_posts"
         tools:layout="@layout/posts">
         <action
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.traveltrip.CategoriesFragment"
+        android:name="com.example.traveltrip.ui.trips.CategoriesFragment"
         android:label="CategoriesFragment"
         tools:layout="@layout/categories">
         <action
@@ -95,7 +95,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.traveltrip.ProfileFragment"
+        android:name="com.example.traveltrip.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/profile">
         <action
@@ -107,17 +107,17 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.traveltrip.EditProfileFragment"
+        android:name="com.example.traveltrip.ui.profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/edit_profile" />
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="com.example.traveltrip.AddPostFragment"
+        android:name="com.example.traveltrip.ui.posts.AddPostFragment"
         android:label="fragment_add_post"
         tools:layout="@layout/add_post" />
     <fragment
         android:id="@+id/myTripsFragment"
-        android:name="com.example.traveltrip.MyTripsFragment"
+        android:name="com.example.traveltrip.ui.trips.MyTripsFragment"
         android:label="fragment_my_trips"
         tools:layout="@layout/my_trips">
         <action
@@ -126,12 +126,12 @@
     </fragment>
     <fragment
         android:id="@+id/tripsDetailsFragment"
-        android:name="com.example.traveltrip.TripsDetailsFragment"
+        android:name="com.example.traveltrip.ui.trips.TripsDetailsFragment"
         android:label="fragment_trips_details"
         tools:layout="@layout/my_trip_details" />
     <fragment
         android:id="@+id/editPostFragment2"
-        android:name="com.example.traveltrip.EditPostFragment"
+        android:name="com.example.traveltrip.ui.posts.EditPostFragment"
         android:label="fragment_edit_post"
         tools:layout="@layout/edit_post" >
         <argument
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPostFragment"
-        android:name="com.example.traveltrip.MyPostFragment"
+        android:name="com.example.traveltrip.ui.posts.MyPostFragment"
         android:label="fragment_my_post"
         tools:layout="@layout/my_posts" >
         <action
@@ -149,7 +149,7 @@
     </fragment>
     <fragment
         android:id="@+id/displayPostFragment"
-        android:name="com.example.traveltrip.DisplayPostFragment"
+        android:name="com.example.traveltrip.ui.posts.DisplayPostFragment"
         android:label="fragment_display_post"
         tools:layout="@layout/display_post" >
         <argument
