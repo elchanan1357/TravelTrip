@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.posts
+package com.example.traveltrip.ui.fragments.posts
 
 import android.graphics.Bitmap
 import android.os.Bundle

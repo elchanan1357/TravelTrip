@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.traveltrip.model.room.entity.User
-import com.example.traveltrip.utils.Constants
 
 @Dao
 interface UserDao {
@@ -19,7 +18,7 @@ interface UserDao {
     @Query("SELECT * FROM Users")
     fun getUsers(): List<User>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(vararg user: User)
 
     @Update

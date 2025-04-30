@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 data class User(
     var name: String,
     var phone: String,
-    @PrimaryKey var email: String,
+    var email: String,
     var password: String,
-    var uid: String = "",
+    @PrimaryKey var uid: String = "",
     var img: String = ""
 ) {
     companion object {

@@ -1,20 +1,30 @@
-package com.example.traveltrip.ui.auth
+package com.example.traveltrip.ui.fragments.auth
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.RegisterBinding
-import com.example.traveltrip.model.room.models.RoomUser
 import com.example.traveltrip.model.room.entity.User
+import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.validateFields
 
 class RegisterFragment : Fragment() {
     private var binding: RegisterBinding? = null
+    private var viewModel: UserViewModel? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +34,9 @@ class RegisterFragment : Fragment() {
 
         binding?.SigninBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.SignupBtn?.setOnClickListener { handleSignup() }
+
+        observeSuccess()
+        observeError()
 
         return binding?.root
     }
@@ -46,6 +59,7 @@ class RegisterFragment : Fragment() {
 
         val isChecked = binding?.CheckBox?.isChecked ?: false
         if (!isChecked) {
+            binding?.CheckBox?.error = "Must confirm"
             log("you must the a prov checkbox")
             return
         }
@@ -59,10 +73,7 @@ class RegisterFragment : Fragment() {
 
         binding?.progressBar?.visibility = View.VISIBLE
 
-        RoomUser.instance.addUser(user) {
-            binding?.progressBar?.visibility = View.GONE
-            findNavController().popBackStack()
-        }
+        viewModel?.insertUSer(user)
     }
 
     private fun checkDataIsValidate(): Boolean {
@@ -87,6 +98,24 @@ class RegisterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun observeError() {
+        viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            }
+
+        }
+    }
+
+    private fun observeSuccess() {
+        viewModel?.isSuccess?.observe(viewLifecycleOwner) {
+            if (it) {
+                binding?.progressBar?.visibility = View.GONE
+                findNavController().popBackStack()
+            }
+        }
     }
 }
 

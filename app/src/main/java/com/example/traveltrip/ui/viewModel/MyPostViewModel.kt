@@ -1,4 +1,4 @@
-package com.example.traveltrip.viewModel
+package com.example.traveltrip.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.traveltrip.model.room.entity.Post

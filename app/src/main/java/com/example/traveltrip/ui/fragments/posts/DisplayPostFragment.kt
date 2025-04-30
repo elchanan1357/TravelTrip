@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.posts
+package com.example.traveltrip.ui.fragments.posts
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.traveltrip.databinding.DisplayPostBinding
 import com.example.traveltrip.utils.getPicFromPicasso
-import com.example.traveltrip.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.PostViewModel
 
 class DisplayPostFragment : Fragment() {
     private var binding: DisplayPostBinding? = null
@@ -40,9 +40,10 @@ class DisplayPostFragment : Fragment() {
 
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
-            if (error != null) {
+            error?.let {
                 Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
             }
+
         }
     }
 

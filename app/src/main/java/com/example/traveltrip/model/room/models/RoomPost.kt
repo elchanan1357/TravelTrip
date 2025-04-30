@@ -12,11 +12,14 @@ import com.example.traveltrip.utils.logError
 import java.util.concurrent.Executors
 
 
-class RoomPost {
+class RoomPost private constructor() {
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
     private val roomDB = AppLocalDB.DB.PostDao()
 
+    companion object {
+        val instance: RoomPost = RoomPost()
+    }
 
     fun getAllPosts(callback: PostsCallback) {
         executor.execute {

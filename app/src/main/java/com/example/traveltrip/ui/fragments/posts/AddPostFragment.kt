@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.posts
+package com.example.traveltrip.ui.fragments.posts
 
 
 import android.content.Context
@@ -15,7 +15,7 @@ import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.validateFields
-import com.example.traveltrip.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.PostViewModel
 
 
 class AddPostFragment : Fragment() {

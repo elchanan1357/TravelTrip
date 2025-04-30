@@ -1,85 +1,97 @@
 package com.example.traveltrip.model.room.models
 
-import android.graphics.Bitmap
-import com.example.traveltrip.model.remote.cloudinary.CloudinaryModel
+import android.os.Looper
+import androidx.core.os.HandlerCompat
 import com.example.traveltrip.model.room.entity.User
-import com.example.traveltrip.model.remote.firebase.FirebaseAuth
-import com.example.traveltrip.model.remote.firebase.FirebaseModelUser
-import com.example.traveltrip.utils.AuthCallback
-import com.example.traveltrip.utils.EmptyCallback
+import com.example.traveltrip.model.room.dao.AppLocalDB
+import com.example.traveltrip.utils.ResultCallback
 import com.example.traveltrip.utils.UserCallback
 import com.example.traveltrip.utils.UsersCallback
 import com.example.traveltrip.utils.log
+import com.example.traveltrip.utils.logError
+import java.util.concurrent.Executors
 
 class RoomUser private constructor() {
-    //    private val executor = Executors.newSingleThreadExecutor()
-//    private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
-    private val firebaseModelUser = FirebaseModelUser()
-    private val cloudinaryModel: CloudinaryModel = CloudinaryModel.cloudinaryModel
+    private val executor = Executors.newSingleThreadExecutor()
+    private val mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
 
     companion object {
         val instance: RoomUser = RoomUser()
     }
 
     fun getAllUsers(callback: UsersCallback) {
-        firebaseModelUser.getAllUsers(callback)
-//        executor.execute {
-//            try {
-//                val users: List<User> = AppLocalDB.DB.UserDao().getUsers()
-//                log("get All users")
-////                Thread.sleep(4000)
-//                mainHandler.post { callback(users) }
-//            } catch (err: Exception) {
-//                logError("Fail in get all users")
-//                logError(err.toString())
-//            }
-//        }
-    }
-
-    fun getUserByEmail(email: String, callback: UserCallback) {
-        firebaseModelUser.getUserByEmail(email, callback)
-    }
-
-    fun addUser(user: User, callback: EmptyCallback) {
-        firebaseModelUser.addUser(user, callback)
-    }
-
-    fun updateUser(
-        user: User,
-        bitmap: Bitmap?,
-        callback: EmptyCallback
-    ) {
-        bitmap?.let {
-            cloudinaryModel.uploadImg(
-                bitmap,
-                user.uid,
-                onSuccess = { uri ->
-                    if (!uri.isNullOrBlank())
-                        firebaseModelUser.updateUser(user.copy(img = uri), callback)
-                    else callback()
-                },
-                onError = { error ->
-                    log(error.toString())
-                    callback()
+        executor.execute {
+            try {
+                val users: List<User> = AppLocalDB.DB.UserDao().getUsers()
+                if (users.isEmpty()) callback(false, emptyList())
+                else {
+                    log("get All users from room")
+                    mainHandler.post { callback(true, users) }
                 }
-            )
-        } ?: firebaseModelUser.updateUser(user, callback)
-    }
-
-    fun deleteUser(user: User, callback: EmptyCallback) {
-        firebaseModelUser.deleteUser(user, callback)
-    }
-
-
-    fun getEmail(): String? {
-        if (FirebaseAuth.isLoggedIn())
-            return FirebaseAuth.getCurrentUser()?.email
-
-        return null
+            } catch (err: Exception) {
+                logError("Fail in get all users\n $err")
+                callback(false, emptyList())
+            }
+        }
     }
 
 
-    fun signIn(email: String, password: String, callback: AuthCallback) {
-        firebaseModelUser.signIn(email, password, callback)
+    fun getUser(id: String, callback: UserCallback) {
+        executor.execute {
+            try {
+                val user = AppLocalDB.DB.UserDao().getUserByUid(uid = id)
+                if (user == null) callback(false, null)
+                else {
+                    log("Get user by id from room")
+                    mainHandler.post { callback(true, user) }
+                }
+
+            } catch (err: Exception) {
+                logError("Fail \"Get user by id from room\n $err")
+                callback(false, null)
+            }
+        }
+    }
+
+
+    fun addUser(user: User, callback: ResultCallback) {
+        executor.execute {
+            try {
+                AppLocalDB.DB.UserDao().insertUser(user)
+                log("Add user to room")
+                mainHandler.post { callback(true) }
+            } catch (err: Exception) {
+                logError("Fail in insert user from room\n $err")
+                callback(false)
+            }
+        }
+    }
+
+
+    fun updateUser(user: User, callback: ResultCallback) {
+        executor.execute {
+            try {
+                AppLocalDB.DB.UserDao().updateUser(user)
+                log("update user in room")
+                mainHandler.post { callback(true) }
+            } catch (err: Exception) {
+                logError("Fail in update user from room\n $err")
+                callback(false)
+            }
+        }
+    }
+
+
+    fun deleteUser(user: User, callback: ResultCallback) {
+        executor.execute {
+            try {
+                AppLocalDB.DB.UserDao().deleteUser(user)
+                log("delete user from room")
+                mainHandler.post { callback(true) }
+            } catch (err: Exception) {
+                logError("Fail in delete user from room\n $err")
+                callback(false)
+            }
+        }
     }
 }

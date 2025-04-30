@@ -1,4 +1,4 @@
-package com.example.traveltrip.viewModel
+package com.example.traveltrip.ui.viewModel
 
 
 import android.graphics.Bitmap

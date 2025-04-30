@@ -1,6 +1,7 @@
 package com.example.traveltrip.model.remote.firebase
 
 import com.example.traveltrip.utils.AuthCallback
+import com.example.traveltrip.utils.log
 
 
 object FirebaseAuth {
@@ -9,13 +10,8 @@ object FirebaseAuth {
 
     fun registerUser(email: String, password: String, callback: AuthCallback) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnFailureListener() {
-                callback(false, it.message)
-            }
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) callback(true, auth.currentUser?.uid)
-                else callback(false, task.exception?.message)
-            }
+            .addOnFailureListener { callback(false, it.message) }
+            .addOnSuccessListener { callback(true, auth.currentUser?.uid) }
     }
 
 
@@ -29,6 +25,7 @@ object FirebaseAuth {
 
 
     fun sendEmailVerification(callback: AuthCallback) {
+        //TODO
         auth.currentUser?.sendEmailVerification()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) callback(true, null)
@@ -39,27 +36,24 @@ object FirebaseAuth {
 
     fun signOut() {
         auth.signOut()
+        log("sign out")
     }
+
 
     fun deleteUser(callback: AuthCallback) {
         val user = auth.currentUser
         user?.delete()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    callback(true, null)  // מחיקה הצליחה
+                    callback(true, null)
                 } else {
-                    callback(false, task.exception?.message)  // מחיקה נכשלה
+                    callback(false, task.exception?.message)
                 }
             }
     }
 
 
     fun getCurrentUser() = auth.currentUser
-
-
-    fun isLoggedIn(): Boolean {
-        return auth.currentUser != null
-    }
 
 
 }

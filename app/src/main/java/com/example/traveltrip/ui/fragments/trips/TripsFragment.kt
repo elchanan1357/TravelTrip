@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.trips
+package com.example.traveltrip.ui.fragments.trips
 
 
 import android.content.Context
@@ -17,7 +17,7 @@ import com.example.traveltrip.databinding.TripsBinding
 import com.example.traveltrip.model.remote.googleApi.Place
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.log
-import com.example.traveltrip.viewModel.TripsViewModel
+import com.example.traveltrip.ui.viewModel.TripsViewModel
 
 class TripsFragment : Fragment() {
     private var viewModel: TripsViewModel? = null

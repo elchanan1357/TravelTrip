@@ -8,7 +8,7 @@ import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.model.room.entity.Travel
 import com.example.traveltrip.model.room.entity.User
 
-@Database(entities = [Travel::class, User::class, Post::class], version = 2)
+@Database(entities = [Travel::class, User::class, Post::class], version = 3)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun TravelDao(): TravelDao
     abstract fun UserDao(): UserDao
@@ -18,8 +18,7 @@ abstract class AppLocalDbRepository : RoomDatabase() {
 object AppLocalDB {
     val DB: AppLocalDbRepository by lazy {
         Room.databaseBuilder(
-            context = MyApp.Globals.context
-                ?: throw IllegalStateException("Application context not available"),
+            context = MyApp.Globals.context,
             klass = AppLocalDbRepository::class.java,
             name = "dbFileName.db"
         )

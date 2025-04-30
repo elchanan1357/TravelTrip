@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.posts
+package com.example.traveltrip.ui.fragments.posts
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,7 @@ import com.example.traveltrip.databinding.PostsBinding
 import com.example.traveltrip.databinding.RowPostsBinding
 import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.utils.getPicFromPicasso
-import com.example.traveltrip.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.PostViewModel
 
 class PostsFragment : Fragment() {
     private var binding: PostsBinding? = null

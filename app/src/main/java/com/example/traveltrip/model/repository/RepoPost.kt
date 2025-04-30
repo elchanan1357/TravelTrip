@@ -18,7 +18,7 @@ class RepoPost private constructor() {
     private val firebaseModel: FirebaseModelPost = FirebaseModelPost()
     private val cloudinaryModel: CloudinaryModel = CloudinaryModel.cloudinaryModel
     private val context: Context = MyApp.Globals.context
-    private var roomPost: RoomPost = RoomPost()
+    private var roomPost: RoomPost = RoomPost.instance
 
     @SuppressLint("StaticFieldLeak")
     companion object {
@@ -42,7 +42,8 @@ class RepoPost private constructor() {
 
     fun getPostByID(id: String, callback: PostCallback) {
         roomPost.getPostByID(id) { success, post ->
-            if (!success && isOnline(context)) {
+            if (success) callback(true, post)
+            else if (isOnline(context)) {
                 firebaseModel.getPostByID(id) { success2, post2 ->
                     if (success2) {
                         post2?.let {
@@ -53,7 +54,7 @@ class RepoPost private constructor() {
                         callback(true, post2)
                     } else callback(false, null)
                 }
-            } else callback(true, post)
+            } else callback(false, null)
         }
     }
 
@@ -128,9 +129,3 @@ class RepoPost private constructor() {
         } else callback(false)
     }
 }
-
-
-//companion object {
-//  need private constructor
-//    val instance: ModelPost = ModelPost()
-//}

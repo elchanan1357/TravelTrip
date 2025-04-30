@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.posts
+package com.example.traveltrip.ui.fragments.posts
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,7 +17,7 @@ import com.example.traveltrip.databinding.RowMyPostsBinding
 import com.example.traveltrip.model.room.models.RoomUser
 import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.utils.getPicFromPicasso
-import com.example.traveltrip.viewModel.MyPostViewModel as MyPostViewModel1
+import com.example.traveltrip.ui.viewModel.MyPostViewModel as MyPostViewModel1
 
 
 class MyPostFragment : Fragment() {
@@ -72,7 +72,7 @@ class MyPostFragment : Fragment() {
 
 
     private fun getAllPostByEmail() {
-        val email = RoomUser.instance.getEmail() ?: ""
+//        val email = RoomUser.instance.getEmail() ?: ""
 //        RoomPost.instance.getAllPostsByEmail(email) {
 //            viewModel?.set(it)
 //            adapter?.updateList(viewModel?.posts)

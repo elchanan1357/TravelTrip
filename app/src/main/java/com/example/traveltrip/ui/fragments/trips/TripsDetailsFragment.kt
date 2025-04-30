@@ -1,4 +1,4 @@
-package com.example.traveltrip.ui.trips
+package com.example.traveltrip.ui.fragments.trips
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
