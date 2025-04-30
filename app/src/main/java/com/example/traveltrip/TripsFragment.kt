@@ -37,7 +37,6 @@ class TripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val mainCategories = arguments?.getString("mainCategory") ?: ""
         val subCategories = arguments?.getString("subCategory") ?: ""
 
@@ -81,24 +80,17 @@ class TripsFragment : Fragment() {
         binding?.mainCategorySpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selected = mainCategoriesList[position]
-
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
         binding?.subCategorySpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selected = subCategoriesList[position]
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
-
-
-        // binding?.mainCategory?.text = mainCategories
-        // binding?.subCategory?.text = subCategories
+            }
     }
 
 
@@ -135,6 +127,7 @@ class TripsFragment : Fragment() {
             itemBinding.Information.text = item.info
         }
     }
+
 
 
 }
