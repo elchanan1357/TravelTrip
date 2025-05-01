@@ -81,4 +81,8 @@ class ModelUser private constructor() {
     fun signIn(email: String, password: String, callback: AuthCallback) {
         firebaseModelUser.signIn(email, password, callback)
     }
+
+    fun signOut(){
+        //TODO:
+    }
 }
