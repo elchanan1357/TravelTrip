@@ -12,9 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.traveltrip.R
 import com.example.traveltrip.base.MyApp
+import com.example.traveltrip.base.MyApp.Globals.context
 import com.squareup.picasso.Picasso
 
 
@@ -50,6 +52,8 @@ fun getPicFromPicasso(img: ImageView?, url: String?) {
             .centerCrop()
             .placeholder(R.color.black)
             .into(img)
+    } else {
+        img?.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
     }
 }
 

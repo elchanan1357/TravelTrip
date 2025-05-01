@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.traveltrip.databinding.DisplayPostBinding
 import com.example.traveltrip.utils.getPicFromPicasso
@@ -30,10 +29,11 @@ class DisplayPostFragment : Fragment() {
         binding = DisplayPostBinding.inflate(inflater, container, false)
 
         val postId = arguments?.getString("postID") ?: ""
-        viewModel?.getPostByID(postId)
 
         observePost()
         observeError()
+        binding?.progressBar?.visibility = View.VISIBLE
+        viewModel?.getPostByID(postId)
 
         return binding?.root
     }
@@ -42,6 +42,7 @@ class DisplayPostFragment : Fragment() {
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
+                binding?.progressBar?.visibility = View.GONE
                 createToast(error)
             }
 
@@ -52,6 +53,7 @@ class DisplayPostFragment : Fragment() {
     private fun observePost() {
         viewModel?.post?.observe(viewLifecycleOwner) { post ->
             if (post != null) {
+                binding?.progressBar?.visibility = View.GONE
                 getPicFromPicasso(binding?.imgPost, post.imgURI)
                 binding?.name?.text = post.name
                 binding?.city?.text = post.city

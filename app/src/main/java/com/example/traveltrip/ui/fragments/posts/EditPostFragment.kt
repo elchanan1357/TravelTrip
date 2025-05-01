@@ -1,15 +1,19 @@
 package com.example.traveltrip.ui.fragments.posts
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.EditPostBinding
 import com.example.traveltrip.model.room.entity.Post
+import com.example.traveltrip.ui.viewModel.PostViewModel
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.createToast
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
@@ -21,7 +25,12 @@ class EditPostFragment : Fragment() {
     private var binding: EditPostBinding? = null
     private var _bitmap: Bitmap? = null
     private var _post: Post? = null
+    private var viewModel: PostViewModel? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = ViewModelProvider(this)[PostViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +47,9 @@ class EditPostFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observePost()
+        observeError()
+        observeSuccess()
         displayData()
         binding?.cancelBtn?.setOnClickListener { findNavController().popBackStack() }
         binding?.saveBtn?.setOnClickListener { handleSave() }
@@ -71,25 +83,51 @@ class EditPostFragment : Fragment() {
             text = binding?.text?.text.toString()
         )
 
-//        newPost?.let {
-//            RoomPost.instance.updatePost(newPost, this._bitmap) {
-//                binding?.progressBar?.visibility = View.GONE
-//                findNavController().popBackStack()
-//            }
-//        }
+        if (newPost != null) {
+            viewModel?.updatePost(newPost, this._bitmap)
+        }
     }
 
     private fun displayData() {
-//        val postId = arguments?.getString("postID") ?: ""
-//        RoomPost.instance.getPostByID(postId) { resPost ->
-//            this._post = resPost
-//            getPicFromPicasso(binding?.imgPost, resPost?.imgURI)
-//            binding?.name?.text = resPost?.name
-//            binding?.city?.setText(resPost?.city)
-//            binding?.state?.setText(resPost?.state)
-//            binding?.title?.setText(resPost?.title)
-//            binding?.text?.setText(resPost?.text)
-//        }
+        val postId = arguments?.getString("postID") ?: ""
+        binding?.progressBar?.visibility = View.VISIBLE
+        viewModel?.getPostByID(postId)
+    }
+
+    private fun observeError() {
+        viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
+            }
+        }
+    }
+
+    private fun observeSuccess() {
+        viewModel?.isSuccess?.observe(viewLifecycleOwner) { success ->
+            success?.let {
+                if (success) {
+                    binding?.progressBar?.visibility = View.GONE
+                    findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
+
+    private fun observePost() {
+        viewModel?.post?.observe(viewLifecycleOwner) { resPost ->
+            if (resPost != null) {
+                binding?.progressBar?.visibility = View.GONE
+                this._post = resPost
+                getPicFromPicasso(binding?.imgPost, resPost.imgURI)
+                binding?.name?.text = resPost.name
+                binding?.city?.setText(resPost.city)
+                binding?.state?.setText(resPost.state)
+                binding?.title?.setText(resPost.title)
+                binding?.text?.setText(resPost.text)
+            }
+        }
     }
 
 

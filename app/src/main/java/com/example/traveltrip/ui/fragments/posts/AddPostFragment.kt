@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.AddPostBinding
+import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
@@ -57,9 +58,8 @@ class AddPostFragment : Fragment() {
         }
 
         binding?.progressBar?.visibility = View.VISIBLE
+        observeSuccess()
 
-//        val email = ModelUser.instance.getEmail() ?: ""
-//        ModelUser.instance.getUserByEmail(email) {
 //            if (it != null) {
 //                val name = it.name
 //
@@ -68,20 +68,25 @@ class AddPostFragment : Fragment() {
 //                val title = binding?.title?.text.toString()
 //                val text = binding?.text?.text.toString()
 //
-//                ModelPost.instance.insertPost(
-//                    Post(email, name, "", city, state, title, text),
-//                    this._bitmap
-//                ) {
-//                    binding?.progressBar?.visibility = View.GONE
-//                    findNavController().popBackStack()
-//                }
-//            }
-//        }
+
+        //TODO
+        ///     viewModel?.insertPost(newPost, this._bitmap)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun observeSuccess() {
+        viewModel?.isSuccess?.observe(viewLifecycleOwner) { success ->
+            success?.let {
+                if (success) {
+                    binding?.progressBar?.visibility = View.GONE
+                    findNavController().popBackStack()
+                }
+            }
+        }
     }
 
 }

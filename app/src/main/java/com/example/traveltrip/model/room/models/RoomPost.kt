@@ -25,7 +25,9 @@ class RoomPost private constructor() {
         executor.execute {
             try {
                 val posts = roomDB.getAllPosts()
-                mainHandler.post {
+                if (posts.value?.isEmpty() == true)
+                    callback(false, emptyList())
+                else mainHandler.post {
                     log("get all post from room")
                     posts.value?.let { callback(true, it) }
                 }
@@ -73,7 +75,9 @@ class RoomPost private constructor() {
         executor.execute {
             try {
                 val post = roomDB.getPostById(id)
-                mainHandler.post {
+                if (post.value == null)
+                    callback(false, null)
+                else mainHandler.post {
                     log("get post by id from room")
                     callback(true, post.value)
                 }

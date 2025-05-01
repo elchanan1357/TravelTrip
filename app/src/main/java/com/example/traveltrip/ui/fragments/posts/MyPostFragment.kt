@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.ui.adapter.GenericAdapter
 import com.example.traveltrip.databinding.MyPostsBinding
 import com.example.traveltrip.databinding.RowMyPostsBinding
-import com.example.traveltrip.model.room.models.RoomUser
 import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.ui.viewModel.MyPostViewModel as MyPostViewModel1
@@ -72,6 +71,7 @@ class MyPostFragment : Fragment() {
 
 
     private fun getAllPostByEmail() {
+
 //        val email = RoomUser.instance.getEmail() ?: ""
 //        RoomPost.instance.getAllPostsByEmail(email) {
 //            viewModel?.set(it)
