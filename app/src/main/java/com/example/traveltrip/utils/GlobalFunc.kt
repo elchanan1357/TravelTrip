@@ -1,13 +1,20 @@
 package com.example.traveltrip.utils
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.traveltrip.R
+import com.example.traveltrip.base.MyApp
 import com.squareup.picasso.Picasso
 
 
@@ -61,5 +68,22 @@ fun launchCameraForImage(
     click?.setOnClickListener {
         launcher.launch(null)
     }
+}
+
+
+@SuppressLint("InflateParams")
+fun createToast(message: String) {
+    val context = MyApp.Globals.context
+    val inflater = LayoutInflater.from(context)
+    val layout = inflater.inflate(R.layout.custom_toast, null, false)
+
+    val textView = layout.findViewById<TextView>(R.id.toast_text)
+    textView.text = message
+
+    val toast = Toast(context)
+    toast.duration = Toast.LENGTH_LONG
+    toast.view = layout
+    toast.setGravity(Gravity.CENTER, 0, 0)
+    toast.show()
 }
 

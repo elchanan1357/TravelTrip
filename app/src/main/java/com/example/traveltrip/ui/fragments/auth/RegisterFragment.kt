@@ -14,6 +14,7 @@ import com.example.traveltrip.databinding.RegisterBinding
 import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.FieldValidation
+import com.example.traveltrip.utils.createToast
 import com.example.traveltrip.utils.validateFields
 
 class RegisterFragment : Fragment() {
@@ -103,7 +104,8 @@ class RegisterFragment : Fragment() {
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
             }
 
         }

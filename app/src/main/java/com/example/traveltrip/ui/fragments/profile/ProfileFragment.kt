@@ -15,6 +15,7 @@ import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.ProfileBinding
 import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.ui.viewModel.UserViewModel
+import com.example.traveltrip.utils.createToast
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.logError
 
@@ -68,7 +69,7 @@ class ProfileFragment : Fragment() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
                 binding?.progressBar?.visibility = View.GONE
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                createToast(error)
             }
         }
     }

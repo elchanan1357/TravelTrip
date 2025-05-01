@@ -15,6 +15,7 @@ import com.example.traveltrip.R
 import com.example.traveltrip.databinding.HomePageBinding
 import com.example.traveltrip.model.room.models.RoomUser
 import com.example.traveltrip.ui.viewModel.UserViewModel
+import com.example.traveltrip.utils.createToast
 import com.example.traveltrip.utils.logError
 
 
@@ -48,7 +49,7 @@ class HomePageFragment : Fragment() {
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                createToast(error)
             }
         }
     }

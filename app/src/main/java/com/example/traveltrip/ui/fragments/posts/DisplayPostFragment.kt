@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.traveltrip.databinding.DisplayPostBinding
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.ui.viewModel.PostViewModel
+import com.example.traveltrip.utils.createToast
 
 class DisplayPostFragment : Fragment() {
     private var binding: DisplayPostBinding? = null
@@ -41,7 +42,7 @@ class DisplayPostFragment : Fragment() {
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                createToast(error)
             }
 
         }
