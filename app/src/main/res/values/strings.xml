@@ -44,4 +44,5 @@
     <string name="all_information_about_this_trip">all information about this trip</string>
     <string name="title_of_trip">Title of trip</string>
     <string name="cancel">Cancel</string>
+    <string name="todo">TODO</string>
 </resources>
