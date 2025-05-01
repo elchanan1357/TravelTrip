@@ -3,7 +3,7 @@ package com.example.traveltrip.model.firebase
 import com.example.traveltrip.utils.AuthCallback
 
 
-object Auth {
+object FirebaseAuth {
     private val auth = FirebaseProvider.getAuthInstance()
 
 

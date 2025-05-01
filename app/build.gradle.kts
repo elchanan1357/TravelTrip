@@ -24,6 +24,24 @@ android {
         buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
         buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
 
+        buildConfigField("String", "GOOGLE_API_KEY", "\"${project.properties["GOOGLE_API_KEY"] ?: ""}\"")
+        buildConfigField("String", "GOOGLE_BASE_URL", "\"${project.properties["GOOGLE_BASE_URL"] ?: ""}\"")
+
+        buildConfigField(
+            "String",
+            "AMADEUS_BASE_URL",
+            "\"${project.properties["AMADEUS_BASE_URL"] ?: ""}\""
+        )
+        buildConfigField(
+            "String",
+            "AMADEUS_API_KEY",
+            "\"${project.properties["AMADEUS_API_KEY"] ?: ""}\""
+        )
+        buildConfigField(
+            "String",
+            "AMADEUS_API_SECRET",
+            "\"${project.properties["AMADEUS_API_SECRET"] ?: ""}\""
+        )
     }
 
     buildTypes {
@@ -55,6 +73,15 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.firebase.auth)
     implementation(libs.picasso)
+
+
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
+    implementation (libs.places)
+
+
+
     implementation(libs.cloudinary.android)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

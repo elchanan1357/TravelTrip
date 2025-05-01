@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.adapter.GenericAdapter
@@ -36,7 +38,7 @@ class TripsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Toast.makeText(requireContext(), "New test", Toast.LENGTH_SHORT).show()
         val mainCategories = arguments?.getString("mainCategory") ?: ""
         val subCategories = arguments?.getString("subCategory") ?: ""
 
@@ -50,49 +52,9 @@ class TripsFragment : Fragment() {
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
+        dropList(mainCategories, subCategories)
 
-        val mainCategoriesList = listOf("Flights","Trips","Car Rental","Hotels")
-        val subCategoriesList = listOf("Kids","Museums","All Trips","Amusement parks")
-
-        val mainAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, mainCategoriesList)
-        mainAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        val subAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, subCategoriesList)
-        subAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-
-        binding?.mainCategorySpinner?.adapter = mainAdapter
-        binding?.subCategorySpinner?.adapter = subAdapter
-
-
-        val mainCategoryIndex = mainCategoriesList.indexOf(mainCategories)
-        if (mainCategoryIndex >= 0) {
-            binding?.mainCategorySpinner?.setSelection(mainCategoryIndex)
-        }
-
-
-        val subCategoryIndex = subCategoriesList.indexOf(subCategories)
-        if (subCategoryIndex >= 0) {
-            binding?.subCategorySpinner?.setSelection(subCategoryIndex)
-        }
-
-
-        binding?.mainCategorySpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selected = mainCategoriesList[position]
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
-
-        binding?.subCategorySpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selected = subCategoriesList[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-            }
     }
-
 
 
     override fun onResume() {
@@ -129,5 +91,84 @@ class TripsFragment : Fragment() {
     }
 
 
+    private fun dropList(mainCategory: String, subCategory: String) {
+        val categoryMap = mapOf(
+            "Flights" to listOf("All Flights", "Low Cost", "Luxury", "Business"),
+            "Trips" to listOf("Museums", "All Trips", "Kids", "Amusement Parks"),
+            "Car Rental" to listOf("Economy", "SUV", "Luxury", "Vans"),
+            "Hotels" to listOf("1 Star", "3 Stars", "5 Stars", "Suites")
+        )
+
+        val mainCategories = categoryMap.keys.toList()
+        var isFirstLoad = true
+
+        binding?.apply {
+            mainCategorySpinner.setAdapterWithItems(mainCategories)
+            mainCategorySpinner.setSelection(mainCategories.indexOfOrDefault(mainCategory))
+
+            updateSubCategorySpinner(categoryMap, mainCategory, subCategory)
+
+            mainCategorySpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selectedMain = mainCategories[position]
+                        val selectedSub =
+                            if (isFirstLoad) subCategory else subCategorySpinner.selectedItem?.toString()
+                                ?: ""
+                        isFirstLoad = false
+                        updateSubCategorySpinner(categoryMap, selectedMain, selectedSub)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {}
+                }
+
+            subCategorySpinner.onItemSelectedListener = simpleListener {
+                // TODO:fetch data from Room and Firestre
+            }
+        }
+    }
+
+    private fun Spinner.setAdapterWithItems(items: List<String>) {
+        adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, items).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+    }
+
+    private fun List<String>.indexOfOrDefault(value: String): Int {
+        val index = indexOf(value)
+        return if (index >= 0) index else 0
+    }
+
+    private fun Fragment.updateSubCategorySpinner(
+        categoryMap: Map<String, List<String>>,
+        selectedMain: String,
+        selectedSub: String
+    ) {
+        val subList = categoryMap[selectedMain] ?: emptyList()
+        binding?.subCategorySpinner?.apply {
+            setAdapterWithItems(subList)
+            setSelection(subList.indexOfOrDefault(selectedSub))
+        }
+    }
+
+    private fun simpleListener(onSelect: (String) -> Unit): AdapterView.OnItemSelectedListener {
+        return object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                onSelect(parent.getItemAtPosition(position).toString())
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
 
 }
