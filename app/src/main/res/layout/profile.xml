@@ -29,45 +29,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/profile_userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/kanit_semibold"
-            android:text="John Deo"
-            app:layout_constraintBottom_toTopOf="@+id/Country"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/Country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:cardCornerRadius="100dp"
+            android:id="@+id/clickImg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="74dp"
-                tools:layout_editor_absoluteY="49dp">
-
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/profile"
-                    app:srcCompat="@drawable/profile_pic" />
-            </FrameLayout>
-
+                android:layout_gravity="center"
+                android:src="@drawable/profile" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -80,7 +61,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/shape"
-        android:backgroundTint="#F8F8F8"
+        android:backgroundTint="#FBFBFB"
         android:text="Edit details"
         android:textColor="#7E7C7C"
         android:textColorLink="#C91919"
@@ -180,17 +161,30 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#5FA3AC"
+        android:text="Logout"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
         android:id="@+id/deleteBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="96dp"
         android:backgroundTint="#5FA3AC"
         android:text="Delete"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/logOutBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

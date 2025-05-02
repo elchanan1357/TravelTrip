@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.DiscoverBinding
+import com.example.traveltrip.ui.fragments.trips.DiscoverFragmentDirections
 
 class DiscoverFragment : Fragment() {
     private var binding: DiscoverBinding? = null
@@ -19,8 +20,8 @@ class DiscoverFragment : Fragment() {
 
         binding?.Hotels?.setOnClickListener { onClick("Hotels") }
         binding?.trips?.setOnClickListener { onClick("Trips") }
-//        binding?.Flights?.setOnClickListener { onClick() }
-//        binding?.CarRental?.setOnClickListener { onClick() }
+        binding?.Flights?.setOnClickListener { onClick("Flights") }
+        binding?.CarRental?.setOnClickListener { onClick("CarRental") }
 
         return binding?.root
     }
