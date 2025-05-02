@@ -32,11 +32,19 @@ class UserViewModel : ViewModel() {
         }
     }
 
-    fun getUSer() {
-        repoUser.getUser { success, user ->
+    fun getCurrentUser() {
+        repoUser.getCurrentUser { success, user ->
             if (success) {
                 this._user.value = user
             } else _errorMessage.value = "Unable to get user"
+        }
+    }
+
+    fun getUserById(id: String) {
+        repoUser.getUserById(id) { success, user ->
+            if (success) {
+                this._user.value = user
+            } else _errorMessage.value = "Unable to get user by id"
         }
     }
 

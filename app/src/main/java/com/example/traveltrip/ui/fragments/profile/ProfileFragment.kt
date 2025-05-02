@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.R
-import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.ProfileBinding
 import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.ui.viewModel.UserViewModel
@@ -38,7 +36,7 @@ class ProfileFragment : Fragment() {
         observeError()
         observeUser()
         observeSuccess()
-        viewModel?.getUSer()
+        viewModel?.getCurrentUser()
 
         binding?.editDetailsBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_profile_editProfile)

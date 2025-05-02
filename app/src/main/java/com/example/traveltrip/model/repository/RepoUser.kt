@@ -44,6 +44,7 @@ class RepoUser private constructor() {
         } else roomUser.getAllUsers(callback)
     }
 
+
     fun addUser(user: User, callback: ResultCallback) {
         if (isOnline(context)) {
             firebaseUser.addUser(user) { success ->
@@ -57,6 +58,7 @@ class RepoUser private constructor() {
             callback(false)
         }
     }
+
 
     fun updateUser(
         user: User,
@@ -95,14 +97,18 @@ class RepoUser private constructor() {
     }
 
 
-    fun getUser(callback: UserCallback) {
-        var id = ""
+    fun getCurrentUser(callback: UserCallback) {
         FirebaseAuth.getCurrentUser()?.uid.let {
-            if (it != null) {
-                id = it
-            }
+            if (it != null) getUser(it, callback)
+            else callback(false, null)
         }
+    }
 
+    fun getUserById(id: String, callback: UserCallback) {
+        getUser(id, callback)
+    }
+
+    private fun getUser(id: String, callback: UserCallback) {
         roomUser.getUser(id) { success, user ->
             if (success) callback(true, user)
             else if (isOnline(context)) {
@@ -119,7 +125,6 @@ class RepoUser private constructor() {
             } else callback(false, null)
         }
     }
-
 
     fun signIn(email: String, password: String, callback: AuthCallback) {
         if (isOnline(context)) {

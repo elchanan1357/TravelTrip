@@ -88,6 +88,23 @@ class RoomPost private constructor() {
         }
     }
 
+    fun getPostsByUserID(id: String, callback: PostsCallback) {
+        executor.execute {
+            try {
+                val posts = roomDB.getPostsByUserId(id)
+                if (posts.value?.isEmpty() == true)
+                    callback(false, emptyList())
+                else mainHandler.post {
+                    log("get all posts by user id from room")
+                    posts.value?.let { callback(true, it) }
+                }
+            } catch (err: Exception) {
+                logError("Fail get all posts by user id from room\n $err")
+                callback(false, emptyList())
+            }
+        }
+    }
+
 
     fun deletePost(post: Post, callback: ResultCallback) {
         executor.execute {

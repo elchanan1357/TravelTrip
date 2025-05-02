@@ -7,18 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.DisplayPostBinding
+import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.ui.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.createToast
 
 class DisplayPostFragment : Fragment() {
     private var binding: DisplayPostBinding? = null
-    private var viewModel: PostViewModel? = null
+    private var viewModelPost: PostViewModel? = null
+    private var viewModelUser: UserViewModel? = null
+    private var _user: User? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[PostViewModel::class.java]
+        viewModelPost = ViewModelProvider(this)[PostViewModel::class.java]
+        viewModelUser = ViewModelProvider(this)[UserViewModel::class.java]
     }
 
 
@@ -28,34 +34,61 @@ class DisplayPostFragment : Fragment() {
     ): View? {
         binding = DisplayPostBinding.inflate(inflater, container, false)
 
-        val postId = arguments?.getString("postID") ?: ""
-
         observePost()
-        observeError()
+        observeErrorPost()
+        observeErrorUser()
+        observeUser()
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModel?.getPostByID(postId)
+        viewModelUser?.getCurrentUser()
 
         return binding?.root
     }
 
-
-    private fun observeError() {
-        viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
+    private fun observeErrorUser() {
+        viewModelUser?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
                 binding?.progressBar?.visibility = View.GONE
                 createToast(error)
             }
+        }
+    }
 
+
+    private fun observeUser() {
+        val postId = arguments?.getString("postID") ?: ""
+        if (postId.isBlank()) {
+            binding?.progressBar?.visibility = View.GONE
+            createToast("Not find post")
+            //TODO wait
+            findNavController().popBackStack()
+        }
+
+        viewModelUser?.user?.observe(viewLifecycleOwner) {
+            it?.let { user ->
+                this._user = user
+                viewModelPost?.getPostByID(postId)
+            }
+        }
+    }
+
+
+    private fun observeErrorPost() {
+        viewModelPost?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
+            }
         }
     }
 
 
     private fun observePost() {
-        viewModel?.post?.observe(viewLifecycleOwner) { post ->
+        viewModelPost?.post?.observe(viewLifecycleOwner) { post ->
             if (post != null) {
                 binding?.progressBar?.visibility = View.GONE
                 getPicFromPicasso(binding?.imgPost, post.imgURI)
-                binding?.name?.text = post.name
+                //TODO fix
+                binding?.name?.text = this._user?.name ?: "no user"
                 binding?.city?.text = post.city
                 binding?.state?.text = post.state
                 binding?.title?.text = post.title

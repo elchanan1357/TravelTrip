@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import com.example.traveltrip.base.MyApp
 import com.example.traveltrip.model.remote.cloudinary.CloudinaryModel
+import com.example.traveltrip.model.remote.firebase.FirebaseAuth
 import com.example.traveltrip.model.remote.firebase.FirebaseModelPost
 import com.example.traveltrip.model.room.entity.Post
 import com.example.traveltrip.model.room.models.RoomPost
@@ -12,6 +13,7 @@ import com.example.traveltrip.utils.PostCallback
 import com.example.traveltrip.utils.PostsCallback
 import com.example.traveltrip.utils.ResultCallback
 import com.example.traveltrip.utils.isOnline
+import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.logError
 
 class RepoPost private constructor() {
@@ -39,6 +41,33 @@ class RepoPost private constructor() {
             }
         } else roomPost.getAllPosts(callback)
     }
+
+    fun getPostsByUserID(callback: PostsCallback) {
+        var id = ""
+        FirebaseAuth.getCurrentUser()?.uid?.let {
+            id = it
+        }
+
+        if(id.isBlank()){
+            callback(false, emptyList())
+            logError("not find user id in search posts by id")
+        }
+
+        log(id)
+        if (isOnline(context)) {
+            firebaseModel.getPostsByUserID(id) { success, posts ->
+                if (success) {
+                    posts.forEach { post ->
+                        roomPost.insertPost(post) { success ->
+                            if (!success) logError("fail to save posts in room")
+                        }
+                    }
+                    callback(true, posts)
+                } else callback(false, emptyList())
+            }
+        } else roomPost.getPostsByUserID(id, callback)
+    }
+
 
     fun getPostByID(id: String, callback: PostCallback) {
         roomPost.getPostByID(id) { success, post ->

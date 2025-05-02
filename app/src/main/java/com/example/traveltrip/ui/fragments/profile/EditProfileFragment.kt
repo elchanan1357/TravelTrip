@@ -10,9 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.traveltrip.R
 import com.example.traveltrip.utils.log
-import com.example.traveltrip.utils.logError
 import com.example.traveltrip.databinding.EditProfileBinding
 import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.ui.viewModel.UserViewModel
@@ -25,11 +23,12 @@ class EditProfileFragment : Fragment() {
     private var binding: EditProfileBinding? = null
     private var _user: User? = null
     private var _bitmap: Bitmap? = null
-    private var viewModel: UserViewModel? = null
+    private var viewModelUser: UserViewModel? = null
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        viewModelUser = ViewModelProvider(this)[UserViewModel::class.java]
     }
 
 
@@ -43,8 +42,8 @@ class EditProfileFragment : Fragment() {
             this._bitmap = it
         }
 
-        observeSuccess()
-        observeError()
+        observeSuccessUser()
+        observeErrorUser()
         observeUser()
 
         return binding?.root
@@ -53,7 +52,7 @@ class EditProfileFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel?.getUSer()
+        viewModelUser?.getCurrentUser()
         binding?.cancelBtn?.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -74,40 +73,50 @@ class EditProfileFragment : Fragment() {
         }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        val user = _user
+        val user = _user?.copy()
         user?.name = binding?.name?.text.toString()
         user?.phone = binding?.phone?.text.toString()
 
 
-        if (user?.phone == _user?.phone && user?.name == _user?.name && this._bitmap == null)
+        if (user?.phone == _user?.phone && user?.name == _user?.name && this._bitmap == null) {
+            log("fail here")
+            binding?.progressBar?.visibility = View.GONE
             return
+        }
+
 
         if (user != null) {
-            viewModel?.updateUser(user, this._bitmap)
+            this._user = user
+            viewModelUser?.updateUser(user, this._bitmap)
         }
 
     }
 
 
-    private fun observeError() {
-        viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->
+    private fun observeErrorUser() {
+        viewModelUser?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
+                binding?.progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun observeSuccess() {
-        viewModel?.isSuccess?.observe(viewLifecycleOwner) {
-            if (it) {
-                binding?.progressBar?.visibility = View.GONE
-                findNavController().popBackStack()
+
+    private fun observeSuccessUser() {
+        viewModelUser?.isSuccess?.observe(viewLifecycleOwner) { success ->
+            success?.let {
+                if (success) {
+                    binding?.progressBar?.visibility = View.GONE
+                    findNavController().popBackStack()
+                }
             }
         }
     }
 
+
     private fun observeUser() {
-        viewModel?.user?.observe(viewLifecycleOwner) { user ->
+        viewModelUser?.user?.observe(viewLifecycleOwner) { user ->
             user?.let {
                 this._user = user
                 binding?.name?.setText(user.name)

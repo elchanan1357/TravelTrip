@@ -7,16 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.R
 import com.example.traveltrip.databinding.HomePageBinding
-import com.example.traveltrip.model.room.models.RoomUser
 import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.createToast
-import com.example.traveltrip.utils.logError
 
 
 class HomePageFragment : Fragment() {
@@ -41,7 +38,7 @@ class HomePageFragment : Fragment() {
 
         observeError()
         observeUser()
-        viewModel?.getUSer()
+        viewModel?.getCurrentUser()
 
         return binding?.root
     }

@@ -43,6 +43,24 @@ class FirebaseModelPost {
             }
     }
 
+    fun getPostsByUserID(id: String, callback: PostsCallback) {
+        db.collection(postsCollection)
+            .whereEqualTo("userId", id)
+            .get()
+            .addOnSuccessListener { postsJSON ->
+                val posts: MutableList<Post> = mutableListOf()
+                for (json in postsJSON)
+                    posts.add(Post.fromJSON(json.data))
+
+                log("Get all posts by user id from firestore")
+                callback(true, posts)
+            }
+            .addOnFailureListener { e ->
+                logError("Fail in get all posts by user id from firestore\n $e")
+                callback(false, emptyList())
+            }
+    }
+
 
     fun insertPost(post: Post, callback: ResultCallback) {
         val collection = db.collection(postsCollection).document()

@@ -17,16 +17,20 @@ import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.utils.validateFields
 import com.example.traveltrip.ui.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.UserViewModel
+import com.example.traveltrip.utils.createToast
 
 
 class AddPostFragment : Fragment() {
     private var binding: AddPostBinding? = null
     private var _bitmap: Bitmap? = null
-    private var viewModel: PostViewModel? = null
+    private var viewModelPost: PostViewModel? = null
+    private var viewModelUser: UserViewModel? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[PostViewModel::class.java]
+        viewModelPost = ViewModelProvider(this)[PostViewModel::class.java]
+        viewModelUser = ViewModelProvider(this)[UserViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -58,19 +62,11 @@ class AddPostFragment : Fragment() {
         }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        observeSuccess()
-
-//            if (it != null) {
-//                val name = it.name
-//
-//                val city = binding?.city?.text.toString()
-//                val state = binding?.state?.text.toString()
-//                val title = binding?.title?.text.toString()
-//                val text = binding?.text?.text.toString()
-//
-
-        //TODO
-        ///     viewModel?.insertPost(newPost, this._bitmap)
+        observeSuccessPost()
+        observeErrorPost()
+        observeErrorUser()
+        observeUser()
+        viewModelUser?.getCurrentUser()
     }
 
     override fun onDestroyView() {
@@ -78,8 +74,8 @@ class AddPostFragment : Fragment() {
         binding = null
     }
 
-    private fun observeSuccess() {
-        viewModel?.isSuccess?.observe(viewLifecycleOwner) { success ->
+    private fun observeSuccessPost() {
+        viewModelPost?.isSuccess?.observe(viewLifecycleOwner) { success ->
             success?.let {
                 if (success) {
                     binding?.progressBar?.visibility = View.GONE
@@ -89,4 +85,39 @@ class AddPostFragment : Fragment() {
         }
     }
 
+    private fun observeErrorUser() {
+        viewModelUser?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
+            }
+        }
+    }
+
+    private fun observeUser() {
+        viewModelUser?.user?.observe(viewLifecycleOwner) {
+            it?.let { user ->
+                val city = binding?.city?.text.toString()
+                val state = binding?.state?.text.toString()
+                val title = binding?.title?.text.toString()
+                val text = binding?.text?.text.toString()
+                val userId = user.uid
+
+                viewModelPost?.insertPost(
+                    Post("", city, state, title, text, userId),
+                    this._bitmap
+                )
+            }
+        }
+    }
+
+
+    private fun observeErrorPost() {
+        viewModelPost?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
+            }
+        }
+    }
 }

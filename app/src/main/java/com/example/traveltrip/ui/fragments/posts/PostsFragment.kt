@@ -14,14 +14,16 @@ import com.example.traveltrip.R
 import com.example.traveltrip.ui.adapter.GenericAdapter
 import com.example.traveltrip.databinding.PostsBinding
 import com.example.traveltrip.databinding.RowPostsBinding
-import com.example.traveltrip.model.room.entity.Post
-import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.ui.viewModel.PostViewModel
+import com.example.traveltrip.ui.viewModel.PostWithUser
+import com.example.traveltrip.utils.createToast
+import com.example.traveltrip.utils.getPicFromPicasso
 
 class PostsFragment : Fragment() {
     private var binding: PostsBinding? = null
-    private var viewModel: PostViewModel? = null
-    private var adapter: GenericAdapter<Post, RowPostsBinding>? = null
+    private var viewModelPost: PostViewModel? = null
+    private var adapter: GenericAdapter<PostWithUser, RowPostsBinding>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +35,9 @@ class PostsFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[PostViewModel::class.java]
+        viewModelPost = ViewModelProvider(this)[PostViewModel::class.java]
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,41 +53,60 @@ class PostsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
         observePosts()
+        observeErrorPost()
     }
 
-    private fun observePosts() {
-        viewModel?.posts?.observe(viewLifecycleOwner) { posts ->
-            adapter?.updateList(posts)
-            binding?.progressBar?.visibility = View.GONE
+
+    private fun observeErrorPost() {
+        viewModelPost?.errorMessage?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                createToast(error)
+            }
         }
     }
 
+
+    private fun observePosts() {
+        viewModelPost?.postsWithUsers?.observe(viewLifecycleOwner) { postsWithUsers ->
+            if (postsWithUsers.isNotEmpty()) {
+                adapter?.updateList(postsWithUsers)
+                binding?.progressBar?.visibility = View.GONE
+            }
+        }
+    }
+
+
     override fun onResume() {
         super.onResume()
-        viewModel?.getAllPost()
+        viewModelPost?.getAllPostsWithUsers()
     }
 
 
     private fun createAdapter() {
         this.adapter = GenericAdapter(
-            viewModel?.posts?.value,
+            viewModelPost?.postsWithUsers?.value,
             RowPostsBinding::inflate
         ) { vb, item ->
-            getPicFromPicasso(vb.imgPost, item.imgURI)
-            vb.name.text = item.name
-            vb.title.text = item.title
+            getPicFromPicasso(vb.imgPost, item.post.imgURI)
+            getPicFromPicasso(vb.img, item.user.img)
+            vb.name.text = item.user.name
+            vb.title.text = item.post.title
 
             vb.rowPost.setOnClickListener {
                 findNavController().navigate(
-                    PostsFragmentDirections.actionPostsDisplayPost(item.id)
+                    PostsFragmentDirections.actionPostsDisplayPost(item.post.id)
                 )
             }
         }
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
+
+
 }
 
