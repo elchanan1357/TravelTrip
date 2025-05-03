@@ -89,8 +89,8 @@ class DisplayPostFragment : Fragment() {
                 getPicFromPicasso(binding?.imgPost, post.imgURI)
                 //TODO fix
                 binding?.name?.text = this._user?.name ?: "no user"
-                binding?.city?.text = post.city
-                binding?.state?.text = post.state
+//                binding?.city?.text = post.city
+//                binding?.state?.text = post.state
                 binding?.title?.text = post.title
                 binding?.text?.text = post.text
             }

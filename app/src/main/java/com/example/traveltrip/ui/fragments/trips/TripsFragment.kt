@@ -33,6 +33,8 @@ class TripsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainCategories = arguments?.getString("mainCategory") ?: ""
+        val subCategories = arguments?.getString("subCategory") ?: ""
 
         createAdapter()
         val recyclerView: RecyclerView? = binding?.RecyclerViewTrips
@@ -40,7 +42,7 @@ class TripsFragment : Fragment() {
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
-//        dropList(mainCategories, subCategories)
+        dropList(mainCategories, subCategories)
 
     }
 
@@ -84,7 +86,7 @@ class TripsFragment : Fragment() {
 
             "Hotels" -> {
                 binding?.progressBar?.visibility = View.VISIBLE
-                var type: String = ""
+                var type = ""
                 when (arguments?.getString("subCategory")) {
                     "Hostels" -> type = "lodging hostel"
                     "Guest Houses" -> type = "lodging guest house"
@@ -117,53 +119,47 @@ class TripsFragment : Fragment() {
     }
 
 
-//    private fun dropList(mainCategory: String, subCategory: String) {
-//        val categoryMap = mapOf(
-//            "Flights" to listOf("All Flights", "Low Cost", "Luxury", "Business"),
-//            "Trips" to listOf("Museums", "All Trips", "Kids", "Amusement Parks"),
-//            "Car Rental" to listOf("Economy", "SUV", "Luxury", "Vans"),
-//            "Hotels" to listOf("1 Star", "3 Stars", "5 Stars", "Suites")
-//        )
-//
-//        val mainCategories = categoryMap.keys.toList()
-//        var isFirstLoad = true
-//
-//            val uri = item.photos?.get(0)?.photoReference?.let { getPhotoUrl(it) }
-//            log("the uri: ${uri.toString()}")
-//            getPicFromPicasso(itemBinding.imgBtn, uri)
-//        }
-//    }
-//
-//        binding?.apply {
-//            mainCategorySpinner.setAdapterWithItems(mainCategories)
-//            mainCategorySpinner.setSelection(mainCategories.indexOfOrDefault(mainCategory))
-//
-//            updateSubCategorySpinner(categoryMap, mainCategory, subCategory)
-//
-//            mainCategorySpinner.onItemSelectedListener =
-//                object : AdapterView.OnItemSelectedListener {
-//                    override fun onItemSelected(
-//                        parent: AdapterView<*>,
-//                        view: View?,
-//                        position: Int,
-//                        id: Long
-//                    ) {
-//                        val selectedMain = mainCategories[position]
-//                        val selectedSub =
-//                            if (isFirstLoad) subCategory else subCategorySpinner.selectedItem?.toString()
-//                                ?: ""
-//                        isFirstLoad = false
-//                        updateSubCategorySpinner(categoryMap, selectedMain, selectedSub)
-//                    }
-//
-//                    override fun onNothingSelected(parent: AdapterView<*>) {}
-//                }
-//
-//            subCategorySpinner.onItemSelectedListener = simpleListener {
-//                // TODO:fetch data from Room and Firestore
-//            }
-//        }
-//    }
+    private fun dropList(mainCategory: String, subCategory: String) {
+        val categoryMap = mapOf(
+            "Flights" to listOf("All Flights", "Low Cost", "Luxury", "Business"),
+            "Trips" to listOf("Museums", "All Trips", "Kids", "Amusement Parks"),
+            "Car Rental" to listOf("Economy", "SUV", "Luxury", "Vans"),
+            "Hotels" to listOf("1 Star", "3 Stars", "5 Stars", "Suites")
+        )
+
+        val mainCategories = categoryMap.keys.toList()
+        var isFirstLoad = true
+
+        binding?.apply {
+            mainCategorySpinner.setAdapterWithItems(mainCategories)
+            mainCategorySpinner.setSelection(mainCategories.indexOfOrDefault(mainCategory))
+
+            updateSubCategorySpinner(categoryMap, mainCategory, subCategory)
+
+            mainCategorySpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selectedMain = mainCategories[position]
+                        val selectedSub =
+                            if (isFirstLoad) subCategory else subCategorySpinner.selectedItem?.toString()
+                                ?: ""
+                        isFirstLoad = false
+                        updateSubCategorySpinner(categoryMap, selectedMain, selectedSub)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {}
+                }
+
+            subCategorySpinner.onItemSelectedListener = simpleListener {
+                // TODO:fetch data from Room and Firestore
+            }
+        }
+    }
 
 
     private fun Spinner.setAdapterWithItems(items: List<String>) {

@@ -115,7 +115,7 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.traveltrip.ui.fragments.posts.AddPostFragment"
         android:label="fragment_add_post"
-        tools:layout="@layout/add_post" />
+        tools:layout="@layout/add_post_old" />
     <fragment
         android:id="@+id/myTripsFragment"
         android:name="com.example.traveltrip.ui.fragments.trips.MyTripsFragment"
@@ -152,7 +152,7 @@
         android:id="@+id/displayPostFragment"
         android:name="com.example.traveltrip.ui.fragments.posts.DisplayPostFragment"
         android:label="fragment_display_post"
-        tools:layout="@layout/display_post">
+        tools:layout="@layout/display_post_old">
         <argument
             android:name="postID"
             app:argType="string" />

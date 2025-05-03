@@ -43,15 +43,22 @@ class AddPostFragment : Fragment() {
         binding?.saveBtn?.setOnClickListener { handleSave() }
         launchCameraForImage(this, binding?.imgPost, binding?.addPhoto) {
             this._bitmap = it
+            binding?.addPhoto?.visibility = View.GONE
+            binding?.imgPost?.visibility = View.VISIBLE
         }
+
+        observeSuccessPost()
+        observeErrorPost()
+        observeErrorUser()
+        observeUser()
 
         return binding?.root
     }
 
     private fun handleSave() {
         val validation = arrayOf(
-            FieldValidation(binding?.city, "You must provide your city"),
-            FieldValidation(binding?.state, "You must provide your state"),
+//            FieldValidation(binding?.city, "You must provide your city"),
+//            FieldValidation(binding?.state, "You must provide your state"),
             FieldValidation(binding?.title, "You must provide title"),
             FieldValidation(binding?.text, "You must provide text")
         )
@@ -62,10 +69,6 @@ class AddPostFragment : Fragment() {
         }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        observeSuccessPost()
-        observeErrorPost()
-        observeErrorUser()
-        observeUser()
         viewModelUser?.getCurrentUser()
     }
 
@@ -97,8 +100,10 @@ class AddPostFragment : Fragment() {
     private fun observeUser() {
         viewModelUser?.user?.observe(viewLifecycleOwner) {
             it?.let { user ->
-                val city = binding?.city?.text.toString()
-                val state = binding?.state?.text.toString()
+                val city = ""
+//                    binding?.city?.text.toString()
+                val state = ""
+//                    binding?.state?.text.toString()
                 val title = binding?.title?.text.toString()
                 val text = binding?.text?.text.toString()
                 val userId = user.uid

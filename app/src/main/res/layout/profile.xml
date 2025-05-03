@@ -33,7 +33,6 @@
             android:id="@+id/clickImg"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="6dp"
             android:clickable="true"
             android:focusable="true"
             app:cardCornerRadius="75dp"

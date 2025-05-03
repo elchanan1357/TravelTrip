@@ -9,6 +9,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
+//    private lateinit var bottomNav: BottomNavigationView
+//    private lateinit var navHostFragments: Map<Int, NavHostFragment>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,5 +41,46 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+//        bottomNav = findViewById(R.id.bottom_bar)
+//
+//        navHostFragments = mapOf(
+//            R.id.homePageFragment to supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment,
+//            R.id.myTripsFragment to supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment,
+//            R.id.discoverFragment to supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment,
+//            R.id.postsFragment to supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment,
+//            R.id.profileFragment to supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment
+//        )
+
+//
+//        //hide the nav button
+//        navHostFragments.forEach { (id, fragment) ->
+//            supportFragmentManager.beginTransaction()
+//                .hide(fragment)
+//                .commit()
+//        }
+//
+//        // Show the Home fragment by default
+//        supportFragmentManager.beginTransaction()
+//            .show(navHostFragments[R.id.homePageFragment]!!)
+//            .commit()
+
+//        bottomNav.setOnItemSelectedListener { item ->
+//            // Hide all fragments first
+//            navHostFragments.forEach { (_, fragment) ->
+//                supportFragmentManager.beginTransaction()
+//                    .hide(fragment)
+//                    .commit()
+//            }
+//
+//            // Show the selected fragment
+//            val selectedFragment = navHostFragments[item.itemId]
+//            selectedFragment?.let {
+//                supportFragmentManager.beginTransaction()
+//                    .show(it)
+//                    .commit()
+//            }
+//
+//            true
+//        }
     }
 }

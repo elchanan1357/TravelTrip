@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.DiscoverBinding
-import com.example.traveltrip.ui.fragments.trips.DiscoverFragmentDirections
+import androidx.navigation.fragment.findNavController
+
 
 class DiscoverFragment : Fragment() {
     private var binding: DiscoverBinding? = null
@@ -26,9 +26,9 @@ class DiscoverFragment : Fragment() {
         return binding?.root
     }
 
-    private fun onClick(title: String) {
+    private fun onClick(category: String) {
         findNavController().navigate(
-            DiscoverFragmentDirections.actionDiscoverCategories(title)
+            DiscoverFragmentDirections.actionDiscoverCategories(category)
         )
     }
 

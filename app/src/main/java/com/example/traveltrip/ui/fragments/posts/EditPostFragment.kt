@@ -136,6 +136,10 @@ class EditPostFragment : Fragment() {
                 binding?.state?.setText(resPost.state)
                 binding?.title?.setText(resPost.title)
                 binding?.text?.setText(resPost.text)
+                binding?.deleteBtn?.setOnClickListener {
+                    binding?.progressBar?.visibility = View.VISIBLE
+                    viewModelPost?.deletePost(resPost)
+                }
             }
         }
     }

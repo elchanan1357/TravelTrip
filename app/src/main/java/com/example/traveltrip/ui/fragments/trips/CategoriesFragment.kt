@@ -18,6 +18,10 @@ class CategoriesFragment : Fragment() {
         binding = CategoriesBinding.inflate(inflater, container, false)
 
         filter()
+//        binding?.Kids?.setOnClickListener { onClick("Kids") }
+//        binding?.AmusementParks?.setOnClickListener { onClick("AmusementParks") }
+//        binding?.Museums?.setOnClickListener { onClick("Museums") }
+
         return binding?.root
     }
 
@@ -26,27 +30,27 @@ class CategoriesFragment : Fragment() {
         when (arguments?.getString("mainCategory")) {
             "Trips" -> {
                 setTextOfBox("Parks", "Trips", "Museums", "kids")
-                onClickBox("Parks", "Trips", "Museums", "kids")
+                createOnClickBox("Parks", "Trips", "Museums", "kids")
             }
 
             "Hotels" -> {
                 setTextOfBox("Hostels", "Guest Houses", "Apartments", "Hotels")
-                onClickBox("Hostels", "Guest Houses", "Apartments", "Hotels")
+                createOnClickBox("Hostels", "Guest Houses", "Apartments", "Hotels")
             }
         }
     }
 
 
-    private fun onClickBox(sub1: String, sub2: String, sub3: String, sub4: String) {
-        val main: String = arguments?.getString("mainCategory") ?: ""
-        binding?.oneBox?.setOnClickListener { onClick(main, sub1) }
-        binding?.twoBox?.setOnClickListener { onClick(main, sub2) }
-        binding?.threeBox?.setOnClickListener { onClick(main, sub3) }
-        binding?.fourBox?.setOnClickListener { onClick(main, sub4) }
+    private fun createOnClickBox(sub1: String, sub2: String, sub3: String, sub4: String) {
+        binding?.oneBox?.setOnClickListener { onClick(sub1) }
+        binding?.twoBox?.setOnClickListener { onClick(sub2) }
+        binding?.threeBox?.setOnClickListener { onClick(sub3) }
+        binding?.fourBox?.setOnClickListener { onClick(sub4) }
     }
 
 
-    private fun onClick(main: String, sub: String) {
+    private fun onClick(sub: String) {
+        val main: String = arguments?.getString("mainCategory") ?: ""
         findNavController().navigate(
             CategoriesFragmentDirections.actionCategoriesTrips(main, sub)
         )
@@ -74,3 +78,4 @@ class CategoriesFragment : Fragment() {
         binding = null
     }
 }
+
