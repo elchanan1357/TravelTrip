@@ -46,6 +46,10 @@ class ProfileFragment : Fragment() {
         }
 
         binding?.deleteBtn?.setOnClickListener { handleDelete() }
+        binding?.logOutBtn?.setOnClickListener {
+            binding?.progressBar?.visibility = View.VISIBLE
+            viewModel?.signOut()
+        }
 
         return binding?.root
     }
