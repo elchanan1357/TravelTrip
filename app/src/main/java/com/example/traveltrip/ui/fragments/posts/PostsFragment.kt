@@ -30,6 +30,11 @@ class PostsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = PostsBinding.inflate(inflater, container, false)
+
+        binding?.swipeRefresh?.setOnRefreshListener {
+            viewModelPost?.getAllPostsWithUsers()
+        }
+
         return binding?.root
     }
 
@@ -60,6 +65,7 @@ class PostsFragment : Fragment() {
     private fun observeErrorPost() {
         viewModelPost?.errorMessage?.observe(viewLifecycleOwner) { error ->
             error?.let {
+                binding?.swipeRefresh?.isRefreshing = false
                 binding?.progressBar?.visibility = View.GONE
                 createToast(error)
             }
@@ -71,9 +77,11 @@ class PostsFragment : Fragment() {
         viewModelPost?.postsWithUsers?.observe(viewLifecycleOwner) { postsWithUsers ->
             postsWithUsers?.let {
                 if (postsWithUsers.isNotEmpty()) {
+                    binding?.swipeRefresh?.isRefreshing = false
                     adapter?.updateList(postsWithUsers)
                     binding?.progressBar?.visibility = View.GONE
                 } else {
+                    binding?.swipeRefresh?.isRefreshing = false
                     binding?.progressBar?.visibility = View.GONE
                     createToast("No post yet...")
                 }
