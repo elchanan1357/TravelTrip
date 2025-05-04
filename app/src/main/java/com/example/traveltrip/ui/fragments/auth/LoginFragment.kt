@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.MainActivity
 import com.example.traveltrip.R
 import com.example.traveltrip.utils.log
 import com.example.traveltrip.databinding.LoginBinding
@@ -77,7 +78,7 @@ class LoginFragment : Fragment() {
         viewModel?.isSuccess?.observe(viewLifecycleOwner) {
             if (it) {
                 binding?.progressBar?.visibility = View.GONE
-                findNavController().navigate(R.id.action_login_home)
+                (activity as? MainActivity)?.switchToNavHostFragment(R.id.homePageFragment)
             }
         }
     }

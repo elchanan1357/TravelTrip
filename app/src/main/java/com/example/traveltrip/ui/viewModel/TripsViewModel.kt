@@ -18,8 +18,11 @@ import retrofit2.Response
 
 class TripsViewModel : ViewModel() {
     private val _travels = MutableLiveData<List<Place>>()
-    val travels: LiveData<List<Place>>
-        get() = _travels
+    val travels: LiveData<List<Place>> = _travels
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     private val tripService: TripService = ApiClient.tripApiClient
 
     fun fetchHotels(
@@ -47,12 +50,14 @@ class TripsViewModel : ViewModel() {
                     } else {
                         Log.e("API_ERROR", "Code: ${response.code()}")
                         _travels.value = emptyList()
+                        _error.value = "can't fetch data"
                     }
                 }
 
                 override fun onFailure(call: Call<GoogleResponse>, t: Throwable) {
                     Log.e("API_FAILURE", "Error: ${t.message}")
                     _travels.value = emptyList()
+                    _error.value = "can't fetch data"
                 }
             })
     }

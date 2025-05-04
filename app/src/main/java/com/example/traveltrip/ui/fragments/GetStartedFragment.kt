@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.MainActivity
 import com.example.traveltrip.R
 import com.example.traveltrip.databinding.GetStartedBinding
 import com.example.traveltrip.ui.viewModel.UserViewModel
@@ -20,6 +21,7 @@ class GetStartedFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        viewModel?.getCurrentUser()
     }
 
     override fun onCreateView(
@@ -30,7 +32,7 @@ class GetStartedFragment : Fragment() {
 
         observeError()
         observeUser()
-//        viewModel?.getUSer()
+
 
         binding?.StartBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_started_login)
@@ -52,7 +54,7 @@ class GetStartedFragment : Fragment() {
     private fun observeUser() {
         viewModel?.user?.observe(viewLifecycleOwner) {
             it?.let {
-//                findNavController().navigate(R.id.action_started_home)
+                (activity as? MainActivity)?.switchToNavHostFragment(R.id.homePageFragment)
             }
         }
     }

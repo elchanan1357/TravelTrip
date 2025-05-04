@@ -38,7 +38,7 @@ class EditProfileFragment : Fragment() {
     ): View? {
         binding = EditProfileBinding.inflate(inflater, container, false)
 
-        launchCameraForImage(this, binding?.imgProfile, binding?.clickImg) {
+        launchCameraForImage(this, binding?.imgProfile, binding?.profilePicChange) {
             this._bitmap = it
         }
 

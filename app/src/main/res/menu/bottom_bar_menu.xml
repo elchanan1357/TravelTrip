@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/homePageFragment"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/home_24"
         android:title="@string/home"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
@@ -25,7 +25,7 @@
     <item
         android:id="@+id/postsFragment"
         android:icon="@drawable/blog_icon"
-        android:title="@string/blogs"
+        android:title="@string/posts"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
 

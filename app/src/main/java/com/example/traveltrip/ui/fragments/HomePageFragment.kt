@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.MainActivity
 import com.example.traveltrip.R
 import com.example.traveltrip.databinding.HomePageBinding
 import com.example.traveltrip.ui.viewModel.UserViewModel
@@ -31,16 +32,32 @@ class HomePageFragment : Fragment() {
     ): View? {
         binding = HomePageBinding.inflate(inflater, container, false)
 
-        binding?.BlogIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_blogs) }
-        binding?.DiscoverIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_discover) }
-        binding?.TripsIcon?.setOnClickListener { findNavController().navigate(R.id.action_home_trips) }
+        binding?.BlogIcon?.setOnClickListener {
+            (activity as? MainActivity)?.switchToNavHostFragment(R.id.postsFragment)
+
+//            findNavController().navigate(R.id.action_home_blogs)
+        }
+        binding?.DiscoverIcon?.setOnClickListener {
+//            findNavController().navigate(R.id.action_home_discover)
+            (activity as? MainActivity)?.switchToNavHostFragment(R.id.discoverFragment)
+        }
+        binding?.TripsIcon?.setOnClickListener {
+//            findNavController().navigate(R.id.action_home_trips)
+//            (activity as? MainActivity)?.switchToNavHostFragment(R.id.tripsFragment)
+        }
 
 
         observeError()
         observeUser()
-        viewModel?.getCurrentUser()
+
 
         return binding?.root
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        viewModel?.getCurrentUser()
     }
 
     private fun observeError() {

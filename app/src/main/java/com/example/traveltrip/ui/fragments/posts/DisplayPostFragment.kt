@@ -39,7 +39,7 @@ class DisplayPostFragment : Fragment() {
         observeErrorUser()
         observeUser()
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModelUser?.getCurrentUser()
+
 
         return binding?.root
     }
@@ -55,22 +55,26 @@ class DisplayPostFragment : Fragment() {
 
 
     private fun observeUser() {
+        viewModelUser?.user?.observe(viewLifecycleOwner) {
+            it?.let { user ->
+                this._user = user
+                binding?.name?.text = user.name
+                getPicFromPicasso(binding?.imgUser, user.img)
+            }
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
         val postId = arguments?.getString("postID") ?: ""
         if (postId.isBlank()) {
             binding?.progressBar?.visibility = View.GONE
             createToast("Not find post")
             //TODO wait
             findNavController().popBackStack()
-        }
-
-        viewModelUser?.user?.observe(viewLifecycleOwner) {
-            it?.let { user ->
-                this._user = user
-                viewModelPost?.getPostByID(postId)
-            }
-        }
+        } else viewModelPost?.getPostByID(postId)
     }
-
 
     private fun observeErrorPost() {
         viewModelPost?.errorMessage?.observe(viewLifecycleOwner) { error ->
@@ -93,6 +97,8 @@ class DisplayPostFragment : Fragment() {
 //                binding?.state?.text = post.state
                 binding?.title?.text = post.title
                 binding?.text?.text = post.text
+
+                viewModelUser?.getUserById(post.userId)
             }
         }
     }

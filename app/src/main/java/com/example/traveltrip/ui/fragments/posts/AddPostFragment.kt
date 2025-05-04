@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.traveltrip.databinding.AddPostBinding
 import com.example.traveltrip.model.room.entity.Post
+import com.example.traveltrip.model.room.entity.User
 import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.launchCameraForImage
 import com.example.traveltrip.utils.log
@@ -19,6 +20,7 @@ import com.example.traveltrip.utils.validateFields
 import com.example.traveltrip.ui.viewModel.PostViewModel
 import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.createToast
+import com.example.traveltrip.utils.getPicFromPicasso
 
 
 class AddPostFragment : Fragment() {
@@ -26,6 +28,7 @@ class AddPostFragment : Fragment() {
     private var _bitmap: Bitmap? = null
     private var viewModelPost: PostViewModel? = null
     private var viewModelUser: UserViewModel? = null
+    private lateinit var _user: User
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -55,6 +58,11 @@ class AddPostFragment : Fragment() {
         return binding?.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModelUser?.getCurrentUser()
+    }
+
     private fun handleSave() {
         val validation = arrayOf(
 //            FieldValidation(binding?.city, "You must provide your city"),
@@ -69,7 +77,18 @@ class AddPostFragment : Fragment() {
         }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModelUser?.getCurrentUser()
+        val city = ""
+//                    binding?.city?.text.toString()
+        val state = ""
+//                    binding?.state?.text.toString()
+        val title = binding?.title?.text.toString()
+        val text = binding?.text?.text.toString()
+        val userId = this._user.uid
+
+        viewModelPost?.insertPost(
+            Post("", city, state, title, text, userId),
+            this._bitmap
+        )
     }
 
     override fun onDestroyView() {
@@ -100,18 +119,9 @@ class AddPostFragment : Fragment() {
     private fun observeUser() {
         viewModelUser?.user?.observe(viewLifecycleOwner) {
             it?.let { user ->
-                val city = ""
-//                    binding?.city?.text.toString()
-                val state = ""
-//                    binding?.state?.text.toString()
-                val title = binding?.title?.text.toString()
-                val text = binding?.text?.text.toString()
-                val userId = user.uid
-
-                viewModelPost?.insertPost(
-                    Post("", city, state, title, text, userId),
-                    this._bitmap
-                )
+                this._user = user
+                binding?.name?.text = user.name
+                getPicFromPicasso(binding?.imgUser, user.img)
             }
         }
     }

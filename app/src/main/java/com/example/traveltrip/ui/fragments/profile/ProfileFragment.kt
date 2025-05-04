@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.traveltrip.MainActivity
 import com.example.traveltrip.R
 import com.example.traveltrip.databinding.ProfileBinding
 import com.example.traveltrip.model.room.entity.User
@@ -43,7 +44,7 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profile_editProfile)
         }
         binding?.yourPostsBtn?.setOnClickListener {
-            findNavController().navigate(R.id.action_proflie_myPosts)
+            findNavController().navigate(R.id.action_profile_myPosts)
         }
 
         return binding?.root
@@ -104,14 +105,7 @@ class ProfileFragment : Fragment() {
         viewModel?.isSuccess?.observe(viewLifecycleOwner) {
             if (it) {
                 binding?.progressBar?.visibility = View.GONE
-                findNavController().navigate(
-                    R.id.getStarted,
-                    null,
-                    NavOptions.Builder()
-                        .setPopUpTo(R.id.nav_graph, true)
-                        .setLaunchSingleTop(true)
-                        .build()
-                )
+                (activity as? MainActivity)?.switchToNavHostFragment(R.id.getStarted)
             }
         }
     }

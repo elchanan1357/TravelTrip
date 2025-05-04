@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trips_graph"
+    app:startDestination="@id/discoverFragment">
+
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.traveltrip.ui.fragments.trips.DiscoverFragment"
+        android:label="DiscoverFragment"
+        tools:layout="@layout/discover">
+        <action
+            android:id="@+id/action_discover_categories"
+            app:destination="@id/categoriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.traveltrip.ui.fragments.trips.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/categories">
+        <action
+            android:id="@+id/action_categories_trips"
+            app:destination="@id/tripsFragment" />
+        <argument
+            android:name="mainCategory"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.traveltrip.ui.fragments.trips.TripsFragment"
+        android:label="TripsFragment"
+        tools:layout="@layout/trips">
+        <argument
+            android:name="mainCategory"
+            app:argType="string" />
+        <argument
+            android:name="subCategory"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

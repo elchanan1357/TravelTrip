@@ -9,18 +9,20 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traveltrip.ui.adapter.GenericAdapter
 import com.example.traveltrip.databinding.RowTripBinding
 import com.example.traveltrip.databinding.TripsBinding
-import com.example.traveltrip.model.room.entity.Travel
+import com.example.traveltrip.model.remote.googleApi.Place
 import com.example.traveltrip.ui.viewModel.TripsViewModel
+import com.example.traveltrip.utils.createToast
 
 class TripsFragment : Fragment() {
     private var viewModel: TripsViewModel? = null
     private var binding: TripsBinding? = null
-    private var adapter: GenericAdapter<Travel, RowTripBinding>? = null
+    private var adapter: GenericAdapter<Place, RowTripBinding>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,6 @@ class TripsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
         dropList(mainCategories, subCategories)
-
     }
 
 
@@ -60,7 +61,6 @@ class TripsFragment : Fragment() {
 //            Pair(40.7128, -74.0060),
 //            Pair(34.0522, -118.2437)
         )
-
 
         when (arguments?.getString("mainCategory")) {
             "Trips" -> {
@@ -102,6 +102,32 @@ class TripsFragment : Fragment() {
     }
 
 
+    private fun observeErrorUser() {
+        viewModel?.error?.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                binding?.progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+
+    private fun observeGetData() {
+        viewModel?.travels?.observe(viewLifecycleOwner) { travels ->
+            travels?.let {
+                if (travels.isNotEmpty()) {
+                    adapter?.updateList(travels)
+                    binding?.progressBar?.visibility = View.GONE
+                } else {
+                    binding?.progressBar?.visibility = View.GONE
+                    createToast("No trips yet...")
+                }
+            }
+        }
+    }
+
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
@@ -113,8 +139,8 @@ class TripsFragment : Fragment() {
             items = emptyList(),
             bindingInflater = RowTripBinding::inflate
         ) { itemBinding, item ->
-            itemBinding.Title.text = item.title
-            itemBinding.Information.text = item.info
+            itemBinding.Title.text = item.name
+            itemBinding.Information.text = item.types[0]
         }
     }
 
