@@ -8,23 +8,23 @@
         android:title="@string/home"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/myTripsFragment"
-        android:icon="@drawable/diary_icon"
-        android:title="@string/diary"
-        app:iconTint="@null"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/myTripsFragment"-->
+<!--        android:icon="@drawable/diary_icon"-->
+<!--        android:title="@string/diary"-->
+<!--        app:iconTint="@null"-->
+<!--        app:showAsAction="ifRoom" />-->
 
     <item
         android:id="@+id/discoverFragment"
-        android:icon="@drawable/discover_icon"
+        android:icon="@drawable/baseline_language_24"
         android:title="@string/discover"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/postsFragment"
-        android:icon="@drawable/blog_icon"
+        android:icon="@drawable/chat"
         android:title="@string/posts"
         app:iconTint="@null"
         app:showAsAction="ifRoom" />
