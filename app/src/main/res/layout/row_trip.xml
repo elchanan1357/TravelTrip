@@ -6,91 +6,94 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-
-        app:cardElevation="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="411dp"
+        android:layout_height="404dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rowMyPosts_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:padding="16dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="4dp">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
+            <ImageView
+                android:id="@+id/imgBtn"
+                android:layout_width="match_parent"
+                android:layout_height="197dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="11dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/view5"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageButton
-                        android:id="@+id/imgBtn"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:contentDescription="@string/profile"
-                        android:focusable="false"
-                        android:scaleType="centerCrop"
-                        android:translationX="-50dp"
-                        android:translationY="-50dp"
-                        app:srcCompat="@drawable/profile" />
-                </FrameLayout>
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="@drawable/border"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-
-                    android:gravity="start"
-                    android:text="@string/title_of_trip"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Information"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:gravity="start"
-                    android:text="@string/all_information_about_this_trip"
-                    android:textSize="16sp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/Title"
+                app:layout_constraintTop_toBottomOf="@+id/imgBtn"
+                tools:layout_editor_absoluteX="8dp">
 
                 <TextView
                     android:id="@+id/Location"
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:text="@string/location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_add_box_24" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/subText1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/subText2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:paddingEnd="15dp"
-                    android:text="@string/location" />
+                    android:layout_height="match_parent"
+                    android:text="All-in-one AI creative suite with the highest-quality assets Explore and create unique, on-brand visuals—images, video, audio, and more.  "
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="135dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="2dp"
+                android:text="The Hidden Gem of Machu Picchu: Tips for Beating the Crowds..."
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/subText1"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                tools:layout_editor_absoluteX="16dp" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
