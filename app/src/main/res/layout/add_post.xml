@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textColor="#736E6E"
+                        android:textColor="#000000"
                         tools:text="tap to add img" />
                 </LinearLayout>
             </FrameLayout>
@@ -98,7 +98,7 @@
                 android:hint="Enter the title..."
                 android:inputType="textCapSentences|textMultiLine"
                 android:maxLines="3"
-                android:textColor="#E2DEDE"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +175,7 @@
                 android:hint="Enter the post..."
                 android:inputType="textCapSentences|textMultiLine"
                 android:lineSpacingMultiplier="1.2"
-                android:textColor="#DDD1D1"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

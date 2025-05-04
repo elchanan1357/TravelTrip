@@ -69,9 +69,14 @@ class PostsFragment : Fragment() {
 
     private fun observePosts() {
         viewModelPost?.postsWithUsers?.observe(viewLifecycleOwner) { postsWithUsers ->
-            if (postsWithUsers.isNotEmpty()) {
-                adapter?.updateList(postsWithUsers)
-                binding?.progressBar?.visibility = View.GONE
+            postsWithUsers?.let {
+                if (postsWithUsers.isNotEmpty()) {
+                    adapter?.updateList(postsWithUsers)
+                    binding?.progressBar?.visibility = View.GONE
+                } else {
+                    binding?.progressBar?.visibility = View.GONE
+                    createToast("No post yet...")
+                }
             }
         }
     }

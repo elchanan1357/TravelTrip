@@ -95,9 +95,14 @@ class MyPostFragment : Fragment() {
 
     private fun observePosts() {
         viewModel?.posts?.observe(viewLifecycleOwner) { posts ->
-            if (posts.isNotEmpty()) {
-                adapter?.updateList(posts)
-                binding?.progressBar?.visibility = View.GONE
+            posts?.let {
+                if (posts.isNotEmpty()) {
+                    adapter?.updateList(posts)
+                    binding?.progressBar?.visibility = View.GONE
+                } else {
+                    binding?.progressBar?.visibility = View.GONE
+                    createToast("No post yet...")
+                }
             }
         }
     }
