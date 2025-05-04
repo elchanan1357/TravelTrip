@@ -22,10 +22,12 @@ class ProfileFragment : Fragment() {
     private var _user: User? = null
     private var viewModel: UserViewModel? = null
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +38,6 @@ class ProfileFragment : Fragment() {
         observeError()
         observeUser()
         observeSuccess()
-        viewModel?.getCurrentUser()
 
         binding?.editDetailsBtn?.setOnClickListener {
             findNavController().navigate(R.id.action_profile_editProfile)
@@ -45,14 +46,20 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_proflie_myPosts)
         }
 
+        return binding?.root
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        viewModel?.getCurrentUser()
         binding?.deleteBtn?.setOnClickListener { handleDelete() }
         binding?.logOutBtn?.setOnClickListener {
             binding?.progressBar?.visibility = View.VISIBLE
             viewModel?.signOut()
         }
-
-        return binding?.root
     }
+
 
     private fun handleDelete() {
         binding?.progressBar?.visibility = View.VISIBLE
@@ -60,6 +67,7 @@ class ProfileFragment : Fragment() {
             viewModel?.deleteUser(_user!!)
         } else logError("Not find user")
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -90,6 +98,7 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
 
     private fun observeSuccess() {
         viewModel?.isSuccess?.observe(viewLifecycleOwner) {
