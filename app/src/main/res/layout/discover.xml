@@ -74,7 +74,7 @@
                             android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
-                            app:srcCompat="@drawable/view2" />
+                            app:srcCompat="@drawable/view" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -247,7 +247,7 @@
                             android:scaleType="centerCrop"
                             android:translationX="-50dp"
                             android:translationY="-50dp"
-                            app:srcCompat="@drawable/view2" />
+                            app:srcCompat="@drawable/hotels" />
                     </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
