@@ -46,6 +46,14 @@ class EditPostFragment : Fragment() {
 
         launchCameraForImage(this, binding?.imgPost, binding?.addPhoto) {
             this._bitmap = it
+            binding?.addPhoto?.visibility = View.GONE
+            binding?.imgPost?.visibility = View.VISIBLE
+        }
+
+        launchCameraForImage(this, binding?.imgPost, binding?.imgPost) {
+            this._bitmap = it
+            binding?.addPhoto?.visibility = View.GONE
+            binding?.imgPost?.visibility = View.VISIBLE
         }
 
         return binding?.root
@@ -64,8 +72,8 @@ class EditPostFragment : Fragment() {
 
     private fun handleSave() {
         val validation = arrayOf(
-            FieldValidation(binding?.city, "Enter your city"),
-            FieldValidation(binding?.state, "Enter your state"),
+//            FieldValidation(binding?.city, "Enter your city"),
+//            FieldValidation(binding?.state, "Enter your state"),
             FieldValidation(binding?.title, "Enter the title"),
             FieldValidation(binding?.text, "Enter the text"),
         )
@@ -83,8 +91,10 @@ class EditPostFragment : Fragment() {
         binding?.progressBar?.visibility = View.VISIBLE
 
         val newPost = this._post?.copy(
-            city = binding?.city?.text.toString(),
-            state = binding?.state?.text.toString(),
+            city = "",
+//            binding?.city?.text.toString(),
+            state = "",
+//                    binding ?. state ?. text . toString (),
             title = binding?.title?.text.toString(),
             text = binding?.text?.text.toString()
         )
@@ -129,11 +139,14 @@ class EditPostFragment : Fragment() {
             if (resPost != null) {
                 binding?.progressBar?.visibility = View.GONE
                 this._post = resPost
-                getPicFromPicasso(binding?.imgPost, resPost.imgURI)
-                //TODO fix
-                binding?.name?.text = this._user?.name ?: "no user"
-                binding?.city?.setText(resPost.city)
-                binding?.state?.setText(resPost.state)
+                if (resPost.imgURI.isNotBlank()) {
+                    getPicFromPicasso(binding?.imgPost, resPost.imgURI)
+                    binding?.addPhoto?.visibility = View.GONE
+                    binding?.imgPost?.visibility = View.VISIBLE
+                }
+
+//                binding?.city?.setText(resPost.city)
+//                binding?.state?.setText(resPost.state)
                 binding?.title?.setText(resPost.title)
                 binding?.text?.setText(resPost.text)
                 binding?.deleteBtn?.setOnClickListener {
@@ -167,6 +180,8 @@ class EditPostFragment : Fragment() {
         viewModelUser?.user?.observe(viewLifecycleOwner) {
             it?.let { user ->
                 this._user = user
+                getPicFromPicasso(binding?.imgUser, user.img)
+                binding?.name?.text = this._user?.name
                 viewModelPost?.getPostByID(postId)
             }
         }
