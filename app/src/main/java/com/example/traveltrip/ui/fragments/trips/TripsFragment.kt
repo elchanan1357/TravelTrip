@@ -125,7 +125,7 @@ class TripsFragment : Fragment() {
             bindingInflater = RowTripBinding::inflate
         ) { itemBinding, item ->
             itemBinding.Title.text = item.name
-            itemBinding.Information.text = item.formattedAddress
+            itemBinding.subText2.text = item.formattedAddress
 
             val uri = item.photos?.get(0)?.photoReference?.let { getPhotoUrl(it) }
             log("the uri: ${uri.toString()}")
