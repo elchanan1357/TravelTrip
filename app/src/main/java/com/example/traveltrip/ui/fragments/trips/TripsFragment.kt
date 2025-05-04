@@ -55,62 +55,60 @@ class TripsFragment : Fragment() {
 
         observeTravels()
 //        dropList(mainCategories, subCategories)
-
     }
 
 
     override fun onResume() {
         super.onResume()
-        fetchTravels()
 
-//        val israelLocations = listOf(
-//            Pair(32.0853, 34.7818),
-////            Pair(31.7683, 35.2137),
-////            Pair(32.7940, 34.9896),
-////            Pair(29.5581, 34.9482),
-////            Pair(32.7957, 35.5311),
-////            Pair(33.0084, 35.1016),
-////            Pair(40.7128, -74.0060),
-////            Pair(34.0522, -118.2437)
-//        )
-//
-//
-//        when (arguments?.getString("mainCategory")) {
-//            "Trips" -> {
-//                binding?.progressBar?.visibility = View.VISIBLE
-//                when (arguments?.getString("subCategory")) {
-//                    "Parks" -> israelLocations.forEach { (lat, lon) ->
-//                        viewModel?.fetchParks(lat, lon)
-//                    }
-//
-//                    "Trips" -> israelLocations.forEach { (lat, lon) ->
-////                        viewModel?.fetchTravels(lat, lon)
-//                    }
-//
-//                    "Museums" -> israelLocations.forEach { (lat, lon) ->
-//                        viewModel?.fetchMuseums(lat, lon)
-//                    }
-//
-//                    "kids" -> israelLocations.forEach { (lat, lon) ->
-////                        viewModel?.fetchTravels(lat, lon)
-//                    }
-//                }
-//            }
-//
-//            "Hotels" -> {
-//                binding?.progressBar?.visibility = View.VISIBLE
-//                var type = ""
-//                when (arguments?.getString("subCategory")) {
-//                    "Hostels" -> type = "lodging hostel"
-//                    "Guest Houses" -> type = "lodging guest house"
-//                    "Apartments" -> type = "lodging apartment"
-//                    "Hotels" -> type = "lodging "
-//                }
-//                israelLocations.forEach { (lat, lon) ->
-//                    viewModel?.fetchHotels(lat, lon, type)
-//                }
-//            }
-//        }
+        val israelLocations = listOf(
+            Pair(32.0853, 34.7818),
+//            Pair(31.7683, 35.2137),
+//            Pair(32.7940, 34.9896),
+//            Pair(29.5581, 34.9482),
+//            Pair(32.7957, 35.5311),
+//            Pair(33.0084, 35.1016),
+//            Pair(40.7128, -74.0060),
+//            Pair(34.0522, -118.2437)
+        )
+
+
+        when (arguments?.getString("mainCategory")) {
+            "Trips" -> {
+                binding?.progressBar?.visibility = View.VISIBLE
+                when (arguments?.getString("subCategory")) {
+                    "Parks" -> israelLocations.forEach { (lat, lon) ->
+                        viewModel?.fetchParks(lat, lon)
+                    }
+
+                    "Trips" -> israelLocations.forEach { (lat, lon) ->
+//                        viewModel?.fetchTravels(lat, lon)
+                    }
+
+                    "Museums" -> israelLocations.forEach { (lat, lon) ->
+                        viewModel?.fetchMuseums(lat, lon)
+                    }
+
+                    "kids" -> israelLocations.forEach { (lat, lon) ->
+//                        viewModel?.fetchTravels(lat, lon)
+                    }
+                }
+            }
+
+            "Hotels" -> {
+                binding?.progressBar?.visibility = View.VISIBLE
+                var type = ""
+                when (arguments?.getString("subCategory")) {
+                    "Hostels" -> type = "lodging hostel"
+                    "Guest Houses" -> type = "lodging guest house"
+                    "Apartments" -> type = "lodging apartment"
+                    "Hotels" -> type = "lodging "
+                }
+                israelLocations.forEach { (lat, lon) ->
+                    viewModel?.fetchHotels(lat, lon, type)
+                }
+            }
+        }
 
     }
 
@@ -148,27 +146,6 @@ class TripsFragment : Fragment() {
         }
     }
 
-    private fun fetchTravels() {
-        binding?.progressBar?.visibility = View.VISIBLE
-        val israelLocations = listOf(
-            Pair(32.0853, 34.7818),
-            Pair(31.7683, 35.2137),
-            Pair(32.7940, 34.9896),
-            Pair(29.5581, 34.9482),
-            Pair(32.7957, 35.5311),
-            Pair(33.0084, 35.1016),
-            Pair(40.7128, -74.0060),
-            Pair(34.0522, -118.2437)
-        )
-
-        viewModel?.fetchHotels(32.0853, 34.7818)
-
-//        israelLocations.forEach { (lat, lon) ->
-//            viewModel?.searchAllPOIs(lat, lon, radius, limit)
-//        }
-
-    }
-//
 //    private fun dropList(mainCategory: String, subCategory: String) {
 //        val categoryMap = mapOf(
 //            "Flights" to listOf("All Flights", "Low Cost", "Luxury", "Business"),
