@@ -54,6 +54,4 @@ object FirebaseAuth {
 
 
     fun getCurrentUser() = auth.currentUser
-
-
 }

@@ -34,11 +34,8 @@ class HomePageFragment : Fragment() {
 
         binding?.BlogIcon?.setOnClickListener {
             (activity as? MainActivity)?.switchToNavHostFragment(R.id.postsFragment)
-
-//            findNavController().navigate(R.id.action_home_blogs)
         }
         binding?.DiscoverIcon?.setOnClickListener {
-//            findNavController().navigate(R.id.action_home_discover)
             (activity as? MainActivity)?.switchToNavHostFragment(R.id.discoverFragment)
         }
         binding?.TripsIcon?.setOnClickListener {
@@ -46,10 +43,8 @@ class HomePageFragment : Fragment() {
 //            (activity as? MainActivity)?.switchToNavHostFragment(R.id.tripsFragment)
         }
 
-
         observeError()
         observeUser()
-
 
         return binding?.root
     }
@@ -59,6 +54,7 @@ class HomePageFragment : Fragment() {
         super.onResume()
         viewModel?.getCurrentUser()
     }
+
 
     private fun observeError() {
         viewModel?.errorMessage?.observe(viewLifecycleOwner) { error ->

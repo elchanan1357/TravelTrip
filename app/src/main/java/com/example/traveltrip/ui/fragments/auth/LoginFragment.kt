@@ -15,6 +15,7 @@ import com.example.traveltrip.databinding.LoginBinding
 import com.example.traveltrip.ui.viewModel.UserViewModel
 import com.example.traveltrip.utils.FieldValidation
 import com.example.traveltrip.utils.createToast
+import com.example.traveltrip.utils.getPicFromPicasso
 import com.example.traveltrip.utils.validateFields
 
 class LoginFragment : Fragment() {
@@ -34,7 +35,7 @@ class LoginFragment : Fragment() {
 
         binding?.LoginBtn?.setOnClickListener { handleLogin() }
         binding?.SignupBtn?.setOnClickListener { findNavController().navigate(R.id.action_login_register) }
-
+        observeUser()
         observeSuccess()
         observeError()
 
@@ -62,7 +63,6 @@ class LoginFragment : Fragment() {
         val pass = binding?.password?.text.toString()
 
         viewModel?.signIn(email, pass)
-
     }
 
     private fun observeError() {
@@ -77,10 +77,23 @@ class LoginFragment : Fragment() {
     private fun observeSuccess() {
         viewModel?.isSuccess?.observe(viewLifecycleOwner) {
             if (it) {
-                binding?.progressBar?.visibility = View.GONE
-                (activity as? MainActivity)?.switchToNavHostFragment(R.id.homePageFragment)
+                viewModel?.getCurrentUser()
+//                binding?.progressBar?.visibility = View.GONE
+//                (activity as? MainActivity)?.switchToNavHostFragment(R.id.homePageFragment)
             }
         }
     }
+
+    private fun observeUser() {
+        viewModel?.user?.observe(viewLifecycleOwner) { user ->
+            user?.let {
+                if (user.email.isNotBlank()) {
+                    binding?.progressBar?.visibility = View.GONE
+                    (activity as? MainActivity)?.switchToNavHostFragment(R.id.homePageFragment)
+                }
+            }
+        }
+    }
+
 
 }

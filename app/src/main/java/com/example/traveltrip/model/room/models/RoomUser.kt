@@ -94,4 +94,22 @@ class RoomUser private constructor() {
             }
         }
     }
+
+    fun clearAll(callback: ResultCallback) {
+        executor.execute {
+            try {
+                AppLocalDB.DB.clearAllTables()
+                val allUsers = AppLocalDB.DB.UserDao().getUsers()
+                val allPosts = AppLocalDB.DB.PostDao().getAllPosts()
+                log("Users count: ${allUsers.size}")
+                log("Posts count: ${allPosts.value?.size}")
+                log("delete all data")
+                Thread.sleep(3000)
+                mainHandler.post { callback(true) }
+            } catch (err: Exception) {
+                logError("Fail in delete all data\n $err")
+                callback(false)
+            }
+        }
+    }
 }

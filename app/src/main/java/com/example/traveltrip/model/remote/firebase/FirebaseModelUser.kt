@@ -98,6 +98,7 @@ class FirebaseModelUser {
     }
 
 
+
     fun signOut() {
         FirebaseAuth.signOut()
     }
