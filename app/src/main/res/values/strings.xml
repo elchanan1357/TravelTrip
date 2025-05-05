@@ -27,7 +27,7 @@
     <string name="top_trips">Top Trips</string>
     <string name="cusco_peru">Cisco Peru</string>
     <string name="inca_trail">Inca Trail</string>
-    <string name="blogs">Blogs</string>
+    <string name="posts">Posts</string>
     <string name="profile">Profile</string>
     <string name="diary">Diary</string>
     <string name="home">Home</string>
@@ -45,4 +45,5 @@
     <string name="title_of_trip">Title of trip</string>
     <string name="cancel">Cancel</string>
     <string name="todo">TODO</string>
+    <string name="enter_the_title">Enter the title...</string>
 </resources>

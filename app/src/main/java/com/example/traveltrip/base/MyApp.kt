@@ -8,7 +8,7 @@ class MyApp : Application() {
 
     @SuppressLint("StaticFieldLeak")
     object Globals {
-        var context: Context? = null
+        lateinit var context: Context
     }
 
     override fun onCreate() {

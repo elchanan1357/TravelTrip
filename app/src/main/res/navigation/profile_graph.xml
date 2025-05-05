@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/propile_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.traveltrip.ui.fragments.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile">
+        <action
+            android:id="@+id/action_profile_editProfile"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profile_myPosts"
+            app:destination="@id/myPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.traveltrip.ui.fragments.profile.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/edit_profile" />
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.example.traveltrip.ui.fragments.posts.MyPostFragment"
+        android:label="MyPostFragment"
+        tools:layout="@layout/my_posts">
+        <action
+            android:id="@+id/action_myPosts_editPost"
+            app:destination="@id/editPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.example.traveltrip.ui.fragments.posts.EditPostFragment"
+        android:label="EditPostFragment"
+        tools:layout="@layout/edit_post">
+        <argument
+            android:name="postID"
+            app:argType="string" />
+    </fragment>
+</navigation>

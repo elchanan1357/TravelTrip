@@ -65,7 +65,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/AmusementParks"
+                android:id="@+id/oneBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -108,7 +108,7 @@
                             android:clipToPadding="false">
 
                             <ImageButton
-                                android:id="@+id/imageButton"
+                                android:id="@+id/oneBoxImg"
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
@@ -125,7 +125,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/oneBoxText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -139,7 +139,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Trips"
+                android:id="@+id/twoBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -180,7 +180,7 @@
                             android:clipToPadding="false">
 
                             <ImageButton
-                                android:id="@+id/imageButton3"
+                                android:id="@+id/towBoxImg"
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
@@ -190,14 +190,14 @@
                                 android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
-                                app:srcCompat="@drawable/view2" />
+                                app:srcCompat="@drawable/view3" />
                         </FrameLayout>
 
                     </androidx.cardview.widget.CardView>
 
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/towBoxText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -219,7 +219,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Museums"
+                android:id="@+id/threeBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
@@ -261,7 +261,7 @@
                             android:clipToPadding="false">
 
                             <ImageButton
-                                android:id="@+id/imageButton2"
+                                android:id="@+id/threeBoxImg"
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
@@ -271,14 +271,14 @@
                                 android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
-                                app:srcCompat="@drawable/view2" />
+                                app:srcCompat="@drawable/view4" />
                         </FrameLayout>
 
                     </androidx.cardview.widget.CardView>
 
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/threeBoxText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -292,7 +292,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Kids"
+                android:id="@+id/fourBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -333,7 +333,7 @@
                             android:clipToPadding="false">
 
                             <ImageButton
-                                android:id="@+id/ImgBtn"
+                                android:id="@+id/fourBoxImg"
                                 android:layout_width="250dp"
                                 android:layout_height="250dp"
                                 android:background="@android:color/transparent"
@@ -343,14 +343,14 @@
                                 android:scaleType="centerCrop"
                                 android:translationX="-50dp"
                                 android:translationY="-50dp"
-                                app:srcCompat="@drawable/view1" />
+                                app:srcCompat="@drawable/view5" />
                         </FrameLayout>
 
                     </androidx.cardview.widget.CardView>
 
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/fourBoxText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
